@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-19006.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>springboot简单实现redis商品秒杀功能，成功解决商品超售问题</title>
+        <meta name="description" content="1.主类，for循环模拟1000个线程进行秒杀&nbsp; import redis.clients.jedis.Jedis;  import java.util.concurrent.LinkedB" />
+        <link rel="icon" href="__ADDON__/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>springboot简单实现redis商品秒杀功能，成功解决商品超售问题</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<div id="content_views" class="htmledit_views"> <p>1.主类，for循环模拟1000个线程进行秒杀&nbsp;</p> <pre><code class="language-java">import redis.clients.jedis.Jedis;  import java.util.concurrent.LinkedBlockingDeque; import java.util.concurrent.ThreadPoolExecutor; import java.util.concurrent.TimeUnit;  public class Application {     //创建线程池     public static ThreadPoolExecutor pool= new ThreadPoolExecutor(      10,100,10, TimeUnit.SECONDS,      new LinkedBlockingDeque&lt;Runnable&gt;()     );     public static void main(String[] args) {         //jedis操作redis，连接配置信息，本地连接         Jedis jedis = new Jedis("localhost", 6379);         //登录redis密码         jedis.auth("abc123456");         //选择操作库         jedis.select(1);         //设置秒杀商品和库存         jedis.set("kill_num", "50");         //删除上一次的秒杀用户信息，然后再次调用该方法时，记录新的秒杀用户信息ID。         jedis.del("kill_list");         //关闭连接         jedis.close();          //for循环，模拟秒杀环境，1000个线程任务         for (int i = 0; i &lt; 1000; i++) {             //线程任务加入到线程池里面             pool.execute(new KillTask());         }     } } </code></pre> <p>2.秒杀任务类</p> <pre><code class="language-java">import redis.clients.jedis.Jedis; import redis.clients.jedis.Transaction;  public class KillTask implements Runnable{      @Override     public void run() {         Jedis jedis = new Jedis("localhost", 6379);         jedis.auth("abc123456");         jedis.select(1);         //watch监控key,获得数据的版本号         jedis.watch("kill_num", "kill_list");         int num = Integer.parseInt(jedis.get("kill_num"));         //判断库存         if (num &gt; 0) {             //开启事务             Transaction transaction = jedis.multi();             transaction.decr("kill_num");//库存减一             transaction.rpush("kill_list", "9527");//记录用户ID,自己写的是9527             transaction.exec();//提交事务         }         else {             Application.pool.shutdown();         }         jedis.close();     } } </code></pre> <p>3.运行主类时，需要开启redis-&gt;start.bat,然后运行成功后，打开redis客户端查看（需要连接），如下图：&nbsp;</p> <p>因为使用redis的是db1数据库，所以查看db1数据库：</p> <p><img fetchpriority="high" decoding="async" alt="" height="368" src="http://img.555519.xyz/uploads/20230223/2a7c9d9f9be630d72a06fc9cf40898d7.jpg"></p> <p>然后查看kill_num,此时键值是0，没有出现超买的现象：</p> <p><img decoding="async" alt="" height="356" src="http://img.555519.xyz/uploads/20230223/2f17b4122d7f8f312c80ff35dc955aae.jpg"></p> <p>最后查看kill_list，秒杀列表中出现秒杀商品的数量为50个，当初我们设置的也是50个商品数量。因为我们是写死的用户信息ID，所有都是9527这个用户：</p> <p><img decoding="async" alt="" height="431" src="http://img.555519.xyz/uploads/20230223/450d8cc573edba96fb682b078f654518.jpg"></p> <p>好了，使用redis避免了商品秒杀的超卖问题！</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>下一个：<a href="/news/article-19007.htm">动物疫苗的正确使用方法视频讲解教程（动物疫苗接种方法有哪些）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19006.htm" title="springboot简单实现redis商品秒杀功能，成功解决商品超售问题">springboot简单实现redis商品秒杀功能，成功解决商品超售问题</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-node-share-links.htm" title="V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
