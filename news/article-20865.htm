@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-20865.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Spring boot项目中自定义FeignClient的拦截器处理header和签名等信息</title>
+        <meta name="description" content="我们在请求第三方接口的时候通常由比较复杂但是统一的header和签名计算的一系列处理。这个时候就可以使用RequestInterceptor来实现。上代码： @Slf4j @Configuration" />
+        <link rel="icon" href="__ADDON__/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>Spring boot项目中自定义FeignClient的拦截器处理header和签名等信息</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<div id="content_views" class="htmledit_views"> <p>我们在请求第三方接口的时候通常由比较复杂但是统一的header和签名计算的一系列处理。这个时候就可以使用RequestInterceptor来实现。上代码：</p> <pre><code class="language-java">@Slf4j @Configuration  // a  global feign client interceptor public class FeignClientsConfigurationInterceptor implements RequestInterceptor {      @Override     public void apply(RequestTemplate template) {         try {             log.info("=======  FeignClientsConfigurationInterceptor ========"); //反序列化request body,拿到核心的参数projectId,用来获得请求接口用的appkey和appId JSONObject requestBody= (JSONObject) JSON.parse(new String(template.body()));             String projectId = (String) requestBody.get("projectId"); //过河拆桥，把projectId从 request body 移除（因为这个参数只是我方程序获取密钥时需要，但请求地第三方接口不需要）             requestBody.remove("projectId");             log.info("projectId =" + projectId);             PingAnKeyProperties pingAnKeyProperties = PingAnKeyProperties.getPingAnKeys(projectId);             String apiUrl = template.url();             log.info("apiUrl =" + apiUrl);             String app_id = pingAnKeyProperties.getAppId();             String app_key= pingAnKeyProperties.getAppKey();              log.info("app_id =" + app_id);             log.info("app_key =" + app_key);             String deviceId =SignUtils.getLocalMac();             String timestamp = Long.toString(System.currentTimeMillis());             Map&lt;String, String&gt; headers = new HashMap();             headers.put("X-Appid", app_id);             headers.put("Content-Type", "application/json;charset=utf-8");              Iterator&lt;String&gt; it =  headers.keySet().iterator();             while (it.hasNext()) {                 String header_key = it.next();                 template.header(header_key, headers.get(header_key));             }             String method = template.method();             String bodyText = requestBody.toJSONString(); //使用template.body(bodyText) API重置移除projectId之后的reqeust body             template.body(bodyText);    //reset body text             String body_content = new String(template.body());             log.debug("body_content = "+ body_content);             String body_hash = SignUtils.SHA(body_content, "SHA-256"); //            log.info(body_hash);             String sign_data = SignUtils.getSign(method,                     apiUrl,                     "", headers, body_hash,app_key);             template.header("X-Authorization",                     sign_data.toLowerCase());         } catch (SocketException e) {             e.printStackTrace();         } catch (UnknownHostException e) {             e.printStackTrace();         } catch (UnsupportedEncodingException e) {             e.printStackTrace();         }         log.info("===============");     } } </code></pre> <p>&nbsp;总结：通过RequestTemplate对象我们可以拿到reqeust的几乎所有参数，url， reqeust body，method等等，熟悉RequestTemplate的API就能比较轻松的实现对原reqeust的拦截和改造。我是试了好久才找到重置requestbody的API原来是下面的方法，附源码截图：</p> <p><img fetchpriority="high" decoding="async" alt="" height="716" src="http://img.555519.xyz/uploads/20230119/d93b56e1af04c0abdb18a83c7b24ba53.jpg"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-20863.htm">使用Python在D天内运送包裹的能力</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19948.htm" title="猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）">猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19489.htm" title="免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）">免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

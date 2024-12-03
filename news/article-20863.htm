@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-20863.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>使用Python在D天内运送包裹的能力</title>
+        <meta name="description" content="假设有一条传送带上有包裹，这些包裹将在D天之内从一个港口运到另一个港口。此处，传送带上的第i个包装的重量为砝码[i]。每天，我们都会在皮带上向船上装载包裹。我们装载的重量不会超过船舶的最大承重量。我们" />
+        <link rel="icon" href="__ADDON__/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>使用Python在D天内运送包裹的能力</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<p>假设有一条传送带上有包裹，这些包裹将在D天之内从一个港口运到另一个港口。此处，传送带上的第i个包装的重量为砝码[i]。每天，我们都会在皮带上向船上装载包裹。我们装载的重量不会超过船舶的最大承重量。我们必须找到最小的船舶重量，这将导致在D天之内运送完传送带上的所有包裹。因此，如果输入为[3,2,2,4,1,4]且D = 3，则输出将为6，因为6的装船量是3天内运送所有包裹的最小值-</p> <ul class="list-paddingleft-2"> <li> <p>第1天，3、2</p> </li> <li> <p>第2天，2、4天</p> </li> <li> <p>第3天，1、4天</p> </li> </ul> <p>为了解决这个问题，我们将遵循以下步骤-</p> <ul class="list-paddingleft-2"> <li> <p>定义一个递归函数<code>solve()</code>。这将采用weights数组，maxWeight和ships数组，其作用类似于-</p> </li> <li> <p>索引：= 0</p> </li> <li> <p>对于范围在0到舰船长度范围内的i</p> </li> <ul class="list-paddingleft-2" style="list-style-type: square;"> <li> <p>船舶[i]：=船舶[i] +重量[索引]</p> </li> <li> <p>指数增加1</p> </li> <li> <p>船只[i]：= 0</p> </li> <li> <p>而索引&lt;重量和船只的长度[i] +重量[索引] &lt;= maxWeight</p> </li> </ul> <ul class="list-paddingleft-2" style="list-style-type: square;"></ul> <li> <p>当index =权重长度时返回true，否则返回false</p> </li> <li> <p>主要方法会像</p> </li> <li> <p>船：=大小与D相同的数组，并用0填充</p> </li> <li> <p>maxWeight：=最大重量</p> </li> <li> <p>低：= maxWeight，高：= maxWeight +权重数组的长度+ 1</p> </li> <li> <p>从低到高</p> </li> <ul class="list-paddingleft-2" style="list-style-type: square;"> <li> <p>中：=低+（高-低）/ 2</p> </li> <li> <p>如果solve(weights,mid,ships)为true，则为高：=中，否则为低：=中+1</p> </li> </ul> <li> <p>高回报</p> </li> </ul> <p>让我们看下面的实现以更好地理解-</p> <h2>示例</h2> <pre>class&nbsp;Solution(object): &nbsp;&nbsp;&nbsp;def&nbsp;shipWithinDays(self,&nbsp;weights,&nbsp;D): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ships&nbsp;=&nbsp;[0&nbsp;for&nbsp;i&nbsp;in&nbsp;range(D)] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_w&nbsp;=&nbsp;max(weights) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;low&nbsp;=&nbsp;max_w &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;high&nbsp;=&nbsp;max_w&nbsp;*&nbsp;len(weights)+1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;low&lt;high: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mid&nbsp;=&nbsp;low&nbsp;+&nbsp;(high-low)//2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;self.solve(weights,mid,ships): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;high&nbsp;=&nbsp;mid &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;low&nbsp;=&nbsp;mid+1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;high &nbsp;&nbsp;&nbsp;def&nbsp;solve(self,weights,max_w,ships): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;=&nbsp;0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i&nbsp;in&nbsp;range(len(ships)): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ships[i]&nbsp;=&nbsp;0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;index&nbsp;&lt;&nbsp;len(weights)&nbsp;and&nbsp;ships[i]+weights[index]&lt;=&nbsp;max_w: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ships[i]&nbsp;+=&nbsp;weights[index] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index+=1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;index&nbsp;==&nbsp;len(weights) ob&nbsp;=&nbsp;Solution()print(ob.shipWithinDays([3,2,2,4,1,4],3))</pre> <h2>输入项</h2> <pre>[3,2,2,4,1,4] 3</pre> <p>输出结果</p> <pre>6</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-20406.htm">新开宠物店怎么做宣传（新开宠物店的注意事项）</a></p>
+                                        <p>下一个：<a href="/news/article-20865.htm">Spring boot项目中自定义FeignClient的拦截器处理header和签名等信息</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19490.htm" title="合肥宠物免费领养（合肥宠物领养中心官网）">合肥宠物免费领养（合肥宠物领养中心官网）</a></li>
+                        <li class="py-2"><a href="/news/article-20405.htm" title="Android 12 行为变更：适配以Android 12为目标的应用">Android 12 行为变更：适配以Android 12为目标的应用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19489.htm" title="免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）">免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share-links.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-node-share-links.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20406.htm" title="新开宠物店怎么做宣传（新开宠物店的注意事项）">新开宠物店怎么做宣传（新开宠物店的注意事项）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
