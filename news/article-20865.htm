@@ -76,6 +76,7 @@
                                           				  				  				<div id="content_views" class="htmledit_views"> <p>我们在请求第三方接口的时候通常由比较复杂但是统一的header和签名计算的一系列处理。这个时候就可以使用RequestInterceptor来实现。上代码：</p> <pre><code class="language-java">@Slf4j @Configuration  // a  global feign client interceptor public class FeignClientsConfigurationInterceptor implements RequestInterceptor {      @Override     public void apply(RequestTemplate template) {         try {             log.info("=======  FeignClientsConfigurationInterceptor ========"); //反序列化request body,拿到核心的参数projectId,用来获得请求接口用的appkey和appId JSONObject requestBody= (JSONObject) JSON.parse(new String(template.body()));             String projectId = (String) requestBody.get("projectId"); //过河拆桥，把projectId从 request body 移除（因为这个参数只是我方程序获取密钥时需要，但请求地第三方接口不需要）             requestBody.remove("projectId");             log.info("projectId =" + projectId);             PingAnKeyProperties pingAnKeyProperties = PingAnKeyProperties.getPingAnKeys(projectId);             String apiUrl = template.url();             log.info("apiUrl =" + apiUrl);             String app_id = pingAnKeyProperties.getAppId();             String app_key= pingAnKeyProperties.getAppKey();              log.info("app_id =" + app_id);             log.info("app_key =" + app_key);             String deviceId =SignUtils.getLocalMac();             String timestamp = Long.toString(System.currentTimeMillis());             Map&lt;String, String&gt; headers = new HashMap();             headers.put("X-Appid", app_id);             headers.put("Content-Type", "application/json;charset=utf-8");              Iterator&lt;String&gt; it =  headers.keySet().iterator();             while (it.hasNext()) {                 String header_key = it.next();                 template.header(header_key, headers.get(header_key));             }             String method = template.method();             String bodyText = requestBody.toJSONString(); //使用template.body(bodyText) API重置移除projectId之后的reqeust body             template.body(bodyText);    //reset body text             String body_content = new String(template.body());             log.debug("body_content = "+ body_content);             String body_hash = SignUtils.SHA(body_content, "SHA-256"); //            log.info(body_hash);             String sign_data = SignUtils.getSign(method,                     apiUrl,                     "", headers, body_hash,app_key);             template.header("X-Authorization",                     sign_data.toLowerCase());         } catch (SocketException e) {             e.printStackTrace();         } catch (UnknownHostException e) {             e.printStackTrace();         } catch (UnsupportedEncodingException e) {             e.printStackTrace();         }         log.info("===============");     } } </code></pre> <p>&nbsp;总结：通过RequestTemplate对象我们可以拿到reqeust的几乎所有参数，url， reqeust body，method等等，熟悉RequestTemplate的API就能比较轻松的实现对原reqeust的拦截和改造。我是试了好久才找到重置requestbody的API原来是下面的方法，附源码截图：</p> <p><img fetchpriority="high" decoding="async" alt="" height="716" src="http://img.555519.xyz/uploads/20230119/d93b56e1af04c0abdb18a83c7b24ba53.jpg"></p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-20863.htm">使用Python在D天内运送包裹的能力</a></p>
+                                        <p>下一个：<a href="/news/article-21322.htm">动物疫苗使用管理（动物疫苗使用管理规范）</a></p>
                                     </div>
                                     </div>
                     <div class="col-md-3">
@@ -85,16 +86,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-19948.htm" title="猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）">猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/news/article-19489.htm" title="免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）">免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-node-share-links.htm" title="V2ray Linux节点订阅每天更新20M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19948.htm" title="猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）">猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）</a></li>
+                        <li class="py-2"><a href="/news/article-20405.htm" title="Android 12 行为变更：适配以Android 12为目标的应用">Android 12 行为变更：适配以Android 12为目标的应用</a></li>
+                        <li class="py-2"><a href="/news/article-19949.htm" title="国产十大放心狗粮品牌排行榜性价比高（国产十大放心狗粮品牌排行榜,性价比高的狗粮推荐）">国产十大放心狗粮品牌排行榜性价比高（国产十大放心狗粮品牌排行榜,性价比高的狗粮推荐）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20863.htm" title="使用Python在D天内运送包裹的能力">使用Python在D天内运送包裹的能力</a></li>
                     </ul>
     </div>
 </div>
@@ -106,7 +107,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
