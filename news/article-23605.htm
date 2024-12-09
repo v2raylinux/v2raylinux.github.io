@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-23605.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>C程序中编译时错误和运行时错误之间的区别</title>
+        <meta name="description" content="错误或异常是指代码执行中断，因此最终用户无法获得预期的结果。基于事件的产生或识别，我们可以将其归类为编译时错误和运行时错误。 以下是编译时错误和运行时错误之间的重要区别。    序号 键 编译时错误 " />
+        <link rel="icon" href="__ADDON__/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>C程序中编译时错误和运行时错误之间的区别</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<p>错误或异常是指代码执行中断，因此最终用户无法获得预期的结果。基于事件的产生或识别，我们可以将其归类为编译时错误和运行时错误。</p> <p>以下是编译时错误和运行时错误之间的重要区别。</p> <table class="table table-bordered table-striped"> <thead> <tr class="firstRow"> <th>序号</th> <th>键</th> <th>编译时错误</th> <th>运行时错误</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>参考</td> <td>编译时错误通常是指与语法或语义相对应的错误。</td> <td>另一方面，运行时错误是指在运行时执行代码期间遇到的错误。</td> </tr> <tr> <td>2</td> <td>侦测</td> <td>在代码开发时，编译器会检测到编译时错误。</td> <td>编译器无法检测到运行时错误，因此可以在代码执行时识别出运行时错误。</td> </tr> <tr> <td>3</td> <td>固定</td> <td>如前 ，编译时错误可以在代码开发时得到解决。</td> <td>一旦执行了代码并确定了错误，运行时错误就会变成修复状态。</td> </tr> <tr> <td></td> <td></td> <td></td> <td></td> </tr> </tbody> </table> <h2>编译时错误与运行时错误示例</h2> <p><strong>编译演示</strong></p> <pre>#include&lt;stdio.h&gt; public&nbsp;class&nbsp;CompileDemo{ &nbsp;&nbsp;&nbsp;void&nbsp;main(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;x&nbsp;=&nbsp;100; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;y&nbsp;=&nbsp;155; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//缺少分号 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("%d",&nbsp;(x,&nbsp;y)) &nbsp;&nbsp;&nbsp;} }</pre> <p>输出结果</p> <pre>error:&nbsp;expected&nbsp;';'&nbsp;before&nbsp;'}'&nbsp;token</pre> <h2>示例</h2> <p><strong>运行时演示文件</strong></p> <pre>include&lt;stdio.h&gt; public&nbsp;class&nbsp;RuntimeDemo{ &nbsp;&nbsp;&nbsp;void&nbsp;main(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;n&nbsp;=&nbsp;9; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;div&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;div&nbsp;=&nbsp;n/0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("resut&nbsp;=&nbsp;%d",&nbsp;div); &nbsp;&nbsp;&nbsp;} }</pre> <p>输出结果</p> <pre>warning:&nbsp;division&nbsp;by&nbsp;zero&nbsp;[-Wdiv-by-zero] div&nbsp;=&nbsp;n/0;</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-23155.htm">动物医院大众点评怎么写评价的（动物医院的号码是多少）</a></p>
+                                        <p>下一个：<a href="/news/article-23606.htm">天津免费领养猫（天津宠物猫免费领养）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share.htm" title="V2ray Linux节点订阅每天更新23M/S免费节点订阅链接">V2ray Linux节点订阅每天更新23M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20863.htm" title="使用Python在D天内运送包裹的能力">使用Python在D天内运送包裹的能力</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20405.htm" title="Android 12 行为变更：适配以Android 12为目标的应用">Android 12 行为变更：适配以Android 12为目标的应用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-node-share-links.htm" title="V2ray Linux节点订阅每天更新20M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share-links.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-node-share-links.htm" title="V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
