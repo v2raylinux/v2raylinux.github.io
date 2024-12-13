@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-25008.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Python生成sql语句</title>
+        <meta name="description" content="def generate_sql(table_name, ignore_col_set):     """     根据数据库中的列名生成字典格式的sql语句     :param table_nam" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>Python生成sql语句</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <pre><code class="prism language-python"><span class="token keyword">def</span> <span class="token function">generate_sql</span><span class="token punctuation">(</span>table_name<span class="token punctuation">,</span> ignore_col_set<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token triple-quoted-string string">"""     根据数据库中的列名生成字典格式的sql语句     :param table_name 待生成sql的表名     :param ignore_col_set 要忽略的列名集合     :return: 生成的sql语句     """</span>      sql <span class="token operator">=</span> <span class="token string">"show columns from %s"</span> <span class="token operator">%</span> table_name     <span class="token comment"># 我写的get_conn是获取一个全局的数据库连接对象,各位可以随意改改</span>     rs <span class="token operator">=</span> get_result<span class="token punctuation">(</span>get_conn<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sql<span class="token punctuation">)</span>     col_list <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token keyword">for</span> row <span class="token keyword">in</span> rs<span class="token punctuation">:</span>         <span class="token keyword">if</span> row<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">in</span> ignore_col_set<span class="token punctuation">:</span>             <span class="token keyword">continue</span>         <span class="token keyword">else</span><span class="token punctuation">:</span>             col_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>     sql <span class="token operator">=</span> <span class="token string">"INSERT INTO %s (%s) \nVALUES ("</span> <span class="token operator">%</span> <span class="token punctuation">(</span>table_name<span class="token punctuation">,</span> <span class="token string">", "</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">,</span> col_list<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     sql <span class="token operator">=</span> <span class="token string">"%s%s )"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token string">", "</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> item<span class="token punctuation">:</span> <span class="token string">"%("</span> <span class="token operator">+</span> item <span class="token operator">+</span> <span class="token string">")s"</span><span class="token punctuation">,</span> col_list<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     get_conn<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token keyword">return</span> sql </code></pre> <p>举个例子:<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/48055730c224a5b58c082cf6f84a1ddc.jpg" alt="Python生成sql语句"><br /> 先说好，这个表不是我设计的QAQ.<br /> 生成sql语句如下:</p> <pre><code class="prism language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> notice_library <span class="token punctuation">(</span>ggcxmc<span class="token punctuation">,</span> pcdm<span class="token punctuation">,</span> ggxhn<span class="token punctuation">,</span> pp<span class="token punctuation">,</span> lx<span class="token punctuation">,</span> edzl<span class="token punctuation">,</span> zzl<span class="token punctuation">,</span> zbzl<span class="token punctuation">,</span> rlzl<span class="token punctuation">,</span> pfbzyj<span class="token punctuation">,</span> pfbz<span class="token punctuation">,</span> zs<span class="token punctuation">,</span> zj<span class="token punctuation">,</span> zh<span class="token punctuation">,</span> thps<span class="token punctuation">,</span> lts<span class="token punctuation">,</span> ltgg<span class="token punctuation">,</span> jjlqj<span class="token punctuation">,</span> qhx<span class="token punctuation">,</span> qlj<span class="token punctuation">,</span> hlj<span class="token punctuation">,</span> sbm<span class="token punctuation">,</span> zcc<span class="token punctuation">,</span> zck<span class="token punctuation">,</span> zcg<span class="token punctuation">,</span> hxc<span class="token punctuation">,</span> hxk<span class="token punctuation">,</span> hxg<span class="token punctuation">,</span> zgcs<span class="token punctuation">,</span> edzk<span class="token punctuation">,</span> jsszcrs<span class="token punctuation">,</span> zxxs<span class="token punctuation">,</span> ztgczzl<span class="token punctuation">,</span> zzllyxs<span class="token punctuation">,</span> bgcazzdcszl<span class="token punctuation">,</span> qymc<span class="token punctuation">,</span> pl<span class="token punctuation">,</span> gl<span class="token punctuation">)</span>  <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token operator">%</span><span class="token punctuation">(</span>ggcxmc<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>pcdm<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>ggxhn<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>pp<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>lx<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>edzl<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zzl<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zbzl<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>rlzl<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>pfbzyj<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>pfbz<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zs<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zj<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zh<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>thps<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>lts<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>ltgg<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>jjlqj<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>qhx<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>qlj<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>hlj<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>sbm<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zcc<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zck<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zcg<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>hxc<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>hxk<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>hxg<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zgcs<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>edzk<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>jsszcrs<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zxxs<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>ztgczzl<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>zzllyxs<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>bgcazzdcszl<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>qymc<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>pl<span class="token punctuation">)</span>s<span class="token punctuation">,</span> <span class="token operator">%</span><span class="token punctuation">(</span>gl<span class="token punctuation">)</span>s <span class="token punctuation">)</span>  </code></pre> <p>然后呢，为了避免重复生成sql语句，全局定义一个变量，一开始设置为None，然后:</p> <pre><code class="prism language-python"><span class="token keyword">global</span> global_sql <span class="token keyword">if</span> global_sql <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span> 	<span class="token comment"># 不忽略任何一列</span> 	global_sql <span class="token operator">=</span> generate_sql<span class="token punctuation">(</span>table_name<span class="token punctuation">,</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 用该sql语句做一些不可描述的事情...</span> </code></pre> <p>大功告成</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-24462.htm">上海收养流浪猫机构（上海收养流浪猫机构有哪些）</a></p>
+                                        <p>下一个：<a href="/news/article-25010.htm">动物疫苗的储存要求（动物疫苗冷藏温度）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-19948.htm" title="猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）">猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-node-share-links.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23154.htm" title="【Python】自带的venv管理虚拟环境">【Python】自带的venv管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/news/article-23606.htm" title="天津免费领养猫（天津宠物猫免费领养）">天津免费领养猫（天津宠物猫免费领养）</a></li>
+                        <li class="py-2"><a href="/news/article-24069.htm" title="00022.16 序列化与反序列化三：有些属性不需要序列化的处理办法用transient或者static修饰">00022.16 序列化与反序列化三：有些属性不需要序列化的处理办法用transient或者static修饰</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20863.htm" title="使用Python在D天内运送包裹的能力">使用Python在D天内运送包裹的能力</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
