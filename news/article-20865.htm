@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Spring boot项目中自定义FeignClient的拦截器处理header和签名等信息</title>
         <meta name="description" content="我们在请求第三方接口的时候通常由比较复杂但是统一的header和签名计算的一系列处理。这个时候就可以使用RequestInterceptor来实现。上代码： @Slf4j @Configuration" />
-        <link rel="icon" href="__ADDON__/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
     <!-- Favicons -->
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
@@ -73,7 +73,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                                          				  				  				<div id="content_views" class="htmledit_views"> <p>我们在请求第三方接口的时候通常由比较复杂但是统一的header和签名计算的一系列处理。这个时候就可以使用RequestInterceptor来实现。上代码：</p> <pre><code class="language-java">@Slf4j @Configuration  // a  global feign client interceptor public class FeignClientsConfigurationInterceptor implements RequestInterceptor {      @Override     public void apply(RequestTemplate template) {         try {             log.info("=======  FeignClientsConfigurationInterceptor ========"); //反序列化request body,拿到核心的参数projectId,用来获得请求接口用的appkey和appId JSONObject requestBody= (JSONObject) JSON.parse(new String(template.body()));             String projectId = (String) requestBody.get("projectId"); //过河拆桥，把projectId从 request body 移除（因为这个参数只是我方程序获取密钥时需要，但请求地第三方接口不需要）             requestBody.remove("projectId");             log.info("projectId =" + projectId);             PingAnKeyProperties pingAnKeyProperties = PingAnKeyProperties.getPingAnKeys(projectId);             String apiUrl = template.url();             log.info("apiUrl =" + apiUrl);             String app_id = pingAnKeyProperties.getAppId();             String app_key= pingAnKeyProperties.getAppKey();              log.info("app_id =" + app_id);             log.info("app_key =" + app_key);             String deviceId =SignUtils.getLocalMac();             String timestamp = Long.toString(System.currentTimeMillis());             Map&lt;String, String&gt; headers = new HashMap();             headers.put("X-Appid", app_id);             headers.put("Content-Type", "application/json;charset=utf-8");              Iterator&lt;String&gt; it =  headers.keySet().iterator();             while (it.hasNext()) {                 String header_key = it.next();                 template.header(header_key, headers.get(header_key));             }             String method = template.method();             String bodyText = requestBody.toJSONString(); //使用template.body(bodyText) API重置移除projectId之后的reqeust body             template.body(bodyText);    //reset body text             String body_content = new String(template.body());             log.debug("body_content = "+ body_content);             String body_hash = SignUtils.SHA(body_content, "SHA-256"); //            log.info(body_hash);             String sign_data = SignUtils.getSign(method,                     apiUrl,                     "", headers, body_hash,app_key);             template.header("X-Authorization",                     sign_data.toLowerCase());         } catch (SocketException e) {             e.printStackTrace();         } catch (UnknownHostException e) {             e.printStackTrace();         } catch (UnsupportedEncodingException e) {             e.printStackTrace();         }         log.info("===============");     } } </code></pre> <p>&nbsp;总结：通过RequestTemplate对象我们可以拿到reqeust的几乎所有参数，url， reqeust body，method等等，熟悉RequestTemplate的API就能比较轻松的实现对原reqeust的拦截和改造。我是试了好久才找到重置requestbody的API原来是下面的方法，附源码截图：</p> <p><img fetchpriority="high" decoding="async" alt="" height="716" src="http://img.555519.xyz/uploads/20230119/d93b56e1af04c0abdb18a83c7b24ba53.jpg"></p> </p></div> 			                <div class="clearfix"></div>
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>我们在请求第三方接口的时候通常由比较复杂但是统一的header和签名计算的一系列处理。这个时候就可以使用RequestInterceptor来实现。上代码：</p> <pre><code class="language-java">@Slf4j @Configuration  // a  global feign client interceptor public class FeignClientsConfigurationInterceptor implements RequestInterceptor {      @Override     public void apply(RequestTemplate template) {         try {             log.info("=======  FeignClientsConfigurationInterceptor ========"); //反序列化request body,拿到核心的参数projectId,用来获得请求接口用的appkey和appId JSONObject requestBody= (JSONObject) JSON.parse(new String(template.body()));             String projectId = (String) requestBody.get("projectId"); //过河拆桥，把projectId从 request body 移除（因为这个参数只是我方程序获取密钥时需要，但请求地第三方接口不需要）             requestBody.remove("projectId");             log.info("projectId =" + projectId);             PingAnKeyProperties pingAnKeyProperties = PingAnKeyProperties.getPingAnKeys(projectId);             String apiUrl = template.url();             log.info("apiUrl =" + apiUrl);             String app_id = pingAnKeyProperties.getAppId();             String app_key= pingAnKeyProperties.getAppKey();              log.info("app_id =" + app_id);             log.info("app_key =" + app_key);             String deviceId =SignUtils.getLocalMac();             String timestamp = Long.toString(System.currentTimeMillis());             Map&lt;String, String&gt; headers = new HashMap();             headers.put("X-Appid", app_id);             headers.put("Content-Type", "application/json;charset=utf-8");              Iterator&lt;String&gt; it =  headers.keySet().iterator();             while (it.hasNext()) {                 String header_key = it.next();                 template.header(header_key, headers.get(header_key));             }             String method = template.method();             String bodyText = requestBody.toJSONString(); //使用template.body(bodyText) API重置移除projectId之后的reqeust body             template.body(bodyText);    //reset body text             String body_content = new String(template.body());             log.debug("body_content = "+ body_content);             String body_hash = SignUtils.SHA(body_content, "SHA-256"); //            log.info(body_hash);             String sign_data = SignUtils.getSign(method,                     apiUrl,                     "", headers, body_hash,app_key);             template.header("X-Authorization",                     sign_data.toLowerCase());         } catch (SocketException e) {             e.printStackTrace();         } catch (UnknownHostException e) {             e.printStackTrace();         } catch (UnsupportedEncodingException e) {             e.printStackTrace();         }         log.info("===============");     } } </code></pre> <p>&nbsp;总结：通过RequestTemplate对象我们可以拿到reqeust的几乎所有参数，url， reqeust body，method等等，熟悉RequestTemplate的API就能比较轻松的实现对原reqeust的拦截和改造。我是试了好久才找到重置requestbody的API原来是下面的方法，附源码截图：</p> <p><img fetchpriority="high" decoding="async" alt="" height="716" src="http://img.555519.xyz/uploads/20230119/d93b56e1af04c0abdb18a83c7b24ba53.jpg"></p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-20863.htm">使用Python在D天内运送包裹的能力</a></p>
                                         <p>下一个：<a href="/news/article-21322.htm">动物疫苗使用管理（动物疫苗使用管理规范）</a></p>
@@ -86,16 +87,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-20863.htm" title="使用Python在D天内运送包裹的能力">使用Python在D天内运送包裹的能力</a></li>
-                        <li class="py-2"><a href="/news/article-19007.htm" title="动物疫苗的正确使用方法视频讲解教程（动物疫苗接种方法有哪些）">动物疫苗的正确使用方法视频讲解教程（动物疫苗接种方法有哪些）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23605.htm" title="C程序中编译时错误和运行时错误之间的区别">C程序中编译时错误和运行时错误之间的区别</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23606.htm" title="天津免费领养猫（天津宠物猫免费领养）">天津免费领养猫（天津宠物猫免费领养）</a></li>
+                        <li class="py-2"><a href="/news/article-26866.htm" title="领养宠物协议书范本图片模板 领养宠物协议书范本图片模板大全">领养宠物协议书范本图片模板 领养宠物协议书范本图片模板大全</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-21322.htm" title="动物疫苗使用管理（动物疫苗使用管理规范）">动物疫苗使用管理（动物疫苗使用管理规范）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-19490.htm" title="合肥宠物免费领养（合肥宠物领养中心官网）">合肥宠物免费领养（合肥宠物领养中心官网）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27790.htm" title="养猫咪打针多少钱一支（养猫咪打疫苗多少钱）">养猫咪打针多少钱一支（养猫咪打疫苗多少钱）</a></li>
                     </ul>
     </div>
 </div>
@@ -107,7 +108,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -123,6 +124,15 @@
     </main>
         <footer id="footer" class="footer dark-background">
         <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
             <p>
                 <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
             </p>

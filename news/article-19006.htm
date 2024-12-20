@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>springboot简单实现redis商品秒杀功能，成功解决商品超售问题</title>
         <meta name="description" content="1.主类，for循环模拟1000个线程进行秒杀&nbsp; import redis.clients.jedis.Jedis;  import java.util.concurrent.LinkedB" />
-        <link rel="icon" href="__ADDON__/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
     <!-- Favicons -->
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
@@ -73,7 +73,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                                          				  				  				<div id="content_views" class="htmledit_views"> <p>1.主类，for循环模拟1000个线程进行秒杀&nbsp;</p> <pre><code class="language-java">import redis.clients.jedis.Jedis;  import java.util.concurrent.LinkedBlockingDeque; import java.util.concurrent.ThreadPoolExecutor; import java.util.concurrent.TimeUnit;  public class Application {     //创建线程池     public static ThreadPoolExecutor pool= new ThreadPoolExecutor(      10,100,10, TimeUnit.SECONDS,      new LinkedBlockingDeque&lt;Runnable&gt;()     );     public static void main(String[] args) {         //jedis操作redis，连接配置信息，本地连接         Jedis jedis = new Jedis("localhost", 6379);         //登录redis密码         jedis.auth("abc123456");         //选择操作库         jedis.select(1);         //设置秒杀商品和库存         jedis.set("kill_num", "50");         //删除上一次的秒杀用户信息，然后再次调用该方法时，记录新的秒杀用户信息ID。         jedis.del("kill_list");         //关闭连接         jedis.close();          //for循环，模拟秒杀环境，1000个线程任务         for (int i = 0; i &lt; 1000; i++) {             //线程任务加入到线程池里面             pool.execute(new KillTask());         }     } } </code></pre> <p>2.秒杀任务类</p> <pre><code class="language-java">import redis.clients.jedis.Jedis; import redis.clients.jedis.Transaction;  public class KillTask implements Runnable{      @Override     public void run() {         Jedis jedis = new Jedis("localhost", 6379);         jedis.auth("abc123456");         jedis.select(1);         //watch监控key,获得数据的版本号         jedis.watch("kill_num", "kill_list");         int num = Integer.parseInt(jedis.get("kill_num"));         //判断库存         if (num &gt; 0) {             //开启事务             Transaction transaction = jedis.multi();             transaction.decr("kill_num");//库存减一             transaction.rpush("kill_list", "9527");//记录用户ID,自己写的是9527             transaction.exec();//提交事务         }         else {             Application.pool.shutdown();         }         jedis.close();     } } </code></pre> <p>3.运行主类时，需要开启redis-&gt;start.bat,然后运行成功后，打开redis客户端查看（需要连接），如下图：&nbsp;</p> <p>因为使用redis的是db1数据库，所以查看db1数据库：</p> <p><img fetchpriority="high" decoding="async" alt="" height="368" src="http://img.555519.xyz/uploads/20230223/2a7c9d9f9be630d72a06fc9cf40898d7.jpg"></p> <p>然后查看kill_num,此时键值是0，没有出现超买的现象：</p> <p><img decoding="async" alt="" height="356" src="http://img.555519.xyz/uploads/20230223/2f17b4122d7f8f312c80ff35dc955aae.jpg"></p> <p>最后查看kill_list，秒杀列表中出现秒杀商品的数量为50个，当初我们设置的也是50个商品数量。因为我们是写死的用户信息ID，所有都是9527这个用户：</p> <p><img decoding="async" alt="" height="431" src="http://img.555519.xyz/uploads/20230223/450d8cc573edba96fb682b078f654518.jpg"></p> <p>好了，使用redis避免了商品秒杀的超卖问题！</p> </p></div> 			                <div class="clearfix"></div>
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>1.主类，for循环模拟1000个线程进行秒杀&nbsp;</p> <pre><code class="language-java">import redis.clients.jedis.Jedis;  import java.util.concurrent.LinkedBlockingDeque; import java.util.concurrent.ThreadPoolExecutor; import java.util.concurrent.TimeUnit;  public class Application {     //创建线程池     public static ThreadPoolExecutor pool= new ThreadPoolExecutor(      10,100,10, TimeUnit.SECONDS,      new LinkedBlockingDeque&lt;Runnable&gt;()     );     public static void main(String[] args) {         //jedis操作redis，连接配置信息，本地连接         Jedis jedis = new Jedis("localhost", 6379);         //登录redis密码         jedis.auth("abc123456");         //选择操作库         jedis.select(1);         //设置秒杀商品和库存         jedis.set("kill_num", "50");         //删除上一次的秒杀用户信息，然后再次调用该方法时，记录新的秒杀用户信息ID。         jedis.del("kill_list");         //关闭连接         jedis.close();          //for循环，模拟秒杀环境，1000个线程任务         for (int i = 0; i &lt; 1000; i++) {             //线程任务加入到线程池里面             pool.execute(new KillTask());         }     } } </code></pre> <p>2.秒杀任务类</p> <pre><code class="language-java">import redis.clients.jedis.Jedis; import redis.clients.jedis.Transaction;  public class KillTask implements Runnable{      @Override     public void run() {         Jedis jedis = new Jedis("localhost", 6379);         jedis.auth("abc123456");         jedis.select(1);         //watch监控key,获得数据的版本号         jedis.watch("kill_num", "kill_list");         int num = Integer.parseInt(jedis.get("kill_num"));         //判断库存         if (num &gt; 0) {             //开启事务             Transaction transaction = jedis.multi();             transaction.decr("kill_num");//库存减一             transaction.rpush("kill_list", "9527");//记录用户ID,自己写的是9527             transaction.exec();//提交事务         }         else {             Application.pool.shutdown();         }         jedis.close();     } } </code></pre> <p>3.运行主类时，需要开启redis-&gt;start.bat,然后运行成功后，打开redis客户端查看（需要连接），如下图：&nbsp;</p> <p>因为使用redis的是db1数据库，所以查看db1数据库：</p> <p><img fetchpriority="high" decoding="async" alt="" height="368" src="http://img.555519.xyz/uploads/20230223/2a7c9d9f9be630d72a06fc9cf40898d7.jpg"></p> <p>然后查看kill_num,此时键值是0，没有出现超买的现象：</p> <p><img decoding="async" alt="" height="356" src="http://img.555519.xyz/uploads/20230223/2f17b4122d7f8f312c80ff35dc955aae.jpg"></p> <p>最后查看kill_list，秒杀列表中出现秒杀商品的数量为50个，当初我们设置的也是50个商品数量。因为我们是写死的用户信息ID，所有都是9527这个用户：</p> <p><img decoding="async" alt="" height="431" src="http://img.555519.xyz/uploads/20230223/450d8cc573edba96fb682b078f654518.jpg"></p> <p>好了，使用redis避免了商品秒杀的超卖问题！</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>下一个：<a href="/news/article-19007.htm">动物疫苗的正确使用方法视频讲解教程（动物疫苗接种方法有哪些）</a></p>
                                     </div>
@@ -85,16 +86,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share.htm" title="V2ray Linux节点订阅每天更新23M/S免费节点订阅链接">V2ray Linux节点订阅每天更新23M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-19490.htm" title="合肥宠物免费领养（合肥宠物领养中心官网）">合肥宠物免费领养（合肥宠物领养中心官网）</a></li>
+                        <li class="py-2"><a href="/news/article-24072.htm" title="不建议养的5种猫（懒人养什么猫最省心）">不建议养的5种猫（懒人养什么猫最省心）</a></li>
+                        <li class="py-2"><a href="/news/article-19948.htm" title="猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）">猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）</a></li>
+                        <li class="py-2"><a href="/news/article-21322.htm" title="动物疫苗使用管理（动物疫苗使用管理规范）">动物疫苗使用管理（动物疫苗使用管理规范）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27787.htm" title="PyQt5 在qtdesigner中使用自定义的控件">PyQt5 在qtdesigner中使用自定义的控件</a></li>
+                        <li class="py-2"><a href="/news/article-22698.htm" title="想开一个宠物美容店怎么开（想开一个宠物美容需要什么条件）">想开一个宠物美容店怎么开（想开一个宠物美容需要什么条件）</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-19489.htm" title="免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）">免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-node-share-links.htm" title="V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -106,7 +107,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -122,6 +123,15 @@
     </main>
         <footer id="footer" class="footer dark-background">
         <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
             <p>
                 <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
             </p>
