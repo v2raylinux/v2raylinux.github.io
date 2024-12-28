@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-32512.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具</title>
+        <meta name="description" content="Citus 可以使用分片跨多台计算机来水平缩放查询。 其查询引擎会将这些服务器的传入 SQL 查询并行化，加快大型数据集上的响应。 它为需要比其他部署选项更大规模和更高性能的应用程序提供服务：通常，工" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/70b2bcf9737f18eea95a40d00f6468cf.jpg" alt="Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具"></p> <p><code>Citus</code> 可以使用分片跨多台计算机来水平缩放查询。 其查询引擎会将这些服务器的传入 <code>SQL</code> 查询并行化，加快大型数据集上的响应。 它为需要比其他部署选项更大规模和更高性能的应用程序提供服务：通常，工作负载接近或已经超过 <code>100 GB</code> 的数据。</p> <p><code>Citus</code> 提供：</p> <ul> <li>使用分片跨多个计算机进行水平缩放</li> <li>将这些服务器的查询并行化，加快大型数据集上的响应</li> <li>为多租户应用程序、实时运营分析以及高吞吐量事务工作负载提供卓越的支持</li> </ul> <h2 id="citus-11-文档官方仓库">Citus 11 文档官方仓库</h2> <p>拉取仓库到本地</p> <pre><code class="language-sh">git clone https://github.com/citusdata/citus_docs/tree/v11.0-beta </code></pre> <h2 id="文档运行环境设置">文档运行环境设置</h2> <h3 id="pyenv">pyenv</h3> <p>一个 <code>Python</code> 版本管理工具。</p> <h3 id="pyenv-installer">pyenv-installer</h3> <p>安装 <code>pyenv</code> 和它相关的插件(如：<code>virtualenv</code> 虚拟环境等。)</p> <p>这里以 <code>Mac</code> 为例：</p> <pre><code class="language-sh">curl https://pyenv.run | bash </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/7485fe07a6078274c01421dfa15d32f9.jpg" alt="Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具"></p> <h3 id="安装对应-python-版本">安装对应 python 版本</h3> <p><code>cat runtime.txt</code></p> <pre><code class="language-sh">python-3.7.5 </code></pre> <p>安装：</p> <pre><code class="language-sh">pyenv install 3.7.5 </code></pre> <h3 id="设置虚拟环境">设置虚拟环境</h3> <pre><code class="language-sh"># 切换版本 pyenv global 3.7.5  # 进入文档目录，创建虚拟环境 cd ctius_docs python -m venv .venv  # 激活虚拟环境 source .venv/bin/activate </code></pre> <h3 id="安装-requirementstxt">安装 <code>requirements.txt</code><br /> </h3> <p><code>cat requirements.txt</code></p> <pre><code class="language-sh">Sphinx==4.0.2 sphinx_rtd_theme_citus==0.5.25 docutils==0.16 sphinx-autobuild==0.7.1s </code></pre> <p>注意，这里加了一项 <code>sphinx-autobuild</code></p> <p>安装：</p> <pre><code class="language-sh">pip install -r requirements.txt </code></pre> <h2 id="运行文档watch-模式">运行文档(watch 模式)</h2> <pre><code class="language-sh">make watch </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/d48dbc183accf94563b042703f111e62.jpg" alt="Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具"></p> <p>转到 <code>http://127.0.0.1:8000</code> 进行查看。</p> <h2 id="更多">更多</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/1X65AAs8O1qcddf5wqpRRQ"  target="_blank"  rel="nofollow">「在 Kubernetes 上运行 Pgpool-Il」实现 PostgreSQL 查询(读)负载均衡和连接池</a></li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-32511.htm">Struts2中拦截器的定义及配置</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-32037.htm" title="宠物鲜粮市场创业方向（宠物鲜粮市场创业方向和前景）">宠物鲜粮市场创业方向（宠物鲜粮市场创业方向和前景）</a></li>
+                        <li class="py-2"><a href="/news/article-31459.htm" title="上海地区宠物领养中心 上海地区宠物领养中心地址">上海地区宠物领养中心 上海地区宠物领养中心地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29186.htm" title="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)">Spring Boot项目配置Druid数据源(druid-spring-boot-starter)</a></li>
+                        <li class="py-2"><a href="/news/article-22697.htm" title="k8s 新版本 部署 Ingress-nginx controller">k8s 新版本 部署 Ingress-nginx controller</a></li>
+                        <li class="py-2"><a href="/news/article-23606.htm" title="天津免费领养猫（天津宠物猫免费领养）">天津免费领养猫（天津宠物猫免费领养）</a></li>
+                        <li class="py-2"><a href="/news/article-28261.htm" title="牲畜打疫苗完成的简报内容（牲畜注射疫苗简报）">牲畜打疫苗完成的简报内容（牲畜注射疫苗简报）</a></li>
+                        <li class="py-2"><a href="/news/article-23605.htm" title="C程序中编译时错误和运行时错误之间的区别">C程序中编译时错误和运行时错误之间的区别</a></li>
+                        <li class="py-2"><a href="/news/article-21322.htm" title="动物疫苗使用管理（动物疫苗使用管理规范）">动物疫苗使用管理（动物疫苗使用管理规范）</a></li>
+                        <li class="py-2"><a href="/news/article-25473.htm" title="新手开店适合开什么店成本低的（适合新手开的店铺）">新手开店适合开什么店成本低的（适合新手开的店铺）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
