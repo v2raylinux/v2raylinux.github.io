@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-33945.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>spring security 权限(注解)</title>
+        <meta name="description" content="写在前边整理的知识点都是从其他博客中来，如有侵权，立删！ 参考:https://blog.csdn.net/qq_32867467/article/details/103097190 正题: Spri" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>spring security 权限(注解)</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>写在前边整理的知识点都是从其他博客中来，如有侵权，立删！<br /> 参考:https://blog.csdn.net/qq_32867467/article/details/103097190</p> <h2><a id="_3" rel="nofollow"></a>正题:</h2> <p>Spring Security 默认是禁用注解的，要想开启注解，要在继承<strong>WebSecurityConfigurerAdapter</strong> 的类加<strong>@EnableMethodSecurity</strong> 注解，并在该类中将<strong>AuthenticationManager</strong> 定义为<strong>Bean</strong>。</p> <pre><code class="prism language-JAVA">@Configuration @EnableWebSecurity @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled=true,jsr250Enabled=true) public class WebSecurityConfig extends WebSecurityConfigurerAdapter {     @Bean     @Override     public AuthenticationManager authenticationManagerBean() throws Exception {         return super.authenticationManagerBean();     } }</code></pre> <p>我们看到<strong>@EnableGlobalMethodSecurity</strong> 分别有<strong>prePostEnabled</strong> 、<strong>securedEnabled</strong>、<strong>jsr250Enabled</strong> 三个字段，其中每个字段代码一种注解支持，默认为<strong>false</strong>，<strong>true</strong> 为开启</p> <hr/> <h3><a id="JSR250_23" rel="nofollow"></a>JSR-250注解</h3> <h5><a id="_25" rel="nofollow"></a>主要注解</h5> <h6><a id="DenyAll____nbspnbsp_______26" rel="nofollow"></a>@DenyAll &nbsp;==&nbsp; 拒绝</h6> <h6><a id="PermitAll___nbspnbsp______27" rel="nofollow"></a>@PermitAll &nbsp;==&nbsp; 通过</h6> <h6><a id="RolesAllowed_28" rel="nofollow"></a>@RolesAllowed</h6> <pre><code class="prism language-JAVA">/**  只要具有USER, ADMIN任意一种权限就可以访问  这里可以省略前缀ROLE_，实际的权限可能是ROLE_ADMIN */ @RolesAllowed({"USER", "ADMIN"})</code></pre> <h3><a id="securedEnabled_37" rel="nofollow"></a>securedEnabled注解</h3> <h5><a id="Secured_nbspnbsp___39" rel="nofollow"></a>@Secured &nbsp;==&nbsp; 在方法上指定安全性要求</h5> <p>可以使用<strong>@Secured</strong> 在方法上指定安全性要求 角色/权限等 只有对应 角色/权限 的用户才可以调用这些方法。 如果有人试图调用一个方法，但是不拥有所需的 角色/权限，那会将会拒绝访问将引发异常。<br /><strong>不支持Spring EL表达式</strong></p> <pre><code class="prism language-JAVA">@Secured("ROLE_ADMIN") @Secured({ "ROLE_DBA", "ROLE_ADMIN" })</code></pre> <h3><a id="prePostEnabled_49" rel="nofollow"></a>prePostEnabled注解</h3> <p><em>这个开启后支持Spring EL表达式 算是蛮厉害的。如果没有访问方法的权限，会抛AccessDeniedException</em></p> <h5><a id="PreAuthorize_nbspnbsp__54" rel="nofollow"></a>@PreAuthorize &nbsp;==&nbsp; 适合进入方法之前验证授权</h5> <p>在方法执行之前执行，而且这里可以调用方法的参数，也可以得到参数值，这里利用JAVA8的参数名反射特性，如果没有JAVA8，那么也可以利用Spring Secuirty的@P标注参数，或利用Spring Data的@Param标注参数。</p> <pre><code class="prism language-java"><span class="token comment">//无java8</span><span class="token annotation punctuation">@PreAuthorize</span><span class="token punctuation">(</span><span class="token string">"#userId == authentication.principal.userId or hasAuthority(‘ADMIN’)"</span><span class="token punctuation">)</span><span class="token keyword">void</span><span class="token function">changePassword</span><span class="token punctuation">(</span><span class="token annotation punctuation">@P</span><span class="token punctuation">(</span><span class="token string">"userId"</span><span class="token punctuation">)</span><span class="token keyword">long</span> userId<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token comment">//有java8</span><span class="token annotation punctuation">@PreAuthorize</span><span class="token punctuation">(</span><span class="token string">"#userId == authentication.principal.userId or hasAuthority(‘ADMIN’)"</span><span class="token punctuation">)</span><span class="token keyword">void</span><span class="token function">changePassword</span><span class="token punctuation">(</span><span class="token keyword">long</span> userId<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token comment">/**  这里表示在changePassword方法执行之前，判断方法参数userId的值是否等于principal中保存的当前用户的userId，或者当前用户是否具有ROLE_ADMIN权限，两种符合其一，就可以访问该 方法。  */</span></code></pre> <hr/> <h5><a id="PostAuthorize_nbspnbsp__74" rel="nofollow"></a>@PostAuthorize &nbsp;==&nbsp; 检查授权方法之后才被执行</h5> <p>在方法执行之后执行，而且这里可以调用方法的返回值，如果EL为false，那么该方法也已经执行完了，可能会回滚。EL变量returnObject表示返回的对象。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@PostAuthorize</span><span class="token punctuation">(</span><span class="token string">"returnObject.userId == authentication.principal.userId or hasPermission(returnObject, 'ADMIN')"</span><span class="token punctuation">)</span> User<span class="token function">getUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <hr/> <h5><a id="PostFilter_nbspnbsp__85" rel="nofollow"></a>@PostFilter &nbsp;==&nbsp; 在方法执行之后执行，而且这里可以调用方法的返回值，然后对返回值进行过滤或处理或修改并返回</h5> <p>在执行方法之后执行，而且这里可以调用方法的返回值，然后对返回值进行过滤或处理。EL变量returnObject表示返回的对象。只有方法返回的集合或数组类型的才可以使用。（与分页技术不兼容）</p> <hr/> <h5><a id="PreFilter_nbspnbsp__92" rel="nofollow"></a>@PreFilter &nbsp;==&nbsp; 在方法执行之前执行，而且这里可以调用方法的参数，然后对参数值进行过滤或处理或修改</h5> <p>EL变量filterObject表示参数，如果有多个参数，可以使用@filterTarget注解参数，只有方法是集合或数组才行（与分页技术不兼容）。</p> <hr/> <h4><a id="PreAuthorize__PostAuthorize___100" rel="nofollow"></a>@PreAuthorize 和 @PostAuthorize 中 除了支持原有的权限表达式之外，也是可以支持自定义的。</h4> <pre><code class="prism language-java"><span class="token keyword">interface</span><span class="token class-name">TestPermissionEvaluator</span><span class="token punctuation">{<!-- --></span><span class="token keyword">boolean</span><span class="token function">check</span><span class="token punctuation">(</span>Authentication authentication<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token annotation punctuation">@Service</span><span class="token punctuation">(</span><span class="token string">"testPermissionEvaluator"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">TestPermissionEvaluatorImpl</span><span class="token keyword">implements</span><span class="token class-name">TestPermissionEvaluator</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token keyword">boolean</span><span class="token function">check</span><span class="token punctuation">(</span>Authentication authentication<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"进入了自定义的匹配器"</span><span class="token operator">+</span> authentication<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span><span class="token boolean">false</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token comment">// 返回true 就是有权限 false 则是无权限 。 然后在方法中这样玩即可</span><span class="token annotation punctuation">@PreAuthorize</span><span class="token punctuation">(</span><span class="token string">"@testPermissionEvaluator.check(authentication)"</span><span class="token punctuation">)</span><span class="token keyword">public</span> String<span class="token function">test0</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"说明你有自定义权限"</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <ul> <li><strong>异常处理</strong></li> </ul> <pre><code class="prism language-java"><span class="token annotation punctuation">@Component</span><span class="token annotation punctuation">@Slf4j</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">AccessDeniedAuthenticationHandler</span><span class="token keyword">implements</span><span class="token class-name">AccessDeniedHandler</span><span class="token punctuation">{<!-- --></span><span class="token keyword">private</span><span class="token keyword">final</span> ObjectMapper objectMapper<span class="token punctuation">;</span><span class="token keyword">public</span><span class="token function">AccessDeniedAuthenticationHandler</span><span class="token punctuation">(</span>ObjectMapper objectMapper<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>objectMapper<span class="token operator">=</span> objectMapper<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token annotation punctuation">@Override</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">handle</span><span class="token punctuation">(</span>HttpServletRequest httpServletRequest<span class="token punctuation">,</span> HttpServletResponse httpServletResponse<span class="token punctuation">,</span> AccessDeniedException e<span class="token punctuation">)</span><span class="token keyword">throws</span> IOException<span class="token punctuation">{<!-- --></span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"没有权限"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         httpServletResponse<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>INTERNAL_SERVER_ERROR<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         httpServletResponse<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"application/json;charset=UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         httpServletResponse<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>objectMapper<span class="token punctuation">.</span><span class="token function">writeValueAsString</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>然后在WebSecurityConfig 中的 configure 中配置即可</p> <pre><code class="prism language-java">http<span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exceptionHandling</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">accessDeniedHandler</span><span class="token punctuation">(</span>accessDeniedAuthenticationHandler<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <p><strong>权限表达式</strong></p> <table> <thead> <tr> <th>表达式</th> <th>说明</th> </tr> </thead> <tbody> <tr> <td>hasRole([role])</td> <td>用户拥有制定的角色时返回true （Spring security默认会带有ROLE_前缀）</td> </tr> <tr> <td>hasAnyRole([role1,role2])</td> <td>用户拥有任意一个制定的角色时返回true</td> </tr> <tr> <td>hasAuthority([authority])</td> <td>等同于hasRole,但不会带有ROLE_前缀</td> </tr> <tr> <td>asAnyAuthority([auth1,auth2])</td> <td>等同于hasAnyRole</td> </tr> <tr> <td>permitAll</td> <td>永远返回true</td> </tr> <tr> <td>denyAll</td> <td>永远返回false</td> </tr> <tr> <td>authentication</td> <td>当前登录用户的authentication对象</td> </tr> <tr> <td>fullAuthenticated</td> <td>当前用户既不是anonymous也不是rememberMe用户时返回true</td> </tr> <tr> <td>hasIpAddress(‘192.168.1.0/24’))</td> <td>请求发送的IP匹配时返回true</td> </tr> </tbody> </table> <p><strong>eg</strong></p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Override</span><span class="token keyword">protected</span><span class="token keyword">void</span><span class="token function">configure</span><span class="token punctuation">(</span>HttpSecurity http<span class="token punctuation">)</span><span class="token keyword">throws</span> Exception<span class="token punctuation">{<!-- --></span>         http<span class="token punctuation">.</span><span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">failureHandler</span><span class="token punctuation">(</span>failureAuthenticationHandler<span class="token punctuation">)</span><span class="token comment">// 自定义登录失败处理</span><span class="token punctuation">.</span><span class="token function">successHandler</span><span class="token punctuation">(</span>successAuthenticationHandler<span class="token punctuation">)</span><span class="token comment">// 自定义登录成功处理</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">logoutUrl</span><span class="token punctuation">(</span><span class="token string">"/logout"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loginPage</span><span class="token punctuation">(</span><span class="token string">"/login"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loginProcessingUrl</span><span class="token punctuation">(</span><span class="token string">"/authentication/form"</span><span class="token punctuation">)</span><span class="token comment">// 自定义登录路径</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">// 对请求授权</span><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/login"</span><span class="token punctuation">,</span><span class="token string">"/authentication/require"</span><span class="token punctuation">,</span><span class="token string">"/authentication/form"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">// 这些页面不需要身份认证</span><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/docker"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token string">"DOCKER"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/java"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token string">"JAVA"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/java"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasRole</span><span class="token punctuation">(</span><span class="token string">"JAVA"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/custom"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">access</span><span class="token punctuation">(</span><span class="token string">"@testPermissionEvaluator.check(authentication)"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//其他请求需要认证</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exceptionHandling</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">accessDeniedHandler</span><span class="token punctuation">(</span>accessDeniedAuthenticationHandler<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">csrf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 禁用跨站攻击</span><span class="token punctuation">}</span></code></pre> <h5><a id="_205" rel="nofollow"></a>自定义权限表达式</h5> <h6><a id="access_spring30spel__207" rel="nofollow"></a>access() spring3.0后出了spel 超好用，有了这个我们就可以设置自己的权限验证了</h6> <p>eg<code>access("hasRole('JAVA') or hasRole('DOCKER')")</code></p> <p>上述示例代码中的<code>access("@testPermissionEvaluator.check(authentication)")</code> 的意思就是 去testPermissionEvaluator这个bean里来执行check方法，这里需要注意check 方法必须返回值是boolean</p> <pre><code class="prism language-java"><span class="token keyword">interface</span><span class="token class-name">TestPermissionEvaluator</span><span class="token punctuation">{<!-- --></span><span class="token keyword">boolean</span><span class="token function">check</span><span class="token punctuation">(</span>Authentication authentication<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token annotation punctuation">@Service</span><span class="token punctuation">(</span><span class="token string">"testPermissionEvaluator"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">TestPermissionEvaluatorImpl</span><span class="token keyword">implements</span><span class="token class-name">TestPermissionEvaluator</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token keyword">boolean</span><span class="token function">check</span><span class="token punctuation">(</span>Authentication authentication<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">//这里可以拿到登陆信息然后随便的去定制自己的权限 随便你怎么查询</span><span class="token comment">//true就是过，false就是不过</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"进入了自定义的匹配器"</span><span class="token operator">+</span> authentication<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span><span class="token boolean">false</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>示例项目地址: https://github.com/Blackcat308/reimagined-giggle or https://gitee.com/muncle/reimagined-giggle</p> <p>也可以关注我的博客: https://blog.laocat.cn/</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-33433.htm">国内宠物食品企业排名（国内宠物食品行业最大的本土品牌公司）</a></p>
+                                        <p>下一个：<a href="/news/article-33947.htm">包头宠物训练（包头宠物培训学校）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-node-share-links.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25010.htm" title="动物疫苗的储存要求（动物疫苗冷藏温度）">动物疫苗的储存要求（动物疫苗冷藏温度）</a></li>
+                        <li class="py-2"><a href="/news/article-32992.htm" title="什么人命里不能养狗（什么命格的人不能养狗）">什么人命里不能养狗（什么命格的人不能养狗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新19M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27787.htm" title="PyQt5 在qtdesigner中使用自定义的控件">PyQt5 在qtdesigner中使用自定义的控件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22697.htm" title="k8s 新版本 部署 Ingress-nginx controller">k8s 新版本 部署 Ingress-nginx controller</a></li>
+                        <li class="py-2"><a href="/news/article-28261.htm" title="牲畜打疫苗完成的简报内容（牲畜注射疫苗简报）">牲畜打疫苗完成的简报内容（牲畜注射疫苗简报）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
