@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-36298.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>浅谈Vue下的components模板</title>
+        <meta name="description" content="浅谈Vue下的components模板  晴 微风 温度 12-24°C 在我们越来越深入Vue时，我们会发现我们对HTML代码的工程量会越来越少，今天我们来谈谈Vue下的 components模板的" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>浅谈Vue下的components模板</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <hr/> <h2 id="浅谈vue下的components模板">浅谈Vue下的components模板</h2> <blockquote> <p>晴 微风 温度 12-24°C<br /> 在我们越来越深入Vue时，我们会发现我们对HTML代码的工程量会越来越少，今天我们来谈谈Vue下的 components模板的 初步使用方法与 应用</p> <p>我们先来简单的写一段components代码<br /> (局部方法创造模板)</p> </blockquote> <pre class="prettyprint"><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span><span class="hljs-property">id</span>=<span class="hljs-string">"app"</span>&gt;   &lt;haha&gt;&lt;/haha&gt; &lt;/<span class="hljs-keyword">div</span>&gt;  /* 这是最简单常用的一种创造模板方法，局部方法创造模板 要注意,局部模板 的作用范围 只在 相对的vue对象 范围内  比如 这个例子, &lt;haha&gt;&lt;/haha&gt;的范围 只在 &lt;<span class="hljs-keyword">div</span><span class="hljs-property">id</span>=<span class="hljs-string">"app"</span>&gt; &lt;/<span class="hljs-keyword">div</span>&gt;内 因为  haha 挂载在 vm的components下 而 vm挂载的 对应节点是<span class="hljs-property">id</span>=app的<span class="hljs-keyword">div</span>上 */ let vm = new Vue({     el:<span class="hljs-string">"#app"</span>,     data:{   },     components:{<span class="hljs-string">"haha"</span>:{       template:<span class="hljs-string">"&lt;div&gt;哈哈哈&lt;div&gt;"</span>     }   } });</code></pre> <blockquote> <p>(共有模板/全局模板)，全局模板 顾名思义 肯定是 放在哪里都能用</p> </blockquote> <pre class="prettyprint"><code class="hljs axapta">&lt;<span class="hljs-keyword">div</span> id=<span class="hljs-string">"app"</span>&gt;   &lt;hehe&gt;&lt;/hehe&gt; &lt;/<span class="hljs-keyword">div</span>&gt;<span class="hljs-comment">//这里使用Vue.component原型方法来创造</span>   Vue.component(<span class="hljs-string">"hehe"</span>,template:<span class="hljs-string">"&lt;div&gt;呵呵呵&lt;div&gt;"</span> );  let vm =<span class="hljs-keyword">new</span> Vue({     el:<span class="hljs-string">"#app"</span>,     data:{   },     components:{<span class="hljs-comment">//这里则不需要添加,因为 互不影响</span>   } });</code></pre> <blockquote> <p>其他方法</p> </blockquote> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span><span class="hljs-attribute">id</span>=<span class="hljs-value">"app"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">xixi</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">xixi</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>  let xixi={   template:"<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>嘻嘻嘻<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>" }  let vm = new Vue({   el : "#app",   data{   },   components:{     xixi   }  });</code></pre> <blockquote> <p>(模板的继承)，全局模板 顾名思义 肯定是 放在哪里都能用</p> </blockquote> <pre class="prettyprint"><code class="hljs lasso"><span class="hljs-comment">/*   我们来讲个最简单的 父亲，儿子 ，孙子的 例子   要注意以下几点：         1.先实例化对象vm         2.造出parent模板,并挂载在 vm的 conponents 下         3.造出 son 模板 并 挂载 在 父级 parent 的conponents下，并在 父级template属性中 包裹住自己的 模板名标签 ；同理 造出孙子标签         4.在HTML节点中添加 目标 根节点               （节点的顺序一定要书写正确） */</span><span class="hljs-subst">&lt;</span>div id<span class="hljs-subst">=</span><span class="hljs-string">"app"</span><span class="hljs-subst">&gt;</span><span class="hljs-subst">&lt;</span><span class="hljs-keyword">parent</span><span class="hljs-subst">&gt;&lt;</span>/<span class="hljs-keyword">parent</span><span class="hljs-subst">&gt;</span><span class="hljs-subst">&lt;</span>/div<span class="hljs-subst">&gt;</span><span class="hljs-comment">//创建 孙子 模板</span><span class="hljs-keyword">let</span> grendson<span class="hljs-subst">=</span> {      template:<span class="hljs-string">"&lt;div&gt;孙子&lt;/div&gt;"</span>  }<span class="hljs-comment">//创建 儿子 模板</span><span class="hljs-keyword">let</span> son<span class="hljs-subst">=</span> {      template:<span class="hljs-string">"&lt;son&gt;儿子&lt;grendson &gt;孙子&lt;/grendson &gt;&lt;/son&gt;"</span>     components:{      grendson      }  }<span class="hljs-comment">//创建 父亲 模板</span><span class="hljs-keyword">let</span><span class="hljs-keyword">parent</span><span class="hljs-subst">=</span> {      template:<span class="hljs-string">"&lt;div&gt;父亲&lt;son&gt;&lt;/son&gt;&lt;/div&gt;"</span>     components:{      son     }  }<span class="hljs-comment">//实例化vm对象</span><span class="hljs-keyword">let</span> vm<span class="hljs-subst">=</span><span class="hljs-literal">new</span> Vue({     el:<span class="hljs-string">"#app"</span>,<span class="hljs-built_in">data</span>:{     },     components:{<span class="hljs-keyword">parent</span>     } });</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-35841.htm">快一个月大的小猫身上有跳蚤怎么办（一个月大的小猫咪身上有跳蚤怎么办）</a></p>
+                                        <p>下一个：<a href="/news/article-36299.htm">动物疫苗规定最新政策是什么（动物疫苗规定最新政策是什么意思）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-29-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21782.htm" title="Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型">Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型</a></li>
+                        <li class="py-2"><a href="/news/article-21323.htm" title="上海有没有领养宠物的地方（上海有没有宠物领养机构）">上海有没有领养宠物的地方（上海有没有宠物领养机构）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24072.htm" title="不建议养的5种猫（懒人养什么猫最省心）">不建议养的5种猫（懒人养什么猫最省心）</a></li>
+                        <li class="py-2"><a href="/news/article-23154.htm" title="【Python】自带的venv管理虚拟环境">【Python】自带的venv管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/news/article-20863.htm" title="使用Python在D天内运送包裹的能力">使用Python在D天内运送包裹的能力</a></li>
+                        <li class="py-2"><a href="/news/article-24069.htm" title="00022.16 序列化与反序列化三：有些属性不需要序列化的处理办法用transient或者static修饰">00022.16 序列化与反序列化三：有些属性不需要序列化的处理办法用transient或者static修饰</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
