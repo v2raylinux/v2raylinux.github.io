@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-40743.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CentOS离线安装docker容器</title>
+        <meta name="description" content="由于实验室机房处于内网环境，无法与外网交互，导致无法使用yum命令在线下载配置环境。因此，我在Windows环境（可连接外网）下使用Xftp6来进行个人PC机与机房服务器进行交互管理，在Windows" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>CentOS离线安装docker容器</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>由于实验室机房处于内网环境，无法与外网交互，导致无法使用yum命令在线下载配置环境。因此，我在Windows环境（可连接外网）下使用Xftp6来进行个人PC机与机房服务器进行交互管理，在Windows环境中下载rpm安装包通过Xftp上传到机房Linux服务器中，然后离线安装Docker容器</p> <h3><span style="color:#f33b45;">安装环境：</span></h3> <p>CentOS：release 7.9.2009（Server with GUI）</p> <p>Docker：19.03.13</p> <h3><span style="color:#f33b45;">下载离线安装包（Windows环境）：</span></h3> <p>docker安装包下载：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-19.03.13-3.el7.x86_64.rpm"  rel="nofollow">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-19.03.13-3.el7.x86_64.rpm</a></p> <p>依赖包下载：</p> <p><strong>containerd.io</strong>：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.3.7-3.1.el7.x86_64.rpm"  rel="nofollow">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.3.7-3.1.el7.x86_64.rpm</a></p> <p><strong>docker-ce-cli</strong>：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-19.03.13-3.el7.x86_64.rpm"  rel="nofollow">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-19.03.13-3.el7.x86_64.rpm</a></p> <p><strong>container-selinux</strong>：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mirror.centos.org/altarch/7/extras/armhfp/Packages/container-selinux-2.107-3.el7.noarch.rpm"  rel="nofollow">http://mirror.centos.org/altarch/7/extras/armhfp/Packages/container-selinux-2.107-3.el7.noarch.rpm</a></p> <h3><span style="color:#f33b45;">离线安装（Linux环境）：</span></h3> <p>进入存放以上安装包的文件夹，使用rpm命令依次进行安装如下：</p> <p>sudo rpm -ivh docker-ce-cli-19.03.13-3.el7.x86_64.rpm</p> <p>sudo rpm -ivh container-selinux-2.107-3.el7.noarch.rpm</p> <p>sudo rpm -ivh containerd.io-1.3.7-3.1.el7.x86_64.rpm</p> <p>sudo rpm -ivh docker-ce-19.03.13-3.el7.x86_64.rpm</p> <p>效果如下：</p> <pre><code>[leeho@localhost docker]$ sudo rpm -ivh docker-ce-cli-19.03.13-3.el7.x86_64.rpm warning: docker-ce-cli-19.03.13-3.el7.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 621e9f35: NOKEY Preparing...                          ################################# [100%] Updating / installing...    1:docker-ce-cli-1:19.03.13-3.el7   ################################# [100%] [leeho@localhost docker]$ sudo rpm -ivh container-selinux-2.107-3.el7.noarch.rpm warning: container-selinux-2.107-3.el7.noarch.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY Preparing...                          ################################# [100%] Updating / installing...    1:container-selinux-2:2.107-3.el7  ################################# [100%] [leeho@localhost docker]$ sudo rpm -ivh containerd.io-1.3.7-3.1.el7.x86_64.rpm  warning: containerd.io-1.3.7-3.1.el7.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 621e9f35: NOKEY Preparing...                          ################################# [100%] Updating / installing...    1:containerd.io-1.3.7-3.1.el7      ################################# [100%] [leeho@localhost docker]$ sudo rpm -ivh docker-ce-19.03.13-3.el7.x86_64.rpm  warning: docker-ce-19.03.13-3.el7.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 621e9f35: NOKEY Preparing...                          ################################# [100%] Updating / installing...    1:docker-ce-3:19.03.13-3.el7       ################################# [100%]</code></pre> <h3><span style="color:#f33b45;">启动Docker：</span></h3> <pre><code class="language-html"># 启动Docker systemctl start docker   # 查看状态 systemctl status docker  # 设置开机启动Docker systemctl enable docker</code></pre> <p>效果如下：</p> <pre><code>[leeho@localhost docker]$ systemctl start docker ==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units === Authentication is required to manage system services or units. Authenticating as: leeho Password:  ==== AUTHENTICATION COMPLETE === [leeho@localhost docker]$ systemctl status docker  ● docker.service - Docker Application Container Engine    Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)    Active: active (running) since Tue 2020-11-24 00:41:48 EST; 9s ago      Docs: https://docs.docker.com  Main PID: 3407 (dockerd)     Tasks: 8    Memory: 73.3M    CGroup: /system.slice/docker.service            └─3407 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock  Nov 24 00:41:44 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:44.069838810-05:00" level=info msg="scheme \...=grpc Nov 24 00:41:44 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:44.069857692-05:00" level=info msg="ccResolv...=grpc Nov 24 00:41:44 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:44.069865185-05:00" level=info msg="ClientCo...=grpc Nov 24 00:41:44 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:44.158585603-05:00" level=info msg="Loading ...art." Nov 24 00:41:47 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:47.440607709-05:00" level=info msg="Default ...ress" Nov 24 00:41:47 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:47.746815879-05:00" level=info msg="Loading ...one." Nov 24 00:41:47 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:47.990824743-05:00" level=info msg="Docker d...03.13 Nov 24 00:41:47 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:47.991248583-05:00" level=info msg="Daemon h...tion" Nov 24 00:41:48 localhost.localdomain dockerd[3407]: time="2020-11-24T00:41:48.062558939-05:00" level=info msg="API list...sock" Nov 24 00:41:48 localhost.localdomain systemd[1]: Started Docker Application Container Engine. Hint: Some lines were ellipsized, use -l to show in full. [leeho@localhost docker]$ sudo systemctl enable docker Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.</code></pre> <h3><span style="color:#f33b45;">查看Docker版本</span>：</h3> <p>docker version</p> <pre><code>[leeho@localhost docker]$ sudo docker version Client: Docker Engine - Community  Version:           19.03.13  API version:       1.40  Go version:        go1.13.15  Git commit:        4484c46d9d  Built:             Wed Sep 16 17:03:45 2020  OS/Arch:           linux/amd64  Experimental:      false  Server: Docker Engine - Community  Engine:   Version:          19.03.13   API version:      1.40 (minimum version 1.12)   Go version:       go1.13.15   Git commit:       4484c46d9d   Built:            Wed Sep 16 17:02:21 2020   OS/Arch:          linux/amd64   Experimental:     false  containerd:   Version:          1.3.7   GitCommit:        8fba4e9a7d01810a393d5d25a3621dc101981175  runc:   Version:          1.0.0-rc10   GitCommit:        dc9208a3303feef5b3839f4323d9beb36df0a9dd  docker-init:   Version:          0.18.0   GitCommit:        fec3683</code></pre> <p><span style="color:#ffbb66;">注意！！！</span>在用户权限下docker 命令需要加sudo 否则出现以下问题：</p> <p><img fetchpriority="high" decoding="async" alt="" height="151" src="http://img.555519.xyz/uploads3/20220608/9a964e594582959326ff36d417080697.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-40256.htm">动物医院有公立的吗还是私立医院好（动物医院属于什么性质）</a></p>
+                                        <p>下一个：<a href="/news/article-40744.htm">C#实现DataTable转TXT、CSV文件_C#教程_</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-26866.htm" title="领养宠物协议书范本图片模板 领养宠物协议书范本图片模板大全">领养宠物协议书范本图片模板 领养宠物协议书范本图片模板大全</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-32037.htm" title="宠物鲜粮市场创业方向（宠物鲜粮市场创业方向和前景）">宠物鲜粮市场创业方向（宠物鲜粮市场创业方向和前景）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-30610.htm" title="附近免费领养狗狗的地方在哪里呀最近（哪有领养狗狗的地方）">附近免费领养狗狗的地方在哪里呀最近（哪有领养狗狗的地方）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26403.htm" title="SpringBoot打包所有依赖jar包和配置文件全部分离">SpringBoot打包所有依赖jar包和配置文件全部分离</a></li>
+                        <li class="py-2"><a href="/news/article-28262.htm" title="南京宠物寄养多少钱一天（南京宠物店寄养宠物多少钱一天）">南京宠物寄养多少钱一天（南京宠物店寄养宠物多少钱一天）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">41</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
