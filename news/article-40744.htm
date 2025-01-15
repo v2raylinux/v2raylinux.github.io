@@ -77,6 +77,7 @@
                   				  				  				<h3>转TXT文件</h3> <div class="ay1code"> <pre class="brush:csharp;">public object DataTableToTXT(DataTable vContent, string vOutputFilePath)          {              object resObj;              StringBuilder sTxtContent;                try              {                  if (File.Exists(vOutputFilePath))                      File.Delete(vOutputFilePath);                    sTxtContent = new StringBuilder();                    //数据                  foreach (DataRow row in vContent.Rows)                  {                      for (int i = 0; i &lt; vContent.Columns.Count; i++)                      {                          sTxtContent.Append(row[i].ToString().Trim());                          sTxtContent.Append(i == vContent.Columns.Count - 1 ? "\r\n" : "\t");                      }                  }                  File.WriteAllText(vOutputFilePath, sTxtContent.ToString(), Encoding.Unicode);                  resObj = new object[] { 0, "OK" };              }              catch (Exception ex)              {                  resObj = new object[] { 0, "OK" };              }              return resObj;          }</pre> </div> <h3>转.CSV文件</h3> <p>将DataTable转换成CSV文件是一种常见的转换形式,主要通过遍历Table的每行，再对每行遍历每列，实现对数据的读取，然后用分隔符分隔Table的每个栏位数据，把读取的字符写入到CSV文件中。这里每个栏位之间用逗号分隔，每行用换行符。实现代码如下：</p> <div class="ay1code"> <pre class="brush:csharp;">public ExecutionResult DataTableToCsv(System.Data.DataTable vContent, string vOutputFilePath)          {              ExecutionResult sResult = new ExecutionResult();              System.Text.StringBuilder sCsvContent;              try              {                  sCsvContent = new System.Text.StringBuilder();                  //栏位                  for (int i = 0; i &lt; vContent.Columns.Count; i++)                  {                      sCsvContent.Append(vContent.Columns[i].ColumnName);                      sCsvContent.Append(i == vContent.Columns.Count - 1 ? "\r\n" : ",");                  }                  //数据                  foreach (System.Data.DataRow row in vContent.Rows)                  {                      for (int i = 0; i &lt; vContent.Columns.Count; i++)                      {                          sCsvContent.Append(row[i].ToString().Trim());                          sCsvContent.Append(i == vContent.Columns.Count - 1 ? "\r\n" : ",");                      }                  }                  File.WriteAllText(vOutputFilePath, sCsvContent.ToString(), Encoding.UTF8);                  sResult.Status = true;              }              catch (Exception ex)              {                  sResult.Message = ex.Message;                  sResult.Status = false;              }              return sResult;          }</pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-40743.htm">CentOS离线安装docker容器</a></p>
+                                        <p>下一个：<a href="/news/article-41242.htm">小猫养多久才认主人?猫对主人的记忆有多久呢（小猫多长时间认主）</a></p>
                                     </div>
                                     </div>
                     <div class="col-md-3">
@@ -86,16 +87,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-30609.htm" title="哈尔滨动物馆（哈尔滨动物园开放时间及门票）">哈尔滨动物馆（哈尔滨动物园开放时间及门票）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-32036.htm" title="动物疫苗概念龙头股票有哪些 动物疫苗概念股龙头股">动物疫苗概念龙头股票有哪些 动物疫苗概念股龙头股</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-16-node-share-links.htm" title="V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-24069.htm" title="00022.16 序列化与反序列化三：有些属性不需要序列化的处理办法用transient或者static修饰">00022.16 序列化与反序列化三：有些属性不需要序列化的处理办法用transient或者static修饰</a></li>
-                        <li class="py-2"><a href="/news/article-28721.htm" title="宠物领养协议书范本模板图片大全下载（宠物领养协议书怎么写有效）">宠物领养协议书范本模板图片大全下载（宠物领养协议书怎么写有效）</a></li>
-                        <li class="py-2"><a href="/news/article-29652.htm" title="动物疫苗打一次管多长时间有效呢（动物疫苗打一次管多长时间有效呢图片）">动物疫苗打一次管多长时间有效呢（动物疫苗打一次管多长时间有效呢图片）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26403.htm" title="SpringBoot打包所有依赖jar包和配置文件全部分离">SpringBoot打包所有依赖jar包和配置文件全部分离</a></li>
+                        <li class="py-2"><a href="/news/article-38283.htm" title="家里养什么花最旺儿子（最旺孩子读书的植物）">家里养什么花最旺儿子（最旺孩子读书的植物）</a></li>
+                        <li class="py-2"><a href="/news/article-29189.htm" title="动物疫苗新法案例分析报告 动物疫苗新法案例分析报告怎么写">动物疫苗新法案例分析报告 动物疫苗新法案例分析报告怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-25473.htm" title="新手开店适合开什么店成本低的（适合新手开的店铺）">新手开店适合开什么店成本低的（适合新手开的店铺）</a></li>
+                        <li class="py-2"><a href="/news/article-39248.htm" title="tf.reshape(tensor, shape, name=None)改变tensor的形状">tf.reshape(tensor, shape, name=None)改变tensor的形状</a></li>
+                        <li class="py-2"><a href="/news/article-23154.htm" title="【Python】自带的venv管理虚拟环境">【Python】自带的venv管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/news/article-20406.htm" title="新开宠物店怎么做宣传（新开宠物店的注意事项）">新开宠物店怎么做宣传（新开宠物店的注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-41243.htm" title="动物打疫苗肉还能吃吗有毒吗 动物打疫苗肉还能吃吗有毒吗视频">动物打疫苗肉还能吃吗有毒吗 动物打疫苗肉还能吃吗有毒吗视频</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新19M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -107,7 +108,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">41</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">44</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
