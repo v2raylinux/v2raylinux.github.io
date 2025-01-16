@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-41737.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Git基础配置Git用户签名说明详解</title>
+        <meta name="description" content="目录  1、为什么要创建用户签名 2、为什么要在Git中配置这些信息 3、创建用户签名的方式 4、总结   1、为什么要创建用户签名 作为版本控制系统的客户端，每台客户机对版本库的所有提交操作，都需要" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+    <!-- Favicons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>Git基础配置Git用户签名说明详解</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#1%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%AD%BE%E5%90%8D" rel="nofollow">1、为什么要创建用户签名</a></li> <li><a href="#2%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%9C%A8git%E4%B8%AD%E9%85%8D%E7%BD%AE%E8%BF%99%E4%BA%9B%E4%BF%A1%E6%81%AF" rel="nofollow">2、为什么要在Git中配置这些信息</a></li> <li><a href="#3%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%AD%BE%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F" rel="nofollow">3、创建用户签名的方式</a></li> <li><a href="#4%E6%80%BB%E7%BB%93" rel="nofollow">4、总结</a></li> </ul> </div> <h2 id="1为什么要创建用户签名">1、为什么要创建用户签名</h2> <p>作为版本控制系统的客户端，每台客户机对版本库的所有提交操作，都需要注明操作者的身份。所以客户机首先需要进行自我身份的注册，即创建用户。Git要求“用户名和Email"这两样信息是必不可少的。</p> <p>也就是说再让Git干活之前，必须得做一个最小配置，要把参与项目开发的工作人员的<code>user.name</code>以及<code>user.email</code>进行设置。</p> <p>配置签名的作用：只是区分不同开发人员的身份。</p> <h2 id="2为什么要在git中配置这些信息">2、为什么要在Git中配置这些信息</h2> <p>我们每一次的变更，在哪个时间点，是谁做出的变更，这两个信息是跟着某个变更的信息捆绑在一起。同时我们在做<code>code review</code>（代码审查）的时候，每一次的变更，如果带上了用户的<code>email</code>地址，那么评审的人员在平台上面指出了你哪个文件、哪个地方有问题之后。那我们Git的版本管控的<code>web</code>系统，它就自动的会把变更者的<code>email</code>取出来，然后发个邮件给变更的人。所以你变更的信息中的用户<code>name</code>和<code>email</code>是必须配置起来的。</p> <p>假使大家在用Git的时候如果忘了做这个配置，那后期你在Git做过变更提交的时候，他会有一长串的提示信息，告诉你必须做相关的配置。如下：</p> <pre><code class="language-python">*** Please tell me who you are.  Run    git config --global user.email "you@example.com"   git config --global user.name "Your Name"  to set your account's default identity. Omit --global to set the identity only in this repository.  fatal: unable to auto-detect email address (got 'L@DESKTOP-T2AI2SU.(none)')</code></pre> <h2 id="3创建用户签名的方式">3、创建用户签名的方式</h2> <p>Git具有三种不同的方式创建用户签名，会产生三种不同作用域的用户。这三种创建方式的用户信息，会写到三个不同位置的配置文件中。这三种用户的创建均需要使用<code>git config</code>命令，只不过使用的选项不同。</p> <p>这三个级别为<code>local</code>、<code>global</code>、<code>system</code>。说明如下：</p> <ol> <li><strong>项目级别/仓库级别（local）</strong>：<br /><strong>文件位置</strong>：该文件位于当前仓库下的<code>.git</code>目录中，文件名为<code>config</code>。<br /><strong>作用</strong>：是指对某一个Git仓库生效的。也就是说我们在使用Git管理文件系统的时候，它不是整个操作系统级别的管理。比如他是在某一个地方建了一个Git的仓库，相当于是独立的一个项目管控的一个区域。如果设置了<code>local</code>的话，Git所配置的这些信息（<code>user.name</code>，<code>usere.mail</code>），只会针对当前你工作的仓库有效。如果说切换到另外一个Git的仓库，那local范围的配置值就不再生效了。</li> <li><strong>用户级别/全局级别（global）</strong>：<br /><strong>文件位置</strong>：在计算机中系统盘的个人用户目录中，如：<code>C:\Users\L\.gitconfig</code>。注意，如果没有配置过用户级别级别的配置信息，是没有该文件的，配置一次就会自动生成的。<br /><strong>作用</strong>：比如说我的电脑中有十个Git仓库，<code>global</code>级别的这些配置，对这十个仓库都是有效的，也就是对当前用户对本地的所有仓库都有效。所以有些时候，很可能为了提高效率，就可以用<code>global</code>范围进行配置用户签名，就没必要登录到一个一个的仓库里面做这种配置，所以工作当中<code>global</code>的方式是非常常用的。<br /> （即：表示授权一个用户对该计算机中所有的仓库都有权操作）</li> <li><strong>系统级别（system）</strong>：<br /><strong>文件位置</strong>：文件在本地Git的安装目录下，<code>...\etc\gitconfig</code>文件中。<br /><strong>作用</strong>：表示只要登陆了该操作系统的用户，就对系统中的所有Git仓库有操作权。它是对系统所有登录的用户都有效，这个范围不常用（基本不用）。</li> </ol> <blockquote> <p>提示：这三种创建用户签名的作用域由大到小依次是：系统用户，全局用户与本地库用户。在多种用户都进行了创建的前提下，小范围用户签名会覆盖大范围用户签名，即默认会以小范围用户来操作Git。</p> </blockquote> <h2 id="4总结">4、总结</h2> <p>一般在新的Git版本控制系统上，我们都需要先配置下自己的Git工作环境。配置工作只需一次，以后升级时还会沿用现在的配置。当然，如果需要，你随时可以用相同的命令修改已有的配置。</p> <p>个人的用户名称和电子邮件地址，这两条配置很重要，每次Git提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容起被永久纳入版本历史记录。</p> <p>每个机器都必须自报家门，就是你的签名（名字和Email地址）。你也许会担心，如果有人故意冒充别人怎么办？这个不必担心，首先我们相信大家都是善良无知的群众，其次，真的有冒充的也是有办法可查的。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-41243.htm">动物打疫苗肉还能吃吗有毒吗 动物打疫苗肉还能吃吗有毒吗视频</a></p>
+                                        <p>下一个：<a href="/news/article-41739.htm">被猫抓伤后怎么判断感没感染（被猫抓伤了表皮出了一点血怎么办）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-31091.htm" title="上海领养宠物狗地址电话（上海领养宠物狗地址电话查询）">上海领养宠物狗地址电话（上海领养宠物狗地址电话查询）</a></li>
+                        <li class="py-2"><a href="/news/article-31459.htm" title="上海地区宠物领养中心 上海地区宠物领养中心地址">上海地区宠物领养中心 上海地区宠物领养中心地址</a></li>
+                        <li class="py-2"><a href="/news/article-20405.htm" title="Android 12 行为变更：适配以Android 12为目标的应用">Android 12 行为变更：适配以Android 12为目标的应用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-40256.htm" title="动物医院有公立的吗还是私立医院好（动物医院属于什么性质）">动物医院有公立的吗还是私立医院好（动物医院属于什么性质）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-32036.htm" title="动物疫苗概念龙头股票有哪些 动物疫苗概念股龙头股">动物疫苗概念龙头股票有哪些 动物疫苗概念股龙头股</a></li>
+                        <li class="py-2"><a href="/news/article-28719.htm" title="什么样的狗粮最好（什么样的狗粮性价比高）">什么样的狗粮最好（什么样的狗粮性价比高）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-28-node-share-links.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">47</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
