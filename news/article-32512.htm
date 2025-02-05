@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raylinux.github.io/news/article-32512.htm" />
@@ -8,7 +8,35 @@
     <title>Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具</title>
         <meta name="description" content="Citus 可以使用分片跨多台计算机来水平缩放查询。 其查询引擎会将这些服务器的传入 SQL 查询并行化，加快大型数据集上的响应。 它为需要比其他部署选项更大规模和更高性能的应用程序提供服务：通常，工" />
         <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
-    <!-- Favicons -->
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-32512.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/1f1ae8c1f54b288adfb960cbf331c3c0.webp" />
+        <meta property="og:release_date" content="2024-12-28T10:07:10" />
+    <meta property="og:updated_time" content="2024-12-28T10:07:10" />
+        <meta property="og:description" content="Citus 可以使用分片跨多台计算机来水平缩放查询。 其查询引擎会将这些服务器的传入 SQL 查询并行化，加快大型数据集上的响应。 它为需要比其他部署选项更大规模和更高性能的应用程序提供服务：通常，工" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
     <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
@@ -87,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-22697.htm" title="k8s 新版本 部署 Ingress-nginx controller">k8s 新版本 部署 Ingress-nginx controller</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.1M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-14-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-21323.htm" title="上海有没有领养宠物的地方（上海有没有宠物领养机构）">上海有没有领养宠物的地方（上海有没有宠物领养机构）</a></li>
-                        <li class="py-2"><a href="/news/article-28721.htm" title="宠物领养协议书范本模板图片大全下载（宠物领养协议书怎么写有效）">宠物领养协议书范本模板图片大全下载（宠物领养协议书怎么写有效）</a></li>
-                        <li class="py-2"><a href="/news/article-27787.htm" title="PyQt5 在qtdesigner中使用自定义的控件">PyQt5 在qtdesigner中使用自定义的控件</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/news/article-30067.htm" title="宠福鑫动物医院怎么样可靠吗安全吗（宠福鑫动物医院中心总院）">宠福鑫动物医院怎么样可靠吗安全吗（宠福鑫动物医院中心总院）</a></li>
-                        <li class="py-2"><a href="/news/article-33433.htm" title="国内宠物食品企业排名（国内宠物食品行业最大的本土品牌公司）">国内宠物食品企业排名（国内宠物食品行业最大的本土品牌公司）</a></li>
-                        <li class="py-2"><a href="/news/article-32512.htm" title="Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具">Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-45220.htm" title="Visual Studio App Center 中的 Bug 跟踪服务">Visual Studio App Center 中的 Bug 跟踪服务</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-node-share-links.htm" title="V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-38283.htm" title="家里养什么花最旺儿子（最旺孩子读书的植物）">家里养什么花最旺儿子（最旺孩子读书的植物）</a></li>
+                        <li class="py-2"><a href="/news/article-44711.htm" title="包含猫咪疫苗一共要打几针多少钱英短的词条">包含猫咪疫苗一共要打几针多少钱英短的词条</a></li>
+                        <li class="py-2"><a href="/news/article-45221.htm" title="梦到抱着别人的女孩（梦抱别人的女孩好不好）">梦到抱着别人的女孩（梦抱别人的女孩好不好）</a></li>
+                        <li class="py-2"><a href="/news/article-29653.htm" title="猫粮所有品牌排行榜图片（猫粮排行榜前十名有哪些）">猫粮所有品牌排行榜图片（猫粮排行榜前十名有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-39766.htm" title="Linux中信号量源码的详细解析">Linux中信号量源码的详细解析</a></li>
+                        <li class="py-2"><a href="/news/article-24072.htm" title="不建议养的5种猫（懒人养什么猫最省心）">不建议养的5种猫（懒人养什么猫最省心）</a></li>
                     </ul>
     </div>
 </div>
@@ -108,7 +136,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>

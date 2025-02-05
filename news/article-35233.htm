@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raylinux.github.io/news/article-35233.htm" />
@@ -8,7 +8,35 @@
     <title>springMvc+spring security 注解方式实现权限控制</title>
         <meta name="description" content="一个项目，权限自然是少不了的，在我来公司一段时间后发现公司后台的管理系统既然没有权限模块，所有人都都是超级管理员，更让人嗤之以鼻的是，整个系统也没有任何操作日志记录，这怎么得了，数据是的何等重要，岂是" />
         <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
-    <!-- Favicons -->
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-35233.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="springMvc+spring security 注解方式实现权限控制" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/e4936f5786c9bae850059f3db03b1b36.webp" />
+        <meta property="og:release_date" content="2025-01-03T00:25:39" />
+    <meta property="og:updated_time" content="2025-01-03T00:25:39" />
+        <meta property="og:description" content="一个项目，权限自然是少不了的，在我来公司一段时间后发现公司后台的管理系统既然没有权限模块，所有人都都是超级管理员，更让人嗤之以鼻的是，整个系统也没有任何操作日志记录，这怎么得了，数据是的何等重要，岂是" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="springMvc+spring security 注解方式实现权限控制">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
     <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
@@ -87,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-1-3-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新18.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-22698.htm" title="想开一个宠物美容店怎么开（想开一个宠物美容需要什么条件）">想开一个宠物美容店怎么开（想开一个宠物美容需要什么条件）</a></li>
-                        <li class="py-2"><a href="/news/article-20863.htm" title="使用Python在D天内运送包裹的能力">使用Python在D天内运送包裹的能力</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-25-node-share-links.htm" title="V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-21-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-19490.htm" title="合肥宠物免费领养（合肥宠物领养中心官网）">合肥宠物免费领养（合肥宠物领养中心官网）</a></li>
-                        <li class="py-2"><a href="/news/article-28719.htm" title="什么样的狗粮最好（什么样的狗粮性价比高）">什么样的狗粮最好（什么样的狗粮性价比高）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-23-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-29189.htm" title="动物疫苗新法案例分析报告 动物疫苗新法案例分析报告怎么写">动物疫苗新法案例分析报告 动物疫苗新法案例分析报告怎么写</a></li>
-                        <li class="py-2"><a href="/news/article-33432.htm" title="数据库中间件ShardingSphere-Proxy详解">数据库中间件ShardingSphere-Proxy详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-41242.htm" title="小猫养多久才认主人?猫对主人的记忆有多久呢（小猫多长时间认主）">小猫养多久才认主人?猫对主人的记忆有多久呢（小猫多长时间认主）</a></li>
+                        <li class="py-2"><a href="/news/article-38283.htm" title="家里养什么花最旺儿子（最旺孩子读书的植物）">家里养什么花最旺儿子（最旺孩子读书的植物）</a></li>
+                        <li class="py-2"><a href="/news/article-35233.htm" title="springMvc+spring security 注解方式实现权限控制">springMvc+spring security 注解方式实现权限控制</a></li>
+                        <li class="py-2"><a href="/news/article-31091.htm" title="上海领养宠物狗地址电话（上海领养宠物狗地址电话查询）">上海领养宠物狗地址电话（上海领养宠物狗地址电话查询）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19489.htm" title="免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）">免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-node-share.htm" title="V2ray Linux节点订阅每天更新20.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-44198.htm" title="动物疫苗和人体疫苗生产有什么区别呢图片 动物疫苗和人体疫苗生产有什么区别呢图片大全">动物疫苗和人体疫苗生产有什么区别呢图片 动物疫苗和人体疫苗生产有什么区别呢图片大全</a></li>
                     </ul>
     </div>
 </div>
@@ -108,7 +136,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>

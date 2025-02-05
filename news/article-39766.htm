@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raylinux.github.io/news/article-39766.htm" />
@@ -8,7 +8,35 @@
     <title>Linux中信号量源码的详细解析</title>
         <meta name="description" content="如果一个任务获取信号量失败，该任务就必须等待，直到其他任务释放信号量。本文的重点是，在Linux中，当有任务释放信号量之后，如何唤醒正在等待该信号量的任务。 信号量定义如下： struct semap" />
         <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
-    <!-- Favicons -->
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-39766.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="Linux中信号量源码的详细解析" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/9581bfba002781180397865aee9f8be7.webp" />
+        <meta property="og:release_date" content="2025-01-12T10:01:44" />
+    <meta property="og:updated_time" content="2025-01-12T10:01:44" />
+        <meta property="og:description" content="如果一个任务获取信号量失败，该任务就必须等待，直到其他任务释放信号量。本文的重点是，在Linux中，当有任务释放信号量之后，如何唤醒正在等待该信号量的任务。 信号量定义如下： struct semap" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Linux中信号量源码的详细解析">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
     <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
@@ -87,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-35841.htm" title="快一个月大的小猫身上有跳蚤怎么办（一个月大的小猫咪身上有跳蚤怎么办）">快一个月大的小猫身上有跳蚤怎么办（一个月大的小猫咪身上有跳蚤怎么办）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-30-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23605.htm" title="C程序中编译时错误和运行时错误之间的区别">C程序中编译时错误和运行时错误之间的区别</a></li>
+                        <li class="py-2"><a href="/news/article-48151.htm" title="弓形虫感染的症状（宠物弓形虫感染的症状）">弓形虫感染的症状（宠物弓形虫感染的症状）</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-12-14-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-34892.htm" title="C++虚函数与纯虚函数">C++虚函数与纯虚函数</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-2-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新21.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-29186.htm" title="Spring Boot项目配置Druid数据源(druid-spring-boot-starter)">Spring Boot项目配置Druid数据源(druid-spring-boot-starter)</a></li>
-                        <li class="py-2"><a href="/news/article-27329.htm" title="全国动物疫苗生产厂家有哪些品牌的（全国动物疫苗生产厂家有哪些品牌的）">全国动物疫苗生产厂家有哪些品牌的（全国动物疫苗生产厂家有哪些品牌的）</a></li>
-                        <li class="py-2"><a href="/news/article-25474.htm" title="给动物打的疫苗叫什么 给动物打的疫苗叫什么名字">给动物打的疫苗叫什么 给动物打的疫苗叫什么名字</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-30068.htm" title="动物疫苗打到人身上会怎么样 动物疫苗打到人身上会怎么样吗">动物疫苗打到人身上会怎么样 动物疫苗打到人身上会怎么样吗</a></li>
+                        <li class="py-2"><a href="/news/article-47161.htm" title="狗狗宠物市场（狗狗宠物市场前景）">狗狗宠物市场（狗狗宠物市场前景）</a></li>
+                        <li class="py-2"><a href="/news/article-32511.htm" title="Struts2中拦截器的定义及配置">Struts2中拦截器的定义及配置</a></li>
                         <li class="py-2"><a href="/news/article-34895.htm" title="动物医院要求什么学历才能进编制（动物医院要求什么学历才能进编制呢）">动物医院要求什么学历才能进编制（动物医院要求什么学历才能进编制呢）</a></li>
+                        <li class="py-2"><a href="/news/article-25008.htm" title="Python生成sql语句">Python生成sql语句</a></li>
                     </ul>
     </div>
 </div>
@@ -108,7 +136,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">44</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>

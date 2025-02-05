@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raylinux.github.io/news/article-40743.htm" />
@@ -8,7 +8,35 @@
     <title>CentOS离线安装docker容器</title>
         <meta name="description" content="由于实验室机房处于内网环境，无法与外网交互，导致无法使用yum命令在线下载配置环境。因此，我在Windows环境（可连接外网）下使用Xftp6来进行个人PC机与机房服务器进行交互管理，在Windows" />
         <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
-    <!-- Favicons -->
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-40743.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="CentOS离线安装docker容器" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/14993e4cb1281da20b885c5c9fbd9835.webp" />
+        <meta property="og:release_date" content="2025-01-14T07:36:13" />
+    <meta property="og:updated_time" content="2025-01-14T07:36:13" />
+        <meta property="og:description" content="由于实验室机房处于内网环境，无法与外网交互，导致无法使用yum命令在线下载配置环境。因此，我在Windows环境（可连接外网）下使用Xftp6来进行个人PC机与机房服务器进行交互管理，在Windows" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CentOS离线安装docker容器">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
     <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
@@ -87,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-18-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-28261.htm" title="牲畜打疫苗完成的简报内容（牲畜注射疫苗简报）">牲畜打疫苗完成的简报内容（牲畜注射疫苗简报）</a></li>
-                        <li class="py-2"><a href="/news/article-34417.htm" title="昆明宠物领养站在哪里（昆明宠物领养中心地址）">昆明宠物领养站在哪里（昆明宠物领养中心地址）</a></li>
-                        <li class="py-2"><a href="/news/article-33433.htm" title="国内宠物食品企业排名（国内宠物食品行业最大的本土品牌公司）">国内宠物食品企业排名（国内宠物食品行业最大的本土品牌公司）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-27330.htm" title="小动物打疫苗视频大全（小动物打疫苗视频大全图片）">小动物打疫苗视频大全（小动物打疫苗视频大全图片）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-22698.htm" title="想开一个宠物美容店怎么开（想开一个宠物美容需要什么条件）">想开一个宠物美容店怎么开（想开一个宠物美容需要什么条件）</a></li>
-                        <li class="py-2"><a href="/news/article-41243.htm" title="动物打疫苗肉还能吃吗有毒吗 动物打疫苗肉还能吃吗有毒吗视频">动物打疫苗肉还能吃吗有毒吗 动物打疫苗肉还能吃吗有毒吗视频</a></li>
-                        <li class="py-2"><a href="/news/article-39250.htm" title="杭州宠物回收站电话（杭州宠物猫回收）">杭州宠物回收站电话（杭州宠物猫回收）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34416.htm" title="丹阳有宠物收留中心吗（丹阳哪里有宠物店）">丹阳有宠物收留中心吗（丹阳哪里有宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-42741.htm" title="python访问hdfs">python访问hdfs</a></li>
+                        <li class="py-2"><a href="/news/article-28721.htm" title="宠物领养协议书范本模板图片大全下载（宠物领养协议书怎么写有效）">宠物领养协议书范本模板图片大全下载（宠物领养协议书怎么写有效）</a></li>
+                        <li class="py-2"><a href="/news/article-37726.htm" title="济南哪里可以领养猫咪（济南有没有领养猫的地方）">济南哪里可以领养猫咪（济南有没有领养猫的地方）</a></li>
+                        <li class="py-2"><a href="/news/article-29652.htm" title="动物疫苗打一次管多长时间有效呢（动物疫苗打一次管多长时间有效呢图片）">动物疫苗打一次管多长时间有效呢（动物疫苗打一次管多长时间有效呢图片）</a></li>
+                        <li class="py-2"><a href="/news/article-25008.htm" title="Python生成sql语句">Python生成sql语句</a></li>
+                        <li class="py-2"><a href="/news/article-45221.htm" title="梦到抱着别人的女孩（梦抱别人的女孩好不好）">梦到抱着别人的女孩（梦抱别人的女孩好不好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28262.htm" title="南京宠物寄养多少钱一天（南京宠物店寄养宠物多少钱一天）">南京宠物寄养多少钱一天（南京宠物店寄养宠物多少钱一天）</a></li>
                     </ul>
     </div>
 </div>
@@ -108,7 +136,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">47</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>

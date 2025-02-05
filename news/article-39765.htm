@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raylinux.github.io/news/article-39765.htm" />
@@ -8,7 +8,35 @@
     <title>Vue学习笔记v-for的key</title>
         <meta name="description" content="参考文档：https://cn.vuejs.org/v2/guide/ 当使用v-for遍历数组时，如果没有指定key，则当数组元素顺序发生变更时，dom绑定的数据会更新，而dom本身的顺序不会变化；" />
         <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
-    <!-- Favicons -->
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-39765.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="Vue学习笔记v-for的key" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/6bcec41925f6905196c97221c6a57b56.webp" />
+        <meta property="og:release_date" content="2025-01-12T10:01:44" />
+    <meta property="og:updated_time" content="2025-01-12T10:01:44" />
+        <meta property="og:description" content="参考文档：https://cn.vuejs.org/v2/guide/ 当使用v-for遍历数组时，如果没有指定key，则当数组元素顺序发生变更时，dom绑定的数据会更新，而dom本身的顺序不会变化；" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Vue学习笔记v-for的key">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
     <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
@@ -87,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新19M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-23606.htm" title="天津免费领养猫（天津宠物猫免费领养）">天津免费领养猫（天津宠物猫免费领养）</a></li>
+                        <li class="py-2"><a href="/news/article-38774.htm" title="动物医院申请条件有哪些要求和条件要求呢（动物医院需要几个兽医资格证）">动物医院申请条件有哪些要求和条件要求呢（动物医院需要几个兽医资格证）</a></li>
                         <li class="py-2"><a href="/news/article-32512.htm" title="Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具">Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具</a></li>
-                        <li class="py-2"><a href="/news/article-33947.htm" title="包头宠物训练（包头宠物培训学校）">包头宠物训练（包头宠物培训学校）</a></li>
-                        <li class="py-2"><a href="/news/article-26866.htm" title="领养宠物协议书范本图片模板 领养宠物协议书范本图片模板大全">领养宠物协议书范本图片模板 领养宠物协议书范本图片模板大全</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-49677.htm" title="哪种猫粮比较好又不贵 哪种猫粮比较好又不贵幼猫">哪种猫粮比较好又不贵 哪种猫粮比较好又不贵幼猫</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28262.htm" title="南京宠物寄养多少钱一天（南京宠物店寄养宠物多少钱一天）">南京宠物寄养多少钱一天（南京宠物店寄养宠物多少钱一天）</a></li>
+                        <li class="py-2"><a href="/news/article-40743.htm" title="CentOS离线安装docker容器">CentOS离线安装docker容器</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-35841.htm" title="快一个月大的小猫身上有跳蚤怎么办（一个月大的小猫咪身上有跳蚤怎么办）">快一个月大的小猫身上有跳蚤怎么办（一个月大的小猫咪身上有跳蚤怎么办）</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-12-14-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-22697.htm" title="k8s 新版本 部署 Ingress-nginx controller">k8s 新版本 部署 Ingress-nginx controller</a></li>
+                        <li class="py-2"><a href="/news/article-26865.htm" title="猫咪3针疫苗间隔多久打一次好一点（猫三针疫苗间隔多久打）">猫咪3针疫苗间隔多久打一次好一点（猫三针疫苗间隔多久打）</a></li>
                     </ul>
     </div>
 </div>
@@ -108,7 +136,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">41</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>

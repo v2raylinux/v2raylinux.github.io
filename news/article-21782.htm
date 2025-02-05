@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raylinux.github.io/news/article-21782.htm" />
@@ -8,7 +8,35 @@
     <title>Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型</title>
         <meta name="description" content="引言 最近在学习Tensorflow 构建CNN，训练需要耗费时间，把训练好的各个参数保存下来是最简便的，网上有很多教程，但是跟着教程走不一定一帆风顺还是踩了一些坑，然后自己填了一下坑 如何保存好训练" />
         <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
-    <!-- Favicons -->
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-21782.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/9db8ec563cb40dbaed9faca16455aba4.webp" />
+        <meta property="og:release_date" content="2024-12-05T10:07:21" />
+    <meta property="og:updated_time" content="2024-12-05T10:07:21" />
+        <meta property="og:description" content="引言 最近在学习Tensorflow 构建CNN，训练需要耗费时间，把训练好的各个参数保存下来是最简便的，网上有很多教程，但是跟着教程走不一定一帆风顺还是踩了一些坑，然后自己填了一下坑 如何保存好训练" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
     <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
@@ -87,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-28-node-share-links.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-34416.htm" title="丹阳有宠物收留中心吗（丹阳哪里有宠物店）">丹阳有宠物收留中心吗（丹阳哪里有宠物店）</a></li>
-                        <li class="py-2"><a href="/news/article-32511.htm" title="Struts2中拦截器的定义及配置">Struts2中拦截器的定义及配置</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-15-node-share.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-node-share.htm" title="V2ray Linux节点订阅每天更新20.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-node-share-links.htm" title="V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-45722.htm" title="宠物领养协议需要身份证复印件吗怎么写才有效 领养宠物需要签协议吗">宠物领养协议需要身份证复印件吗怎么写才有效 领养宠物需要签协议吗</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-47663.htm" title="宠物领养合同违约金1500合法吗（宠物领养合同违约金1500合法吗怎么赔偿）">宠物领养合同违约金1500合法吗（宠物领养合同违约金1500合法吗怎么赔偿）</a></li>
+                        <li class="py-2"><a href="/news/article-29189.htm" title="动物疫苗新法案例分析报告 动物疫苗新法案例分析报告怎么写">动物疫苗新法案例分析报告 动物疫苗新法案例分析报告怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-25931.htm" title="从Java的堆栈到Equals和==的比較">从Java的堆栈到Equals和==的比較</a></li>
+                        <li class="py-2"><a href="/news/article-19007.htm" title="动物疫苗的正确使用方法视频讲解教程（动物疫苗接种方法有哪些）">动物疫苗的正确使用方法视频讲解教程（动物疫苗接种方法有哪些）</a></li>
                         <li class="py-2"><a href="/news/article-32512.htm" title="Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具">Citus 11(分布式 PostgreSQL) 文档贡献与本地运行_在线工具</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-27330.htm" title="小动物打疫苗视频大全（小动物打疫苗视频大全图片）">小动物打疫苗视频大全（小动物打疫苗视频大全图片）</a></li>
-                        <li class="py-2"><a href="/news/article-20405.htm" title="Android 12 行为变更：适配以Android 12为目标的应用">Android 12 行为变更：适配以Android 12为目标的应用</a></li>
-                        <li class="py-2"><a href="/news/article-31459.htm" title="上海地区宠物领养中心 上海地区宠物领养中心地址">上海地区宠物领养中心 上海地区宠物领养中心地址</a></li>
                     </ul>
     </div>
 </div>
@@ -108,7 +136,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>

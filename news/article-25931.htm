@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raylinux.github.io/news/article-25931.htm" />
@@ -8,7 +8,35 @@
     <title>从Java的堆栈到Equals和==的比較</title>
         <meta name="description" content="认识Java中堆和栈  栈与堆都是Java用来在Ram中存放数据的地方。 与C++不同。Java自己主动管理栈和堆，程序猿不能直接地设置栈或堆。 Java的堆是一个执行时数据区,类的对象从中分配空间。" />
         <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
-    <!-- Favicons -->
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-25931.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="从Java的堆栈到Equals和==的比較" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/14993e4cb1281da20b885c5c9fbd9835.webp" />
+        <meta property="og:release_date" content="2024-12-14T10:13:17" />
+    <meta property="og:updated_time" content="2024-12-14T10:13:17" />
+        <meta property="og:description" content="认识Java中堆和栈  栈与堆都是Java用来在Ram中存放数据的地方。 与C++不同。Java自己主动管理栈和堆，程序猿不能直接地设置栈或堆。 Java的堆是一个执行时数据区,类的对象从中分配空间。" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="从Java的堆栈到Equals和==的比較">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
     <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
@@ -87,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-27329.htm" title="全国动物疫苗生产厂家有哪些品牌的（全国动物疫苗生产厂家有哪些品牌的）">全国动物疫苗生产厂家有哪些品牌的（全国动物疫苗生产厂家有哪些品牌的）</a></li>
-                        <li class="py-2"><a href="/news/article-33945.htm" title="spring security 权限(注解)">spring security 权限(注解)</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-15-node-share.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-25473.htm" title="新手开店适合开什么店成本低的（适合新手开的店铺）">新手开店适合开什么店成本低的（适合新手开的店铺）</a></li>
-                        <li class="py-2"><a href="/news/article-19948.htm" title="猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）">猫疫苗3针和两针有什么区别（猫疫苗3针和两针有什么区别呢）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-30-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-24462.htm" title="上海收养流浪猫机构（上海收养流浪猫机构有哪些）">上海收养流浪猫机构（上海收养流浪猫机构有哪些）</a></li>
-                        <li class="py-2"><a href="/news/article-19489.htm" title="免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）">免费宠物领养平台有哪些软件可以用的（宠物领养软件推荐）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-45221.htm" title="梦到抱着别人的女孩（梦抱别人的女孩好不好）">梦到抱着别人的女孩（梦抱别人的女孩好不好）</a></li>
+                        <li class="py-2"><a href="/news/article-25934.htm" title="被猫咬了怎么判断没事知乎视频（被猫咬了怎么判断没事知乎视频）">被猫咬了怎么判断没事知乎视频（被猫咬了怎么判断没事知乎视频）</a></li>
+                        <li class="py-2"><a href="/news/article-47662.htm" title="佳雯宠物医院环城西路店（佳雯宠物医院环城东路分院怎么样）">佳雯宠物医院环城西路店（佳雯宠物医院环城东路分院怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-24069.htm" title="00022.16 序列化与反序列化三：有些属性不需要序列化的处理办法用transient或者static修饰">00022.16 序列化与反序列化三：有些属性不需要序列化的处理办法用transient或者static修饰</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-35233.htm" title="springMvc+spring security 注解方式实现权限控制">springMvc+spring security 注解方式实现权限控制</a></li>
+                        <li class="py-2"><a href="/news/article-27787.htm" title="PyQt5 在qtdesigner中使用自定义的控件">PyQt5 在qtdesigner中使用自定义的控件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-3-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新18.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.4M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -108,7 +136,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>

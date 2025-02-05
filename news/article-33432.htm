@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raylinux.github.io/news/article-33432.htm" />
@@ -8,7 +8,35 @@
     <title>数据库中间件ShardingSphere-Proxy详解</title>
         <meta name="description" content="1.现实中的问题 我们知道数据库的数据，基本80%的业务是查询，20%的业务涵盖了增删改，经过长期的业务变更和积累数据库的数据到达了一定的数量之后，直接影响的是用户与系统的交互，查询时的速度，插入数据" />
         <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
-    <!-- Favicons -->
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-33432.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="数据库中间件ShardingSphere-Proxy详解" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/f6001999b2d7cd75144e8836fe6cb3ff.webp" />
+        <meta property="og:release_date" content="2024-12-30T09:02:52" />
+    <meta property="og:updated_time" content="2024-12-30T09:02:52" />
+        <meta property="og:description" content="1.现实中的问题 我们知道数据库的数据，基本80%的业务是查询，20%的业务涵盖了增删改，经过长期的业务变更和积累数据库的数据到达了一定的数量之后，直接影响的是用户与系统的交互，查询时的速度，插入数据" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="数据库中间件ShardingSphere-Proxy详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/" rel="preconnect">
     <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
@@ -87,16 +115,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-30609.htm" title="哈尔滨动物馆（哈尔滨动物园开放时间及门票）">哈尔滨动物馆（哈尔滨动物园开放时间及门票）</a></li>
-                        <li class="py-2"><a href="/news/article-27329.htm" title="全国动物疫苗生产厂家有哪些品牌的（全国动物疫苗生产厂家有哪些品牌的）">全国动物疫苗生产厂家有哪些品牌的（全国动物疫苗生产厂家有哪些品牌的）</a></li>
-                        <li class="py-2"><a href="/news/article-22698.htm" title="想开一个宠物美容店怎么开（想开一个宠物美容需要什么条件）">想开一个宠物美容店怎么开（想开一个宠物美容需要什么条件）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-29-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-22231.htm" title="动物疫苗的种类及使用方法（动物疫苗接种方法有哪些）">动物疫苗的种类及使用方法（动物疫苗接种方法有哪些）</a></li>
-                        <li class="py-2"><a href="/news/article-19490.htm" title="合肥宠物免费领养（合肥宠物领养中心官网）">合肥宠物免费领养（合肥宠物领养中心官网）</a></li>
-                        <li class="py-2"><a href="/news/article-33433.htm" title="国内宠物食品企业排名（国内宠物食品行业最大的本土品牌公司）">国内宠物食品企业排名（国内宠物食品行业最大的本土品牌公司）</a></li>
-                        <li class="py-2"><a href="/news/article-31091.htm" title="上海领养宠物狗地址电话（上海领养宠物狗地址电话查询）">上海领养宠物狗地址电话（上海领养宠物狗地址电话查询）</a></li>
-                        <li class="py-2"><a href="/news/article-24461.htm" title="数据库中间件ShardingSphere-Proxy详解">数据库中间件ShardingSphere-Proxy详解</a></li>
-                        <li class="py-2"><a href="/news/article-19007.htm" title="动物疫苗的正确使用方法视频讲解教程（动物疫苗接种方法有哪些）">动物疫苗的正确使用方法视频讲解教程（动物疫苗接种方法有哪些）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26404.htm" title="上海宠物医院收费价目表查询官网（上海宠物医院收费价目表查询官网电话）">上海宠物医院收费价目表查询官网（上海宠物医院收费价目表查询官网电话）</a></li>
+                        <li class="py-2"><a href="/news/article-21782.htm" title="Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型">Ｔensorflow使用笔记（１）　怎么保存和使用训练好的参数和模型</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-node-share.htm" title="V2ray Linux节点订阅每天更新20M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28261.htm" title="牲畜打疫苗完成的简报内容（牲畜注射疫苗简报）">牲畜打疫苗完成的简报内容（牲畜注射疫苗简报）</a></li>
+                        <li class="py-2"><a href="/news/article-31458.htm" title="宠物粮加工厂利润 宠物粮加工厂利润怎么样">宠物粮加工厂利润 宠物粮加工厂利润怎么样</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-24-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-39248.htm" title="tf.reshape(tensor, shape, name=None)改变tensor的形状">tf.reshape(tensor, shape, name=None)改变tensor的形状</a></li>
                     </ul>
     </div>
 </div>
@@ -108,7 +136,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
