@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-55002.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SpringSecurity如何使用注解控制权限</title>
+        <meta name="description" content="一般的系统在权限设计上，都会分为角色、权限（RDBC），复杂一点的可能会有用户组、组织之类的概念。 用户的权限是写死的，对应于后台的接口或者资源，是没办法改变的，一般不对用户开放修改权限。 管理员用户" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-55002.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="SpringSecurity如何使用注解控制权限" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/9581bfba002781180397865aee9f8be7.webp" />
+        <meta property="og:release_date" content="2025-02-11T05:44:45" />
+    <meta property="og:updated_time" content="2025-02-11T05:44:45" />
+        <meta property="og:description" content="一般的系统在权限设计上，都会分为角色、权限（RDBC），复杂一点的可能会有用户组、组织之类的概念。 用户的权限是写死的，对应于后台的接口或者资源，是没办法改变的，一般不对用户开放修改权限。 管理员用户" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpringSecurity如何使用注解控制权限">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>SpringSecurity如何使用注解控制权限</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>一般的系统在权限设计上，都会分为角色、权限（RDBC），复杂一点的可能会有用户组、组织之类的概念。</p> <p>用户的权限是写死的，对应于后台的接口或者资源，是没办法改变的，一般不对用户开放修改权限。</p> <p>管理员用户可以通过给角色分配权限的方式，来实现访问控制。</p> <p>所以当我们写过滤器，或者用一些安全框架时（比如Shiro，Spring Security），也需要将可变的“角色”，转化为不可变的“权限”，注入到框架中。</p> <p>具体的可以看我之前写的一篇（Spring Security整合jwt完整版）：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_37855749/article/details/111300906"  rel="nofollow">https://blog.csdn.net/qq_37855749/article/details/111300906</a></p> <p>注入当前用户的权限后，就需要进行访问控制了。</p> <p>常见的做法有</p> <p>1、路径比对</p> <p>之前有个项目用过一次，定义一个过滤器，添加到security的过滤链中，在这个过滤器中做这么一件事：</p> <p>分析当前访问路径所需要的权限，检查当前用户是否具有该权限，做一个对比，根据对比结果来决定当前用户是否可以访问该资源。</p> <p>这种做法的好处是代码的入侵性不高，不需要再每个接口上加注解。但相对来说，显得不那么直观，可读性比较差，所以这次换个方法。</p> <p>2、使用注解的方式</p> <p>SpringSecurity使用注解来控制访问时，需要提前开启这个功能。</p> <p>在配置类上加上注解</p> <pre><code>@Configuration @EnableWebSecurity @EnableGlobalMethodSecurity(prePostEnabled = true) public class SecurityConfig extends WebSecurityConfigurerAdapter {<!-- --></code></pre> <p>在接口中如此使用</p> <pre><code>    /**      * 条件查询      */     @PreAuthorize("hasAuthority('IMPORT:SELECT')")     @ApiOperation(value = "查询")     @GetMapping("/list")     public R&lt;Page&lt;Task&gt;&gt; list(TaskDto taskDto){         //测试阶段，随机生成任务         Random random = new Random();          //todo         int i = random.nextInt(4);         if(i == 2) {             metroServerAdapterService.reloadShelveTask();         }         Page&lt;Task&gt; list = taskService.list(taskDto);         return R.ok(list);     }</code></pre> <p>hasAuthority可以替换成hasRole，虽然可以达到相同的目的，但是在使用的方法上还是有些不同的。</p> <p>hasRole要求内容必须以"ROLE_"开头，也是官方推荐的命名方式，否则没有效果。但是hasAuthority没有限制，数据库中怎样写的，代码里就怎么写。</p> <p>同样的功能的注解为什么要有两个名字呢。或许这么做可能在语义上比较清晰明确一点，将角色与权限这两个概念稍加区分。</p> <p>仔细想一下，确实有些小型的系统或许压根就不需要权限，只有给用户分配角色，没有给角色分配权限这一过程。这样的话，角色也是不可变的，就可以根据角色来做访问控制了。</p> <p>但考虑通用性，个人觉得用hasAuthority就可以了。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-54448.htm">宠物领养协议书范本模板下载图片 宠物领养协议书范本模板下载图片大全</a></p>
+                                        <p>下一个：<a href="/news/article-55003.htm">基于MyBatis的多租户设计方案与实现</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-46701.htm" title="动物疫苗多少钱一支啊图片高清大图视频（动物疫苗贵吗）">动物疫苗多少钱一支啊图片高清大图视频（动物疫苗贵吗）</a></li>
+                        <li class="py-2"><a href="/news/article-47161.htm" title="狗狗宠物市场（狗狗宠物市场前景）">狗狗宠物市场（狗狗宠物市场前景）</a></li>
+                        <li class="py-2"><a href="/news/article-20863.htm" title="使用Python在D天内运送包裹的能力">使用Python在D天内运送包裹的能力</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-48152.htm" title="中国十大宠物粮厂家排名前十（宠物粮公司排名）">中国十大宠物粮厂家排名前十（宠物粮公司排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-1-node-share.htm" title="V2ray Linux节点订阅每天更新21.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26404.htm" title="上海宠物医院收费价目表查询官网（上海宠物医院收费价目表查询官网电话）">上海宠物医院收费价目表查询官网（上海宠物医院收费价目表查询官网电话）</a></li>
+                        <li class="py-2"><a href="/news/article-53903.htm" title="动物医疗科技有限公司 迈瑞动物医疗科技有限公司">动物医疗科技有限公司 迈瑞动物医疗科技有限公司</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

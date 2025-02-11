@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-55003.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>基于MyBatis的多租户设计方案与实现</title>
+        <meta name="description" content="&nbsp; 实习中一个项目需要从单租户模式改造成多租户，由于项目使用的是MyBatis，目前没有可以直接使用MyBatis来实现多租户的方式，因此决定搜集资料和方案，自己来实现一个DEMO。 我的多" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-55003.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="基于MyBatis的多租户设计方案与实现" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/9db8ec563cb40dbaed9faca16455aba4.webp" />
+        <meta property="og:release_date" content="2025-02-11T05:44:45" />
+    <meta property="og:updated_time" content="2025-02-11T05:44:45" />
+        <meta property="og:description" content="&nbsp; 实习中一个项目需要从单租户模式改造成多租户，由于项目使用的是MyBatis，目前没有可以直接使用MyBatis来实现多租户的方式，因此决定搜集资料和方案，自己来实现一个DEMO。 我的多" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="基于MyBatis的多租户设计方案与实现">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>基于MyBatis的多租户设计方案与实现</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; 实习中一个项目需要从单租户模式改造成多租户，由于项目使用的是MyBatis，目前没有可以直接使用MyBatis来实现多租户的方式，因此决定搜集资料和方案，自己来实现一个DEMO。</p> <p>我的多租户方案采用的是MyBatis+MyCat。DEMO是基于Spring MVC的web项目。在用户操作过程中获取用户的id信息，利用MyCat强大的注解功能，根据用户id将SQL语句路由到对应该用户的schema或者database去执行。对SQL加注解的实现则交由MyBatis的插件功能完成，通过自定义MyBatis的Interceptor类，拦截要执行的sql语句加上对应注解。这样就实现了数据库的多租户改造。下面分几个部分来说明。</p> <ol> <li>MyCat 与MySQL设置</li> </ol> <p><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">MyCat是一个开源的分布式数据库系统，是一个实现了MySQL协议的服务器，前端用户可以把它看作是一个数据库代理，用MySQL客户端工具和命令行访问，而其后端可以用MySQL原生协议与多个MySQL服务器通信，也可以用JDBC协议与大多数主流数据库服务器通信，其核心功能是分表分库，即将一个大表水平分割为N个小表，存储在后端MySQL服务器里或者其他数据库里。MyCat相当于一个逻辑上的大数据库，又N多个物理数据库组成，可以通过各种分库分表规则(rule）将数据存到规则对应的数据库或schema或表中。</span></p> <p><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);"><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">MyCat对自身不支持的Sql语句提供了一种解决方案——在要执行的SQL语句前添加额外的一段由注解SQL组织的代码，这样Sql就能正确执行，这段代码称之为“注解”。注解的使用相当于对mycat不支持的sql语句做了一层透明代理转发，直接交给目标的数据节点进行sql语句执行，其中注解SQL用于确定最终执行SQL的数据节点。</span><br /></span></p> <p><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);"><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">&nbsp; &nbsp; 注解使用方式如下：<br /></span></span></p> <p><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);"><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);"><br /></span></span></p> <pre><code class="language-html"></code></pre> <pre class="html"><code class="language-html">/*!mycat: schema=node1*/真正执行Sql</code></pre> <p></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 这样写就可以将该Sql语句放到对应的node1的schema上执行，例如如果要在特定的节点上执行查询，则可以这样写</p> <p></p> <pre><code class="language-html">/*mycat: datanode=dn1*/select count(*) from item;</code></pre> <p></p> <p><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 由于这个项目是根据MyCat的SQL注解来选择在哪个schema或者database上执行的，所以不需要设置rule.xml。<br /></span></p> <p><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 我的数据库设置如下：<br /></span></p> <p><span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);"><br /></span></p> <pre><code class="language-sql">create database db02;    CREATE TABLE item (       id INT NOT NULL AUTO_INCREMENT,       value INT NOT NULL default 0,       indate DATETIME NOT NULL default '2000-01-01 00:00:00',       PRIMARY KEY (id)   )AUTO_INCREMENT= 1 ENGINE=InnoDB DEFAULT CHARSET=utf8;  create database db03;   CREATE TABLE item (       id INT NOT NULL AUTO_INCREMENT,       value INT NOT NULL default 0,       indate DATETIME NOT NULL default '2000-01-01 00:00:00',       PRIMARY KEY (id)   )AUTO_INCREMENT= 1 ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre> <p>设置两个数据库分表为db02,db03，两个库中都有item。</p> <p>MyCat的配置如下：</p> <p>server.xml</p> <pre><code class="language-html">&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!-- - - Licensed under the Apache License, Version 2.0 (the "License");  	- you may not use this file except in compliance with the License. - You  	may obtain a copy of the License at - - http://www.apache.org/licenses/LICENSE-2.0  	- - Unless required by applicable law or agreed to in writing, software -  	distributed under the License is distributed on an "AS IS" BASIS, - WITHOUT  	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. - See the  	License for the specific language governing permissions and - limitations  	under the License. --&gt; &lt;!DOCTYPE mycat:server SYSTEM "server.dtd"&gt; &lt;mycat:server xmlns:mycat="http://org.opencloudb/"&gt; 	&lt;system&gt; 	&lt;property name="defaultSqlParser"&gt;druidparser&lt;/property&gt;       &lt;!--  &lt;property name="useCompression"&gt;1&lt;/property&gt;--&gt; &lt;!--1为开启mysql压缩协议--&gt; 	&lt;!-- &lt;property name="processorBufferChunk"&gt;40960&lt;/property&gt; --&gt; 	&lt;!--  	&lt;property name="processors"&gt;1&lt;/property&gt;  	&lt;property name="processorExecutor"&gt;32&lt;/property&gt;  	 --&gt; 		&lt;!--默认是65535 64K 用于sql解析时最大文本长度 --&gt; 		&lt;!--&lt;property name="maxStringLiteralLength"&gt;65535&lt;/property&gt;--&gt; 		&lt;!--&lt;property name="sequnceHandlerType"&gt;0&lt;/property&gt;--&gt; 		&lt;!--&lt;property name="backSocketNoDelay"&gt;1&lt;/property&gt;--&gt; 		&lt;!--&lt;property name="frontSocketNoDelay"&gt;1&lt;/property&gt;--&gt; 		&lt;!--&lt;property name="processorExecutor"&gt;16&lt;/property&gt;--&gt; 		&lt;!--  			&lt;property name="mutiNodeLimitType"&gt;1&lt;/property&gt; 0：开启小数量级（默认） ；1：开启亿级数据排序 	    	&lt;property name="mutiNodePatchSize"&gt;100&lt;/property&gt; 亿级数量排序批量 			&lt;property name="processors"&gt;32&lt;/property&gt; &lt;property name="processorExecutor"&gt;32&lt;/property&gt;  			&lt;property name="serverPort"&gt;8066&lt;/property&gt; &lt;property name="managerPort"&gt;9066&lt;/property&gt;  			&lt;property name="idleTimeout"&gt;300000&lt;/property&gt; &lt;property name="bindIp"&gt;0.0.0.0&lt;/property&gt;  			&lt;property name="frontWriteQueueSize"&gt;4096&lt;/property&gt; &lt;property name="processors"&gt;32&lt;/property&gt; --&gt; 			            &lt;property name="defaultSqlParser"&gt;druidparser&lt;/property&gt;                   &lt;property name="mutiNodeLimitType"&gt;1&lt;/property&gt;                   &lt;property name="serverPort"&gt;8066&lt;/property&gt;                   &lt;property name="managerPort"&gt;9066&lt;/property&gt;    	&lt;/system&gt; 	  &lt;!-- 任意设置登陆 mycat 的用户名,密码,数据库  --&gt;           &lt;user name="test"&gt;                   &lt;property name="password"&gt;test&lt;/property&gt;                   &lt;property name="schemas"&gt;TESTDB&lt;/property&gt;           &lt;/user&gt;   		 		      &lt;user name="root"&gt;                   &lt;property name="password"&gt;root&lt;/property&gt;                   &lt;property name="schemas"&gt;TESTDB&lt;/property&gt;           &lt;/user&gt;             &lt;user name="user"&gt;                   &lt;property name="password"&gt;user&lt;/property&gt;                   &lt;property name="schemas"&gt;TESTDB&lt;/property&gt;                   &lt;property name="readOnly"&gt;true&lt;/property&gt;           &lt;/user&gt;     &lt;/mycat:server&gt;</code></pre> <p>server.xml主要是设置登录用户名密码，登录端口之类的信息。</p> <p></p> <p>重头戏是schema.xml的设置</p> <pre><code class="language-html">&lt;?xml version="1.0"?&gt; &lt;!DOCTYPE mycat:schema SYSTEM "schema.dtd"&gt; &lt;mycat:schema xmlns:mycat="http://io.mycat/" &gt;   	&lt;schema name="TESTDB" checkSQLschema="false" sqlMaxLimit="100"&gt; 		 	 		&lt;table name="item" primaryKey="id" dataNode="dn2,dn3" /&gt;  	 	&lt;/schema&gt; 	 	 	&lt;dataNode name="dn2" dataHost="localhost1" database="db02" /&gt; 	&lt;dataNode name="dn3" dataHost="localhost1" database="db03" /&gt;  	&lt;dataHost name="localhost1" maxCon="1000" minCon="10" balance="0" 		writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100"&gt; 		&lt;heartbeat&gt;select user()&lt;/heartbeat&gt; 		&lt;!-- can have multi write hosts --&gt; 		&lt;writeHost host="server" url="127.0.0.1:3306" user="root" 			password="root"&gt; 			&lt;!-- can have multi read hosts --&gt; 			&lt;!--&lt;readHost host="hostS2" url="192.168.1.200:3306" user="root" password="xxx" /&gt;--&gt; 		&lt;/writeHost&gt; 	 	&lt;/dataHost&gt;  &lt;/mycat:schema&gt;</code></pre> <p>这里配置好两个数据库节点dn2,dn3对应的就是这前面建立的数据库db02,db03.</p> <p>这样数据库和Mycat就设置好了，我们可以测试一下，向两个库中插入一些数据：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/f5a71b7396875bfc904c193dfac3fb8b.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p>这是db02中的数据，共8条。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/24742cbf25d29ebd4c3339dc91c15e1c.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p>db03中的数据，共6条。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/26e3d29078e435e435ff0be3f428a726.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p>这是mycat的逻辑库TESTDB中的数据，可以看到，包含了所有的db02和db03的数据。</p> <p></p> <p>再来试试MyCat的注解：</p> <p>在mycat的逻辑库TESTDB中分别执行以下语句：</p> <pre><code class="language-sql">mysql&gt; select count(*) from item; /*mycat: datanode=dn2*/select count(*) from item; /*mycat: datanode=dn3*/select count(*) from item;</code></pre> <p></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/4820e23b25ccefafc5612f24028f409b.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p>可以看到，注解实实在在地把SQL语句路由到对应的数据库中去执行了，而不加注解的SQL则在整个逻辑库上执行。</p> <p></p> <p>2.MyBatis设置插件拦截器。</p> <p>MyBatis要使用MyCat很方便，SpringBoot下，只需要将对应的url改成MyCat的端口就行了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/032c39f85cd5fad7abcf587a7c8630fe.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">MyBatis 允许你在已映射语句执行过程中的某一点进行拦截调用。默认情况下，MyBatis 允许使用插件来拦截的方法调用包括：</p> <ul style="list-style:none;color:rgb(51,51,51);font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;font-size:14px;background-color:rgb(255,255,255);"> <li style="padding:0px;">Executor (update, query, flushStatements, commit, rollback,<br />getTransaction, close, isClosed)</li> <li style="padding:0px;">ParameterHandler (getParameterObject, setParameters)</li> <li style="padding:0px;">ResultSetHandler (handleResultSets, handleOutputParameters)</li> <li style="padding:0px;">StatementHandler (prepare, parameterize, batch, update, query)</li> </ul> <p style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">这些类中方法的细节可以通过查看每个方法的签名来发现，或者直接查看 MyBatis 的发行包中的源代码。 假设你想做的不仅仅是监控方法的调用，那么你应该很好的了解正在重写的方法的行为。 因为如果在试图修改或重写已有方法的行为的时候，你很可能在破坏 MyBatis 的核心模块。 这些都是更低层的类和方法，所以使用插件的时候要特别当心。</p> <p style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">通过 MyBatis 提供的强大机制，使用插件是非常简单的，只需实现 Interceptor 接口，并指定了想要拦截的方法签名即可。</p> <p>在这里为了实现SQL的改造增加注解，Executor通过调度StatementHandler来完成查询的过程，通过调度它的prepare方法预编译SQL，因此我们可以拦截StatementHandler的prepare方法，在此之前完成SQL的重新编写。</p> <pre><code class="language-java">package org.apache.ibatis.executor.statement;  import java.sql.Connection; import java.sql.SQLException; import java.sql.Statement; import java.util.List; import org.apache.ibatis.cursor.Cursor; import org.apache.ibatis.executor.parameter.ParameterHandler; import org.apache.ibatis.mapping.BoundSql; import org.apache.ibatis.session.ResultHandler;  public interface StatementHandler {     Statement prepare(Connection var1, Integer var2) throws SQLException;      void parameterize(Statement var1) throws SQLException;      void batch(Statement var1) throws SQLException;      int update(Statement var1) throws SQLException;      &lt;E&gt; List&lt;E&gt; query(Statement var1, ResultHandler var2) throws SQLException;      &lt;E&gt; Cursor&lt;E&gt; queryCursor(Statement var1) throws SQLException;      BoundSql getBoundSql();      ParameterHandler getParameterHandler(); }</code></pre> <p>以上的任何方法都可以拦截。从接口定义而言，Prepare方法有一个参数Connection对象，因此按如下代码设计拦截器：</p> <pre><code class="language-java">package com.mycat.interceptor;  import com.mycat.com.mycat.utils.SessionUtil; import com.mycat.controller.TestController; import org.apache.ibatis.cache.CacheKey; import org.apache.ibatis.executor.Executor; import org.apache.ibatis.executor.statement.StatementHandler; import org.apache.ibatis.mapping.BoundSql; import org.apache.ibatis.mapping.MappedStatement; import org.apache.ibatis.plugin.*; import org.apache.ibatis.reflection.MetaObject; import org.apache.ibatis.reflection.SystemMetaObject; import org.apache.ibatis.session.ResultHandler; import org.apache.ibatis.session.RowBounds;  import javax.websocket.Session; import java.sql.Connection; import java.util.Properties;  @Intercepts(value = {         @Signature(type = StatementHandler.class,                 method = "prepare",                 args = {Connection.class,Integer.class})}) public class MyInterceptor implements Interceptor {     private static final String preState="/*!mycat:datanode=";     private static final String afterState="*/";      public Object intercept(Invocation invocation) throws Throwable {         StatementHandler statementHandler=(StatementHandler)invocation.getTarget();         MetaObject metaStatementHandler=SystemMetaObject.forObject(statementHandler);         Object object=null;         //分离代理对象链         while(metaStatementHandler.hasGetter("h")){             object=metaStatementHandler.getValue("h");             metaStatementHandler=SystemMetaObject.forObject(object);         }         statementHandler=(StatementHandler)object;         String sql=(String)metaStatementHandler.getValue("delegate.boundSql.sql");         /*         String node=(String)TestController.threadLocal.get();  #通过ThreadLocal获取用户信息         */         String node=(String)SessionUtil.getSession().getAttribute("corp"); #通过session获取用户corp信息         if(node!=null) {             sql = preState + node + afterState + sql;         }            System.out.println("sql is "+sql);         metaStatementHandler.setValue("delegate.boundSql.sql",sql);         Object result = invocation.proceed();         System.out.println("Invocation.proceed()");         return result;     }      public Object plugin(Object target) {          return Plugin.wrap(target, this);     }      public void setProperties(Properties properties) {        this.properties=properties;             } }</code></pre> <p></p> <p>简单说明一下：</p> <p><span style="color:rgb(51,51,51);font-size:14px;background-color:rgb(255,255,255);">&nbsp;intercept 真个是插件真正运行的方法，它将直接覆盖掉你真实拦截对象的方法。里面有一个Invocation对象，利用它可以调用你原本要拦截的对象的方法</span><br style="color:rgb(51,51,51);font-size:14px;background-color:rgb(255,255,255);"/><span style="color:rgb(51,51,51);font-size:14px;background-color:rgb(255,255,255);">&nbsp;&nbsp;&nbsp; plugin&nbsp;&nbsp;&nbsp; 它是一个生成动态代理对象的方法，</span><br style="color:rgb(51,51,51);font-size:14px;background-color:rgb(255,255,255);"/></p> <p><span style="color:rgb(51,51,51);font-size:14px;background-color:rgb(255,255,255);">&nbsp;&nbsp;&nbsp; setProperties 它是允许你在使用插件的时候设置参数值。</span></p> <pre><code class="language-java">@Intercepts(value = {         @Signature(type = StatementHandler.class,                 method = "prepare",                 args = {Connection.class,Integer.class})})</code></pre> <p>这段说明了要拦截的目标类和方法以及参数。</p> <p>StatementHandler是一个借口，真实的对象是RoutingStatementHandler,但它不是真实的服务对象，里面的delegate是StatementHandler中真实的StatementHandler实现的类，有多种，它里面的boundSql中存储着SQL语句。具体的可以参考MyBatis的源码。</p> <p>MetaObject是一个工具类，由于MyBatis四大对象提供的public设置参数的方法很少，难以通过自身得到相关属性信息，但是有个MetaObject这个工具类就可以通过其他的技术手段来读取和修改这些重要对象的属性。</p> <p>SessionUtil的getSession方法是用来获取之前用户登录时获得的记录在session中的corp信息，根据这个信息拼装SQL注解达到多租户的目的。</p> <p>Interceptor写好后，写入到mybatis.xml的plugin中</p> <pre><code class="language-html">&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE configuration         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"         "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;   &lt;configuration&gt;        &lt;settings&gt;         &lt;!-- 打印查询语句 --&gt;         &lt;setting name="logImpl" value="STDOUT_LOGGING" /&gt;     &lt;/settings&gt;      &lt;typeAliases&gt;         &lt;typeAlias alias="Item" type="com.mycat.pojo.Item"/&gt;       &lt;/typeAliases&gt;      &lt;plugins&gt;         &lt;plugin interceptor="com.mycat.interceptor.MyInterceptor"&gt;         &lt;/plugin&gt;     &lt;/plugins&gt;   &lt;/configuration&gt;</code></pre> <p></p> <p>3.实际运行</p> <p>写一个实体类Item.</p> <pre><code class="language-java">package com.mycat.pojo;  import lombok.Data;  import java.io.Serializable; import java.util.Date;  @Data public class Item implements Serializable {     int id;     int value;     public int getId() { 		return id; 	} 	public void setId(int id) { 		this.id = id; 	} 	public int getValue() { 		return value; 	} 	public void setValue(int value) { 		this.value = value; 	} 	public Date getIndate() { 		return indate; 	} 	public void setIndate(Date indate) { 		this.indate = indate; 	} 	Date indate; }</code></pre> <p>写一个mapper</p> <pre><code class="language-java">package com.mycat.mapper;  import com.mycat.pojo.Item; import org.apache.ibatis.annotations.Mapper; import org.apache.ibatis.annotations.Param;  @Mapper public interface ItemMapper {     public Item getOne(@Param("id") int id);     public Integer count();     public void insert(Item item); }</code></pre> <p>以及对应的itemMapper.xml，配置好sql语句。</p> <pre><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"         "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;  &lt;mapper namespace="com.mycat.mapper.ItemMapper"&gt;     &lt;cache /&gt;      &lt;select id="getOne" resultType="com.mycat.pojo.Item"&gt;         select * from item where id=#{id};     &lt;/select&gt;   	&lt;!-- 为了保证mycat分库的操作会进行，同一查询会重新执行而不是在sqlSession中查找，需要加上flushCache="true"--&gt; 	&lt;select id="count"  flushCache="true" resultType="java.lang.Integer"&gt; 	select count(*) from item; 	&lt;/select&gt; 	 	&lt;insert id="insert" parameterType="Item" keyProperty="id" useGeneratedKeys="true"&gt; 	insert into item (id,value) 	values (#{id},#{value}); 	&lt;/insert&gt;     &lt;/mapper&gt;</code></pre> <p></p> <p>这里还是来测试count方法。</p> <p>写一个controller</p> <pre><code class="language-java">package com.mycat.controller;  import com.mycat.com.mycat.utils.SessionUtil; import com.mycat.mapper.ItemMapper; import com.mycat.pojo.Item;  import org.apache.ibatis.plugin.Plugin; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.PathVariable; import org.springframework.web.bind.annotation.PostMapping; import org.springframework.web.bind.annotation.ResponseBody;  import javax.servlet.http.HttpSession;  @Controller public class TestController {      @Autowired     ItemMapper itemMapper;      @GetMapping("/{id}")     @ResponseBody     public Object test(@PathVariable("id") int id){     	System.out.println(id);         return itemMapper.getOne(id);     }      //简化，直接通过这里设置session     @GetMapping("/set/{sess}")     @ResponseBody     public Object setSession(@PathVariable("sess") String sess){         HttpSession httpSession=SessionUtil.getSession();         httpSession.setAttribute("corp",sess);         return "ok";     }           @GetMapping("/count")     @ResponseBody     public Object getCount(){         //要测试的方法          return itemMapper.count();     }     	     @PostMapping("/add")     @ResponseBody     public Object add(Item item){     	itemMapper.insert(item);     	return 1;     }        }</code></pre> <p>首先通过localhost:8080/set/{sess}设置session，假设session设置为dn3.</p> <p>浏览器中输入localhost:8080/set/dn3.</p> <p>之后，输入localhost:8080/count.</p> <p>结果如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/a6b421020b47a35316689ac3d328ab2d.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p>来看下打印的sql语句：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/05970b49e04b83be559690d9de72cded.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p>可以看到，SQL注解已经成功添加进去了。</p> <p>在设置session为dn2.</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/682c8e3d658f0efdefec8090a2768baa.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p>结果如下。</p> <p>打印的sql语句：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/d5240c6bfef8bf3ba2060ce47c4cfc0e.jpg" alt="基于MyBatis的多租户设计方案与实现"></p> <p>至此，一个MyBatis多租户的DEMO就完成了。完整代码可以查看<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/pangpangdaa/multi-tenant"  rel="nofollow">这里</a></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55002.htm">SpringSecurity如何使用注解控制权限</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-node-share.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25010.htm" title="动物疫苗的储存要求（动物疫苗冷藏温度）">动物疫苗的储存要求（动物疫苗冷藏温度）</a></li>
+                        <li class="py-2"><a href="/news/article-50716.htm" title="同安宠物领养中心电话多少 同安宠物领养中心电话多少号">同安宠物领养中心电话多少 同安宠物领养中心电话多少号</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新20M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21322.htm" title="动物疫苗使用管理（动物疫苗使用管理规范）">动物疫苗使用管理（动物疫苗使用管理规范）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23605.htm" title="C程序中编译时错误和运行时错误之间的区别">C程序中编译时错误和运行时错误之间的区别</a></li>
+                        <li class="py-2"><a href="/news/article-36814.htm" title="宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解">宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-52824.htm" title="猫咪多久做一次内外驱虫好（猫咪多久一次体内外驱虫）">猫咪多久做一次内外驱虫好（猫咪多久一次体内外驱虫）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
