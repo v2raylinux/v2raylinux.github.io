@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-58374.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>springboot全局时间格式化</title>
+        <meta name="description" content="前言 这边一直用的返回参数加 @JsonFormat 注解的方式对日期进行格式化，但偶尔会出现忘记格式化（忘记添加注解的问题），遂在此添加全局配置，顺带做个笔记 方法1：项目配置 这种方式只对 Dat" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-58374.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="springboot全局时间格式化" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/9db8ec563cb40dbaed9faca16455aba4.webp" />
+        <meta property="og:release_date" content="2025-02-17T09:59:13" />
+    <meta property="og:updated_time" content="2025-02-17T09:59:13" />
+        <meta property="og:description" content="前言 这边一直用的返回参数加 @JsonFormat 注解的方式对日期进行格式化，但偶尔会出现忘记格式化（忘记添加注解的问题），遂在此添加全局配置，顺带做个笔记 方法1：项目配置 这种方式只对 Dat" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="springboot全局时间格式化">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>springboot全局时间格式化</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2><a id="_0" rel="nofollow"></a>前言</h2> <p>这边一直用的返回参数加 @JsonFormat 注解的方式对日期进行格式化，但偶尔会出现忘记格式化（忘记添加注解的问题），遂在此添加全局配置，顺带做个笔记<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220903/896271aa509dd5162eebcc0ee0dc5123.jpg" alt="springboot全局时间格式化"></p> <h2><a id="1_5" rel="nofollow"></a>方法1：项目配置</h2> <p>这种方式只对 Date 类型生效</p> <pre><code class="prism language-yml"><span class="token comment"># 日期统一格式化</span><span class="token key atrule">spring</span><span class="token punctuation">:</span><span class="token key atrule">jackson</span><span class="token punctuation">:</span><span class="token key atrule">date-format</span><span class="token punctuation">:</span> yyyy<span class="token punctuation">-</span>MM<span class="token punctuation">-</span>dd HH<span class="token punctuation">:</span>mm<span class="token punctuation">:</span>ss<span class="token key atrule">time-zone</span><span class="token punctuation">:</span> GMT+8</code></pre> <p>下面这个也是亲测OK</p> <pre><code class="prism language-Properties"># 日期统一按时间戳返回 spring.jackson.serialization.write-dates-as-timestamps=true</code></pre> <h2><a id="JsonFormat_19" rel="nofollow"></a>方法二：@JsonFormat</h2> <p>部分格式化:@JsonFormat 注解需要用在实体类的时间字段上，对应的字段才能进行格式化。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Getter</span><span class="token annotation punctuation">@Setter</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">TestTime</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>locale<span class="token operator">=</span><span class="token string">"zh"</span><span class="token punctuation">,</span> timezone<span class="token operator">=</span><span class="token string">"GMT+8"</span><span class="token punctuation">,</span> pattern<span class="token operator">=</span><span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">)</span><span class="token keyword">private</span><span class="token class-name">Date</span> date<span class="token punctuation">;</span><span class="token keyword">private</span><span class="token class-name">LocalDateTime</span> localDateTime<span class="token punctuation">;</span><span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>locale<span class="token operator">=</span><span class="token string">"zh"</span><span class="token punctuation">,</span> timezone<span class="token operator">=</span><span class="token string">"GMT+8"</span><span class="token punctuation">,</span> pattern<span class="token operator">=</span><span class="token string">"yyyyMMdd"</span><span class="token punctuation">)</span><span class="token keyword">private</span><span class="token class-name">LocalDate</span> localDate<span class="token punctuation">;</span><span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>locale<span class="token operator">=</span><span class="token string">"zh"</span><span class="token punctuation">,</span> timezone<span class="token operator">=</span><span class="token string">"GMT+8"</span><span class="token punctuation">,</span> pattern<span class="token operator">=</span><span class="token string">"HHmmss"</span><span class="token punctuation">)</span><span class="token keyword">private</span><span class="token class-name">LocalTime</span> localTime<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <h2><a id="JsonComponent_39" rel="nofollow"></a>方法三：@JsonComponent</h2> <p>使用 @JsonComponent 注解自定义一个全局格式化类，分别对 Date 和 LocalDate 类型做格式化处理。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@JsonComponent</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">JsonComponentConfig</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.jackson.date-format:yyyy-MM-dd HH:mm:ss}"</span><span class="token punctuation">)</span><span class="token keyword">private</span><span class="token class-name">String</span> pattern<span class="token punctuation">;</span><span class="token comment">/**      * date 类型全局时间格式化      */</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">Jackson2ObjectMapperBuilderCustomizer</span><span class="token function">jackson2ObjectMapperBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> builder<span class="token operator">-&gt;</span><span class="token punctuation">{<!-- --></span><span class="token class-name">TimeZone</span> tz<span class="token operator">=</span><span class="token class-name">TimeZone</span><span class="token punctuation">.</span><span class="token function">getTimeZone</span><span class="token punctuation">(</span><span class="token string">"UTC"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token class-name">DateFormat</span> df<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>             df<span class="token punctuation">.</span><span class="token function">setTimeZone</span><span class="token punctuation">(</span>tz<span class="token punctuation">)</span><span class="token punctuation">;</span>             builder<span class="token punctuation">.</span><span class="token function">failOnEmptyBeans</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">failOnUnknownProperties</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">featuresToDisable</span><span class="token punctuation">(</span><span class="token class-name">SerializationFeature</span><span class="token punctuation">.</span>WRITE_DATES_AS_TIMESTAMPS<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dateFormat</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      * LocalDate 类型全局时间格式化      */</span><span class="token keyword">public</span><span class="token class-name">LocalDateTimeSerializer</span><span class="token function">localDateTimeDeserializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token keyword">new</span><span class="token class-name">LocalDateTimeSerializer</span><span class="token punctuation">(</span><span class="token class-name">DateTimeFormatter</span><span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">Jackson2ObjectMapperBuilderCustomizer</span><span class="token function">jackson2ObjectMapperBuilderCustomizer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> builder<span class="token operator">-&gt;</span> builder<span class="token punctuation">.</span><span class="token function">serializerByType</span><span class="token punctuation">(</span><span class="token class-name">LocalDateTime</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span><span class="token function">localDateTimeDeserializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-57805.htm">狂犬疫苗多少钱一针?人打几针（狂犬疫苗多少钱一针?需要打多少针）</a></p>
+                                        <p>下一个：<a href="/news/article-58375.htm">沈阳卖猫的宠物店在哪（沈阳哪儿有卖猫的）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41243.htm" title="动物打疫苗肉还能吃吗有毒吗 动物打疫苗肉还能吃吗有毒吗视频">动物打疫苗肉还能吃吗有毒吗 动物打疫苗肉还能吃吗有毒吗视频</a></li>
+                        <li class="py-2"><a href="/news/article-22231.htm" title="动物疫苗的种类及使用方法（动物疫苗接种方法有哪些）">动物疫苗的种类及使用方法（动物疫苗接种方法有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-35234.htm" title="FP-growth 算法与Python实现">FP-growth 算法与Python实现</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-node-share.htm" title="V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25474.htm" title="给动物打的疫苗叫什么 给动物打的疫苗叫什么名字">给动物打的疫苗叫什么 给动物打的疫苗叫什么名字</a></li>
+                        <li class="py-2"><a href="/news/article-33945.htm" title="spring security 权限(注解)">spring security 权限(注解)</a></li>
+                        <li class="py-2"><a href="/news/article-55567.htm" title="开宠物店都需要办理什么手续（开宠物店需要什么手续?）">开宠物店都需要办理什么手续（开宠物店需要什么手续?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
