@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-60095.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>python——json，dict之间的转换load,dump, loads, dumps</title>
+        <meta name="description" content="json模块 JSON的介绍：  JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。易于人阅读和编写。 JSON是一个标记符的序列。这套标记符包含六个构造字" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-60095.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="python——json，dict之间的转换load,dump, loads, dumps" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/1f1ae8c1f54b288adfb960cbf331c3c0.webp" />
+        <meta property="og:release_date" content="2025-02-20T09:58:33" />
+    <meta property="og:updated_time" content="2025-02-20T09:58:33" />
+        <meta property="og:description" content="json模块 JSON的介绍：  JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。易于人阅读和编写。 JSON是一个标记符的序列。这套标记符包含六个构造字" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="python——json，dict之间的转换load,dump, loads, dumps">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>python——json，dict之间的转换load,dump, loads, dumps</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2> <a id="json_0" rel="nofollow"></a>json模块</h2> <p><strong>JSON的介绍：</strong></p> <ul> <li>JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。易于人阅读和编写。</li> <li>JSON是一个标记符的序列。这套标记符包含六个构造字符、字符串、数字和三个字面名。</li> <li>六个构造字符：<strong>[ 左方括号</strong>，<strong>{ 左大括号</strong>， <strong>] 右方括号</strong>， <strong>} 右大括号</strong>，<strong>: 冒号</strong>， <strong>, 逗号</strong> </li> <li>三个字面名：<strong>false、null、true</strong> </li> <li>值：对象、数组、数字、字符串或者三个字面值(false、null、true)中的一个</li> <li>一些合法的JSON的实例（4个都是）：</li> </ul> <blockquote> <p>{“a”: 1, “b”: [1, 2, 3]}<br /> [1, 2, “3”, {“a”: 4}]<br /> 3.14<br /> “plain_text”</p> </blockquote> <p>在一些工作中，我们可能经常需要在python脚本中，导入文件中的json格式的数据，python提供了json模块用来操作</p> <p><strong>json.load(file)</strong><br /> 比如我们将一些配置信息以json的数据格式存入到文件中，当我们调用Python脚本时，需要读取这些配置信息，就可以用json.load(file)这个方法了<br /> config_value.json</p> <pre><code>{   "user": "Jason",   "pass": 123456,   "test_data": [10, 20] } </code></pre> <pre><code>import json  with open("config_value.json", "r") as file: 	dict_data = json.load(file) 	user = dict_data["user"] 	print(type(dict_data)) 	print(dict_data) 	print(user) </code></pre> <p>输出</p> <blockquote> <p>&lt;class ‘dict’&gt;<br /> {‘user’: ‘Jason’, ‘pass’: 123456, ‘test_data’: [10, 20]}<br /> Jason</p> </blockquote> <p>调用json.load(file)时，要注意几点：</p> <ul> <li>file不是直接用“config_value.json”文件，而是需要open后的内容，python识别为字符串，然后传入load中；</li> <li>这里不能用loads，区别在于，load处理读取文件中的字符串，loads直接是处理json格式的字符串</li> </ul> <p>json.load<br /> 载入json文件（字典类型）：读取json文件，将文件中的字符串转化为字典数据结构</p> <p>json.dump<br /> 写入到json文件中（字典类型）：将字典数据结构，写入到文件中</p> <p>json.loads<br /> 将json对象转换为Python对象：将字符串转换为字典</p> <p>json.dumps<br /> 将python对象转换为json对象：将字典转换为字符串</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230109/a96f3bde773a2e3ba901d5588a60504c.jpg" alt="python——json，dict之间的转换load,dump, loads, dumps"></p> <p>写入文件的时候，千万不要加二进制的b，否则就无法写入，我就是加了b，一直出现byte-like is required的报错。</p> <p>是否加s, 不加s是读取和写入，相当于r w, 加了s是数据类型的转换，字典与字符串之间的转换。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-59522.htm">动物疫苗价格排行榜最新图片及价格查询（动物疫苗价格排行榜最新图片及价格查询大全）</a></p>
+                                        <p>下一个：<a href="/news/article-60096.htm">动物疫苗价格查询表图片及价格大全 动物疫苗价格查询表图片及价格大全集</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-39766.htm" title="Linux中信号量源码的详细解析">Linux中信号量源码的详细解析</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-node-share.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-20-node-share.htm" title="V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29653.htm" title="猫粮所有品牌排行榜图片（猫粮排行榜前十名有哪些）">猫粮所有品牌排行榜图片（猫粮排行榜前十名有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-50200.htm" title="动物使用疫苗时应注意哪些事项 动物使用疫苗时应注意哪些事项呢">动物使用疫苗时应注意哪些事项 动物使用疫苗时应注意哪些事项呢</a></li>
+                        <li class="py-2"><a href="/news/article-28719.htm" title="什么样的狗粮最好（什么样的狗粮性价比高）">什么样的狗粮最好（什么样的狗粮性价比高）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-59521.htm" title="成都领养宠物的地方电话（成都领养宠物中心）">成都领养宠物的地方电话（成都领养宠物中心）</a></li>
+                        <li class="py-2"><a href="/news/article-53363.htm" title="宠物粮食市场调研报告怎么写 宠物粮食市场调研报告怎么写范文">宠物粮食市场调研报告怎么写 宠物粮食市场调研报告怎么写范文</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-node-share.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
