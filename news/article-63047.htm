@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-63047.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>IDEA工程-数据库连接-mysql连接</title>
+        <meta name="description" content="首先打开pom.xml，找到mysql连接驱动添加依赖 mysql6以及以上，在项目创建后由IDEA自动添加的依赖，自动添加的依赖是没有版本号&lt;version&gt;&lt;/version&g" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-63047.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="IDEA工程-数据库连接-mysql连接" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/1f1ae8c1f54b288adfb960cbf331c3c0.webp" />
+        <meta property="og:release_date" content="2025-02-25T05:01:53" />
+    <meta property="og:updated_time" content="2025-02-25T05:01:53" />
+        <meta property="og:description" content="首先打开pom.xml，找到mysql连接驱动添加依赖 mysql6以及以上，在项目创建后由IDEA自动添加的依赖，自动添加的依赖是没有版本号&lt;version&gt;&lt;/version&g" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="IDEA工程-数据库连接-mysql连接">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>IDEA工程-数据库连接-mysql连接</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>首先打开pom.xml，找到mysql连接驱动添加依赖<br /> mysql6以及以上，在项目创建后由IDEA自动添加的依赖，自动添加的依赖是没有版本号<code>&lt;version&gt;&lt;/version&gt;</code>。<br /> 依赖代码：</p> <pre><code class="prism language-java"><span class="token generics function"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span><span class="token generics function"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>mysql<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span><span class="token generics function"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>mysql<span class="token operator">-</span>connector<span class="token operator">-</span>java<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span><span class="token generics function"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>runtime<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span></code></pre> <p>在mysql5中，在项目创建后由指定添加的依赖版本：</p> <pre><code class="prism language-java"><span class="token generics function"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span><span class="token generics function"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>mysql<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span><span class="token generics function"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>mysql<span class="token operator">-</span>connector<span class="token operator">-</span>java<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span><span class="token generics function"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">5.1</span><span class="token number">.37</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span><span class="token generics function"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>runtime<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span></code></pre> <p>spring.datasource.driver-class-name配置还有要注意的一点，在mysql5中，jdbc连接mysql5是com.mysql.jdbc.Driver，而mysql6以及以上是com.mysql.cj.jdbc.Driver，并且在url之后要指定时区。</p> <p>再添加一个依赖：</p> <pre><code class="prism language-java"><span class="token generics function"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span><span class="token generics function"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span><span class="token generics function"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>jdbc<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span></code></pre> <pre><code class="prism language-java">#MYSQL6以上配置 spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>driver<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">-</span>name<span class="token operator">=</span>com<span class="token punctuation">.</span>mysql<span class="token punctuation">.</span>cj<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>Driver spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>url<span class="token operator">=</span>jdbc<span class="token operator">:</span>mysql<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>localhost<span class="token operator">:</span><span class="token number">3306</span><span class="token operator">/</span>你的数据库<span class="token operator">?</span>characterEncoding<span class="token operator">=</span>utf8<span class="token operator">&amp;</span>useSSL<span class="token operator">=</span><span class="token boolean">false</span><span class="token operator">&amp;</span>serverTimezone<span class="token operator">=</span>UTC<span class="token operator">&amp;</span>allowPublicKeyRetrieval<span class="token operator">=</span><span class="token boolean">true</span> spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>username<span class="token operator">=</span>root spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>password<span class="token operator">=</span></code></pre> <pre><code class="prism language-java">#MYSQL5配置 spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>driver<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">-</span>name<span class="token operator">=</span>com<span class="token punctuation">.</span>mysql<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>Driver spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>url<span class="token operator">=</span>jdbc<span class="token operator">:</span>mysql<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>localhost<span class="token operator">:</span><span class="token number">3306</span><span class="token operator">/</span>你的数据库<span class="token operator">?</span>characterEncoding<span class="token operator">=</span>utf8<span class="token operator">&amp;</span>useSSL<span class="token operator">=</span><span class="token boolean">false</span><span class="token operator">&amp;</span>serverTimezone<span class="token operator">=</span>UTC<span class="token operator">&amp;</span>allowPublicKeyRetrieval<span class="token operator">=</span><span class="token boolean">true</span> spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>username<span class="token operator">=</span>root spring<span class="token punctuation">.</span>datasource<span class="token punctuation">.</span>password<span class="token operator">=</span></code></pre> <p>连接测试：</p> <p>打开你的入口文件，中文部分替换为你自己的相应内容</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@SpringBootApplication</span><span class="token keyword">public</span><span class="token keyword">class</span> 入口文件类名<span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         ConfigurableApplicationContext context<span class="token operator">=</span>SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>入口文件类名<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>         JdbcTemplate jdbcTemplate<span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>JdbcTemplate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         List<span class="token operator">&lt;</span>Map<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token punctuation">&gt;</span></span><span class="token operator">&gt;</span> result<span class="token operator">=</span> jdbcTemplate<span class="token punctuation">.</span><span class="token function">queryForList</span><span class="token punctuation">(</span><span class="token string">"SELECT * FROM 你的一个表"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-------数据结果集start-------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-------数据结果集end-------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>如果没有异常的情况下，我们启动工程后会在控制台看到从数据库中查询出的该表数据了。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/c23d361b07a67967c30b9a9d44884f35.jpg" alt="IDEA工程-数据库连接-mysql连接"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-62448.htm">动物医院有哪些功能区（动物医院有哪些功能区）</a></p>
+                                        <p>下一个：<a href="/news/article-63048.htm">动物疫苗证明哪里开的啊（动物疫苗证去哪里办怎么办）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-48495.htm" title="Windows 环境 python读需kerberos认证的hdfs">Windows 环境 python读需kerberos认证的hdfs</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37296.htm" title="养猫的人容易得15种病怎么预防传染（养猫的人容易得15种病怎么预防传染病）">养猫的人容易得15种病怎么预防传染（养猫的人容易得15种病怎么预防传染病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-9-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share-links.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-38282.htm" title="聊城宠物市场在哪（聊城宠物狗市场）">聊城宠物市场在哪（聊城宠物狗市场）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
