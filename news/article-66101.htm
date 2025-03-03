@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-66101.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue-cli与webpack结合如何处理静态资源</title>
+        <meta name="description" content="你也许会注意到vue-cli与webpack结合的项目中，我们通常会有两个静态资源的路径：src/assets和static/，他们两者的区别是什么呢？ 打包的资源 为了回答这个问题，我们首先要明白W" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-66101.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="vue-cli与webpack结合如何处理静态资源" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/14993e4cb1281da20b885c5c9fbd9835.webp" />
+        <meta property="og:release_date" content="2025-03-02T09:39:27" />
+    <meta property="og:updated_time" content="2025-03-02T09:39:27" />
+        <meta property="og:description" content="你也许会注意到vue-cli与webpack结合的项目中，我们通常会有两个静态资源的路径：src/assets和static/，他们两者的区别是什么呢？ 打包的资源 为了回答这个问题，我们首先要明白W" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue-cli与webpack结合如何处理静态资源">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>vue-cli与webpack结合如何处理静态资源</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>你也许会注意到vue-cli与webpack结合的项目中，我们通常会有两个静态资源的路径：src/assets和static/，他们两者的区别是什么呢？</p> <h2 id="打包的资源">打包的资源</h2> <p>为了回答这个问题，我们首先要明白Webpack是如何处理静态资源的。在*.vue组件里，所有的templates和CSS模块都被vue-html-loader和css-loader解析来查找路径URL。</p> <p>举个例子，在<code>&lt;img src"./logo.png"&gt;</code>和背景<code>background: url(./logo.png)</code>，”./logo.png”是一个相对路径，会被Webpack当做一个依赖加载。</p> <p>但是因为<code>logo.png</code>并不是JavaScript，所以如果被当成一个依赖的花，我们需要通过url-loader和file-loader来解析它。这个模板已经为你配置了相应的loader，所以你通常不用担心相对路径的部署问题。</p> <p>即使这些资源有可能在构建过程中被内联/拷贝/重命名，他们也是源码重要组成部分。这就是为什么我们建议单独在<code>/src</code>文件夹里放置静态资源，如同其他的资源文件夹。</p> <p>事实上，你都不必把他们全放在<code>/src/assets</code>，你可以根据模块/组件来组织利用他们。比如说，你可以把任一组件放到他们自己的目录，并在该目录下存放静态资源。</p> <h2 id="资源引入规则">资源引入规则</h2> <ul> <li>相对路径，比如<code>./assets/logo.png</code>会被解析成模块依赖。它们会被一个基于你Webpack输出配置的自动生成URL替代。</li> <li>没有前缀的路径，比如<code>assets/logo.png</code>，同相对路径，转义成<code>./assets/logo.png</code></li> <li>有~前缀的路径。 ~被认为是一个模块请求，同<code>require('some-module/image.png')</code>。</li> <li>根路径，比如<code>/assets/log.png</code></li> </ul> <h2 id="在javascript得到资源路径">在JavaScript得到资源路径</h2> <pre class="prettyprint"><code class="hljs javascript">computed: {   background () {<span class="hljs-keyword">return</span><span class="hljs-built_in">require</span>(<span class="hljs-string">'./bgs/'</span> +<span class="hljs-keyword">this</span>.id +<span class="hljs-string">'.jpg'</span>)   } }</code></pre> <p>这个资源路径同样会被file-loader处理然后返回处理后的路径。而且Webpack会一次性加载该bgs目录下的所有图片。</p> <h2 id="真实的静态资源">“真实的”静态资源</h2> <p>与此相对的，<code>static/</code>中的文件全都不会被Webpack处理。它们将被直接拷贝到目标文件夹，引用这些文件需要使用绝对路径。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-66100.htm">tf.train.latest_checkpoint()报错，路径错误</a></p>
+                                        <p>下一个：<a href="/news/article-66741.htm">南京宠物狗领养中心电话是多少号码（南京宠物领养南京宠物赠送）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-56105.htm" title="附近免费领养狗狗的地方在哪里呀最近（哪有领养狗狗的地方）">附近免费领养狗狗的地方在哪里呀最近（哪有领养狗狗的地方）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-28-node-share-links.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-26-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37295.htm" title="自定义指令拖拽el-dialog">自定义指令拖拽el-dialog</a></li>
+                        <li class="py-2"><a href="/news/article-63644.htm" title="数据库上云实践：使用Ora2pg进行数据库迁移">数据库上云实践：使用Ora2pg进行数据库迁移</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-node-share.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-62448.htm" title="动物医院有哪些功能区（动物医院有哪些功能区）">动物医院有哪些功能区（动物医院有哪些功能区）</a></li>
+                        <li class="py-2"><a href="/news/article-60696.htm" title="前端:一篇彻底搞懂vuex (mapState、mapGetters、mapMutations、mapActions)">前端:一篇彻底搞懂vuex (mapState、mapGetters、mapMutations、mapActions)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-12-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

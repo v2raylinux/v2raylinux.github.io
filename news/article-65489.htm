@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-65489.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>零宽断言正则表达式替换方案</title>
+        <meta name="description" content="一、背景 safari浏览器不支持零宽断言正则表达式  二、解决方案 使用其他正则替换零宽断言正则（包含：(?&lt;=)正向肯定预查、(?&lt;!)正向否定预查、(?=)反向肯定预查、(?!)反向" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-65489.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="零宽断言正则表达式替换方案" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/36ce61b50469366f119cdf998208d28b.webp" />
+        <meta property="og:release_date" content="2025-03-01T07:00:26" />
+    <meta property="og:updated_time" content="2025-03-01T07:00:26" />
+        <meta property="og:description" content="一、背景 safari浏览器不支持零宽断言正则表达式  二、解决方案 使用其他正则替换零宽断言正则（包含：(?&lt;=)正向肯定预查、(?&lt;!)正向否定预查、(?=)反向肯定预查、(?!)反向" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="零宽断言正则表达式替换方案">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>零宽断言正则表达式替换方案</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p id="uc09bd2f0">一、背景</p> <p id="ue990aa9c">safari浏览器不支持零宽断言正则表达式</p> <p id="u30c00588"> <p id="ud0386db5">二、解决方案</p> <p id="u966e51e4">使用其他正则替换零宽断言正则（包含：(?&lt;=)正向肯定预查、(?&lt;!)正向否定预查、(?=)反向肯定预查、(?!)反向否定预查）</p> <p id="ua8ebbc61"> <p id="ua0de25fc">三、涉及场景</p> <p id="uf4a6bdcf">1、仅校验，不取值</p> <p id="uaa89c6f3">如表单正则校验，如editor\src\editor\Editor\constant\todoPropsList.js:2093,此类场景可能需要重新编写（改动可能较大）正则, 无需经过zeroWidthRegPolyfill方法</p> <p><img fetchpriority="high" decoding="async" alt="" height="368" src="http://img.555519.xyz/uploads/20230207/7d5e3ffc81b070362412b326e8ad871b.jpg"></p> <p>&nbsp;</p> <p id="u3e9655b8">2、校验，并取值</p> <p id="u6eb293e6">2.1、正则表达式不含g</p> <p id="u22ba741e">如packages\editor\src\CompEvent\hooks\useFunctionValue.tsx:17,需注意改写表达式后，后续取值可能会跟随分组而变化，无需经过zeroWidthRegPolyfill方法</p> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/f7049a442fe28b526dfb1c1e4e7e21d4.jpg"></p> <p id="u4a78da79">2.2、正则表达式含g</p> <p id="u71565f08">如editor\src\editor\Editor\components\pageDetail\CodeMirrorModal\CodeMirrorModal.jsx:87,将正则/(?&lt;=actionMap(\['|\[|\.))[^.[\s"']+?(?==|\s|'|])/g，改为/actionMap(\['|\[|\.)([^.[\s"']+?)(=|\s|'|])+?/g ，使用zeroWidthRegPolyfill方法处理</p> <p id="u3c435831"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/134668f71d976eaa63e74874cdde1e38.jpg" alt="零宽断言正则表达式替换方案"></p> <p id="u543fa631"> <p id="u8158be77">四、方法使用说明</p> <p id="ud68efe56">涉及方法(主要处理正则含g的正则表达式)：</p> <p id="udc6a2441">packages\editor\src\utils\common.ts -&gt; zeroWidthRegPolyfill(str, reg, n=1)</p> <pre><code class="language-javascript">const zeroWidthRegPolyfill = (str, reg, n = 1) =&gt; {   let result = null;   const originRegStr = reg.toString();   const regStr = originRegStr.replace(/^\/(.*)+?(\/|\/g)$/, '$1');   const regWithoutG = new RegExp(regStr);   if (originRegStr.endsWith('g')) {     const arr = str.match(reg);     if (!arr) {       return result;     }     result = [];     arr.forEach((it) =&gt; {       result.push(it?.match(regWithoutG)?.[n]);     });   } else {     result = str.match(regWithoutG);   }   return result; };</code></pre> <p id="u8b3f0767">1、reg含g，入参为校验字符串str、不含零宽的正则reg，以及需要真正匹配获取的字符所在的分组（必须对需要获取的字符分组）的序号n。str.match(reg)返回含目标字符的字符串数组，需要通过it?.match(regWithoutG)?.[n]二次处理，返回仅含目标字符的字符串数组</p> <p>1.1、至于为啥要二次处理，这里需要知道match的使用及返回值，以下做简要对比：</p> <p><img decoding="async" alt="" height="452" src="http://img.555519.xyz/uploads/20230207/87745f4f66412ea96027c3bf0a522f65.jpg"></p> <p>&nbsp;1.2、当然，使用matchAll能够一次性获取所有的匹配，并且返回带有分组信息的数组，但ie浏览器不支持</p> <p><img decoding="async" alt="" height="641" src="http://img.555519.xyz/uploads/20230207/d35f6dc9483ab25e8f16eae2e47ee189.jpg"></p> <p>&nbsp;</p> <p id="u3040e720">2、如传入不含g的表达式，则效果等同str.match(reg)。</p> <p>3、使用该方法与零宽断言的区别</p> <p>先看案例：</p> <p><img loading="lazy" decoding="async" alt="" height="125" src="http://img.555519.xyz/uploads/20230207/814d6d658966026110d953f894134df9.jpg"></p> <p>&nbsp;<img loading="lazy" decoding="async" alt="" height="87" src="http://img.555519.xyz/uploads/20230207/edee0f35419cbcee6a5a7e11dcff7fa7.jpg"></p> <p>&nbsp;可以发现，零宽实现匹配了3个结果，非零宽匹配了2个结果，这是因为“零宽正则”匹配完了之后，会从匹配到的字符开始继续匹配，<span style="color:#fe2c24;">预查</span>不消耗字符</p> <p>一般场景，其实是需要消耗字符的。但是，如果需要完全与零宽正则相匹配，则需要使用升级版方法。</p> <pre><code class="language-javascript">const zeroWidthRegPolyfillPlus = (str, reg, n = 1) =&gt; {   let result = null;   const originRegStr = reg.toString();   const regStr = originRegStr.replace(/^\/(.*)+?(\/|\/g)$/, '$1');   const regWithoutG = new RegExp(regStr);   let hasMatch = true;   // 实现零宽预查补偿消耗字符，循环匹配   // const loopReg = (_str, res) =&gt; {   //   hasMatch = false;   //   const nextStr = _str.replace(regWithoutG, function () {   //     hasMatch = true;   //     res.push(arguments[n]);   //     return arguments[n + 1];   //   });   //   if (hasMatch) {   //     loopReg(nextStr, res);   //   }   // };   if (originRegStr.endsWith('g')) {     result = [];     // 实现补偿方法一：     // loopReg(str, result);     // 实现补偿方法二：     let nextStr = str;     while (hasMatch) {       hasMatch = false;       nextStr = nextStr.replace(regWithoutG, function () {         hasMatch = true;         result.push(arguments[n]);         return arguments[n + 1];       });     }   } else {     result = str.match(regWithoutG);   }   return result; };  // 目标：查找$$之间包裹的所有字符串 const str = '$abc$d$ef$'; // 1、零宽实现 const regZero = /(?&lt;=\$).*?(?=\$)/g; let result = str.match(regZero); console.log('result1:', result); // 返回 result = ['abc', 'd', 'ef'] // 此处需要将正向肯定预查进行分组，以便方法中能够将预查的字符消耗重新补上 const reg = /\$(.*?)(\$)/g;  result = zeroWidthRegPolyfillPlus(str, reg); console.log('result2:', result); // 返回 result = ['abc', 'd', 'ef']</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-64881.htm">孩子送养需要准备那些材料（孩子送养需要准备那些材料和手续）</a></p>
+                                        <p>下一个：<a href="/news/article-65490.htm">SpringCloud系列之五&#8212;集中配置组件Config+消息总线Bus</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41242.htm" title="小猫养多久才认主人?猫对主人的记忆有多久呢（小猫多长时间认主）">小猫养多久才认主人?猫对主人的记忆有多久呢（小猫多长时间认主）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-38282.htm" title="聊城宠物市场在哪（聊城宠物狗市场）">聊城宠物市场在哪（聊城宠物狗市场）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-20-node-share.htm" title="V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37726.htm" title="济南哪里可以领养猫咪（济南有没有领养猫的地方）">济南哪里可以领养猫咪（济南有没有领养猫的地方）</a></li>
+                        <li class="py-2"><a href="/news/article-57804.htm" title="聊城宠物用品批发市场在哪里呀（聊城宠物用品批发市场在哪里呀多少钱）">聊城宠物用品批发市场在哪里呀（聊城宠物用品批发市场在哪里呀多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-node-share-links.htm" title="V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-31458.htm" title="宠物粮加工厂利润 宠物粮加工厂利润怎么样">宠物粮加工厂利润 宠物粮加工厂利润怎么样</a></li>
+                        <li class="py-2"><a href="/news/article-44710.htm" title="北京给宠物打疫苗多少钱啊（北京宠物疫苗多少钱一针）">北京给宠物打疫苗多少钱啊（北京宠物疫苗多少钱一针）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
