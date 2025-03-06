@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-68660.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>如何使用正则表达式验证IP地址</title>
+        <meta name="description" content="IP地址正则表达式模式  ^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\. ([01]?\\d\\d?|2" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-68660.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="如何使用正则表达式验证IP地址" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/9db8ec563cb40dbaed9faca16455aba4.webp" />
+        <meta property="og:release_date" content="2025-03-06T11:04:17" />
+    <meta property="og:updated_time" content="2025-03-06T11:04:17" />
+        <meta property="og:description" content="IP地址正则表达式模式  ^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\. ([01]?\\d\\d?|2" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="如何使用正则表达式验证IP地址">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>如何使用正则表达式验证IP地址</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <article id="main-content" style="font-size: 16px;" rel="nofollow"> <p> IP地址正则表达式模式 </p> <pre class="has"><code class="language-java">^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\. ([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$</code></pre> <p> 描述 </p> <pre class="has"><code class="language-java">^		#start of the line  (		#  start of group #1    [01]?\\d\\d? #    Can be one or two digits. If three digits appear, it must start either 0 or 1 		#    e.g ([0-9], [0-9][0-9],[0-1][0-9][0-9])     |		#    ...or    2[0-4]\\d	#    start with 2, follow by 0-4 and end with any digit (2[0-4][0-9])      |           #    ...or    25[0-5]      #    start with 2, follow by 5 and ends with 0-5 (25[0-5])   )		#  end of group #2   \.            #  follow by a dot "." ....            # repeat with 3 times (3x) $		#end of the line</code></pre> <p> 整个组合表示从0到255的数字，后跟点“。”，重复4次并以点“。”结尾。 有效的IP地址格式为“ 0-255.0-255.0-255.0-255”。 </p> <h2> 1. Java正则表达式示例 </h2> <div class="notranslate">   IPAddressValidator.java  </div> <pre class="has"><code class="language-java">package com.mkyong.regex;  import java.util.regex.Matcher; import java.util.regex.Pattern;   public class IPAddressValidator{ 	     private Pattern pattern;     private Matcher matcher;       private static final String IPADDRESS_PATTERN =  		"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." + 		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." + 		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." + 		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$"; 	       public IPAddressValidator(){ 	  pattern = Pattern.compile(IPADDRESS_PATTERN);     } 	      /**     * Validate ip address with regular expression     * @param ip ip address for validation     * @return true valid ip address, false invalid ip address     */     public boolean validate(final String ip){		   	  matcher = pattern.matcher(ip); 	  return matcher.matches();	    	         } }</code></pre> <div class="ads-container"> <div class="d-none d-lg-block"> <div></div> </p></div> </p></div> <h2> 2.符合的IP地址： </h2> <p> 1.“ 1.1.1.1”，“ 255.255.255.255”，“ 192.168.1.1”， <br /> 2.“ 10.10.1.1”，“ 132.254.111.10”，“ 26.10.2.10”， <br /> 3.“ 127.0.0.1” </p> <h2> 3. IP地址不匹配： </h2> <p> 1.“ 10.10.10” –必须为4“。” <br /> 2.“ 10.10” –必须为4“。” <br /> 3.“ 10” –必须为4“。” <br /> 4.“ aaaa” –仅允许数字 <br /> 5.“ 10.0.0.a” –仅允许数字 <br /> 6.“ 10.10.10.256” –数字必须介于[0-255]之间 <br /> 7.“ 222.222.2.999” –数字必须介于[0-255]之间 <br /> 8.“ 999.10.10.20” –数字必须介于[0-255]之间 <br /> 9.“ 2222.22.22.22” –数字必须介于[0-255]之间 <br /> 10.“ 22.2222.22.2” –数字必须介于[0-255]之间 </p> <h2> 4.单元测试 </h2> <div class="notranslate">   IPAddressValidatorTest.java  </div> <pre class="has"><code class="language-java">package com.mkyong.regex;  import org.testng.Assert; import org.testng.annotations.*;   /**  * IPAddress validator Testing  * @author mkyong  *  */ public class IPAddressValidatorTest {   	private IPAddressValidator ipAddressValidator;      	@BeforeClass         public void initData(){ 		ipAddressValidator = new IPAddressValidator();         }      	@DataProvider 	public Object[][] ValidIPAddressProvider() { 		return new Object[][]{ 		   new Object[] {"1.1.1.1"},new Object[] {"255.255.255.255"},                    new Object[] {"192.168.1.1"},new Object[] {"10.10.1.1"},                    new Object[] {"132.254.111.10"},new Object[] {"26.10.2.10"}, 		   new Object[] {"127.0.0.1"} 		}; 	} 	 	@DataProvider 	public Object[][] InvalidIPAddressProvider() { 		return new Object[][]{ 		   new Object[] {"10.10.10"},new Object[] {"10.10"},                    new Object[] {"10"},new Object[] {"a.a.a.a"},                    new Object[] {"10.0.0.a"},new Object[] {"10.10.10.256"}, 		   new Object[] {"222.222.2.999"},new Object[] {"999.10.10.20"},                    new Object[] {"2222.22.22.22"},new Object[] {"22.2222.22.2"},                    new Object[] {"10.10.10"},new Object[] {"10.10.10"},	 		}; 	} 	 	@Test(dataProvider = "ValidIPAddressProvider") 	public void ValidIPAddressTest(String ip) { 		   boolean valid = ipAddressValidator.validate(ip); 		   System.out.println("IPAddress is valid : " + ip + " , " + valid); 		   Assert.assertEquals(true, valid); 	} 	 	@Test(dataProvider = "InvalidIPAddressProvider",                  dependsOnMethods="ValidIPAddressTest") 	public void InValidIPAddressTest(String ip) { 		   boolean valid = ipAddressValidator.validate(ip); 		   System.out.println("IPAddress is valid : " + ip + " , " + valid); 		   Assert.assertEquals(false, valid);  	}	 }</code></pre> <h2> 5.单元测试–结果 </h2> <pre class="has"><code class="language-markup">IPAddress is valid : 1.1.1.1 , true IPAddress is valid : 255.255.255.255 , true IPAddress is valid : 192.168.1.1 , true IPAddress is valid : 10.10.1.1 , true IPAddress is valid : 132.254.111.10 , true IPAddress is valid : 26.10.2.10 , true IPAddress is valid : 127.0.0.1 , true IPAddress is valid : 10.10.10 , false IPAddress is valid : 10.10 , false IPAddress is valid : 10 , false IPAddress is valid : a.a.a.a , false IPAddress is valid : 10.0.0.a , false IPAddress is valid : 10.10.10.256 , false IPAddress is valid : 222.222.2.999 , false IPAddress is valid : 999.10.10.20 , false IPAddress is valid : 2222.22.22.22 , false IPAddress is valid : 22.2222.22.2 , false PASSED: ValidIPAddressTest([Ljava.lang.String;@1d4c61c) PASSED: InValidIPAddressTest([Ljava.lang.String;@116471f)  ===============================================     com.mkyong.regex.IPAddressValidatorTest     Tests run: 2, Failures: 0, Skips: 0 ===============================================  =============================================== mkyong Total tests run: 2, Failures: 0, Skips: 0 ===============================================</code></pre> <h2> 参考 </h2> <ol> <li> <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://en.wikipedia.org/wiki/IP_address"  target="_blank" rel="nofollow">http://en.wikipedia.org/wiki/IP_address</a> </li> </ol> <div class="post-tag d-none d-xl-block">   标签： <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mkyong.com/tag/ip-address/"  rel="nofollow">IP地址</a> <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mkyong.com/tag/regex/"  rel="nofollow">正则表达式</a>  </div> <p> <input type="hidden" id="mkyong-current-postId" value="1986"/></p> <div id="mk-afterpost-related"></div> <div class="container"> <div class="row"> <div class="col"> <div class="col-centered ads-width-300"> <div></div> </p></div> </p></div> </p></div> </p></div> <blockquote> <p>翻译自: <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mkyong.com/regular-expressions/how-to-validate-ip-address-with-regular-expression/"  rel="nofollow">https://mkyong.com/regular-expressions/how-to-validate-ip-address-with-regular-expression/</a></p> </blockquote> </article> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-67991.htm">昆明市宠物猫领养（昆明市宠物猫领养中心）</a></p>
+                                        <p>下一个：<a href="/news/article-68661.htm">广州宠物狗领养中心地址电话（广州领养狗狗正规机构在哪里）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-47662.htm" title="佳雯宠物医院环城西路店（佳雯宠物医院环城东路分院怎么样）">佳雯宠物医院环城西路店（佳雯宠物医院环城东路分院怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-36814.htm" title="宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解">宠物粮食加工厂设备生产厂家有哪些呢视频 宠物粮食加工厂设备生产厂家有哪些呢视频讲解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-42742.htm" title="猫三联到底是两针还是三针啊图片（猫三联每针的作用）">猫三联到底是两针还是三针啊图片（猫三联每针的作用）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-18-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-43735.htm" title="动物疫病预防控制中心给宠物看病吗 动物疫病预防控制中心给宠物看病吗安全吗">动物疫病预防控制中心给宠物看病吗 动物疫病预防控制中心给宠物看病吗安全吗</a></li>
+                        <li class="py-2"><a href="/news/article-58375.htm" title="沈阳卖猫的宠物店在哪（沈阳哪儿有卖猫的）">沈阳卖猫的宠物店在哪（沈阳哪儿有卖猫的）</a></li>
+                        <li class="py-2"><a href="/news/article-57804.htm" title="聊城宠物用品批发市场在哪里呀（聊城宠物用品批发市场在哪里呀多少钱）">聊城宠物用品批发市场在哪里呀（聊城宠物用品批发市场在哪里呀多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-68661.htm" title="广州宠物狗领养中心地址电话（广州领养狗狗正规机构在哪里）">广州宠物狗领养中心地址电话（广州领养狗狗正规机构在哪里）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-node-share.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
