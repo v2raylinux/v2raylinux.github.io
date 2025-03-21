@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-78669.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Clickhouse 用户自定义外部函数</title>
+        <meta name="description" content="2.&nbsp; 增加custom_function.xml自定义函数的声明文件  5. 至此已经完成，进行方法测试 目录  			  写在前面 　　Clickhouse 从21.11&nbsp;版本" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-78669.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="Clickhouse 用户自定义外部函数" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/bac086bc0276c7966891d43d5af7e47b.webp" />
+        <meta property="og:release_date" content="2025-03-21T10:32:21" />
+    <meta property="og:updated_time" content="2025-03-21T10:32:21" />
+        <meta property="og:description" content="2.&nbsp; 增加custom_function.xml自定义函数的声明文件  5. 至此已经完成，进行方法测试 目录  			  写在前面 　　Clickhouse 从21.11&nbsp;版本" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Clickhouse 用户自定义外部函数">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>Clickhouse 用户自定义外部函数</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				  			 <div id="log-box">  				<div id="catalog"><ul id="catalog-ul"> <li><i class="be be-arrowright"></i> <a href="#title-0" title="2.&nbsp; 增加custom_function.xml自定义函数的声明文件">2.&nbsp; 增加custom_function.xml自定义函数的声明文件</a></li> <li><i class="be be-arrowright"></i> <a href="#title-1" title="5. 至此已经完成，进行方法测试">5. 至此已经完成，进行方法测试</a></li> </ul><span class="log-zd"><span class="log-close"><a title="隐藏目录"><i class="be be-cross"></i><strong>目录</strong></a></span></span></div>  			</div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/4c0ecc274e154ad44509fcdfc62c38c1.jpg" alt="Clickhouse 用户自定义外部函数"></p> <h3>写在前面</h3> <p>　　Clickhouse 从<span class="cnblogs_code">21.11</span>&nbsp;版本开始，除了提供类似SqlServer、MySQL<span class="cnblogs_code">CREATE FUNCTION</span>&nbsp;的自定义函数之外，还有一个用户自定义函数（UDF），与其说是“用户自定义函数”，为了避免混淆，称之为”用户自定义外部函数“更为准确。官方对此功能的解释：</p> <div class="cnblogs_code"> <pre>ClickHouse can call any external executable program or script to process data.<br/>译文：ClickHouse可以调用任何外部可执行程序或脚本来处理数据。</pre> </div> <p>可以调用外部程序或脚本来处理数据，这对于数据建模、数据分析等等来说，无疑是杀手锏的存在。</p> <h3>开始</h3> <p>　　示例情景：调用python脚本实现向量点积运算。</p> <p>　　环境：Docker、Clickhouse&nbsp;21.11.4.14 、Ubuntu 20.04、Python3</p> <h4><strong>1.&nbsp; 在config.xml里内增加</strong></h4> <div class="cnblogs_code"> <pre>&lt;user_defined_executable_functions_config&gt;*_function.xml&lt;/user_defined_executable_functions_config&gt;</pre> </div> <span class="directory"></span><h4 id="title-0">2.&nbsp; 增加custom_function.xml自定义函数的声明文件</h4> <p>　　新建custom_function.xml文件，与config.xml、users.xml文件是同级目录下的，如图</p> <p><strong><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/473d4db49032d36b0703718fcd75c57e.jpg" alt="Clickhouse 用户自定义外部函数"></strong></p> <h4><strong>3. 声明方法</strong></h4> <p>　　打开custom_function.xml文件，编写文件内容如下：</p> <div class="cnblogs_code"> <pre>&lt;functions&gt;     &lt;function&gt;         &lt;type&gt;executable&lt;/type&gt;         &lt;name&gt;custom_dotProduct&lt;/name&gt;         &lt;return_type&gt;Float32&lt;/return_type&gt;         &lt;return_name&gt;result&lt;/return_name&gt;         &lt;argument&gt;             &lt;type&gt;Array(Float32)&lt;/type&gt;             &lt;name&gt;v1&lt;/name&gt;         &lt;/argument&gt;         &lt;argument&gt;             &lt;type&gt;Array(Float32)&lt;/type&gt;             &lt;name&gt;v2&lt;/name&gt;         &lt;/argument&gt;         &lt;format&gt;JSONEachRow&lt;/format&gt;         &lt;execute_direct&gt;0&lt;/execute_direct&gt;         &lt;command&gt;python3 /var/lib/clickhouse/user_scripts/custom_dotProduct.py&lt;/command&gt;     &lt;/function&gt; &lt;/functions&gt;</pre> </div> <p>　　execute_direct=0，默认是1，1表示将在clickhouse的/data/user_scripts文件夹内搜索脚本，0表是按照用户配置的命令搜索脚本路径，建议设置为0，避免找不到执行的脚本文件。其他参数可以参考文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://clickhouse.com/docs/en/sql-reference/functions/"  rel="nofollow">Introduction | ClickHouse Documentation</a><strong><br /></strong></p> <h4><strong>4. 编写python脚本</strong></h4> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">#</span><span style="color: rgba(0, 128, 0, 1)">!/usr/bin/python3</span><span style="color: rgba(0, 0, 255, 1)">import</span><span style="color: rgba(0, 0, 0, 1)"> sys</span><span style="color: rgba(0, 0, 255, 1)">import</span><span style="color: rgba(0, 0, 0, 1)"> json</span><span style="color: rgba(0, 0, 255, 1)">if</span><span style="color: rgba(128, 0, 128, 1)">__name__</span> ==<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">__main__</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">for</span> line<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> sys.stdin:         dict</span>=<span style="color: rgba(0, 0, 0, 1)"> json.loads(line)         ls</span>=<span style="color: rgba(0, 0, 0, 1)"> []</span><span style="color: rgba(0, 0, 255, 1)">for</span> v<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> dict.values():             ls.insert(</span>1<span style="color: rgba(0, 0, 0, 1)">, list(v))         vector1</span>=<span style="color: rgba(0, 0, 0, 1)"> tuple(ls[0])         vector2</span>= tuple(ls[1<span style="color: rgba(0, 0, 0, 1)">])         v</span>= sum(p * q<span style="color: rgba(0, 0, 255, 1)">for</span> p, q<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> zip(vector1, vector2))         data</span>= {<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">result</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">: str(v)}</span><span style="color: rgba(0, 0, 255, 1)">print</span>(json.dumps(data), end=<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">\n</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">)         sys.stdout.flush()</span></pre> </div> <p>　　保存脚本并命名为<span class="cnblogs_code">custom_dotProduct.py</span>&nbsp;，再放到<span class="cnblogs_code">/var/lib/clickhouse/user_scripts</span>&nbsp;文件夹内。</p> <p>　　特别需要注意是脚本运行环境和存放路径问题，Clickhouse如果是放到docker里面，则需要在docker内配置python可运行的环境，其他C++、java也是如此，最起码能保证手动执行脚本的时候能运行。 在<span class="cnblogs_code">custom_function.xml</span>&nbsp;声明方法的时候，编写的xml文件中的<code><span class="cnblogs_code">command</span></code>命令是容器里面的路径，而不是宿主机的路径。</p> <span class="directory"></span><h4 id="title-1">5. 至此已经完成，进行方法测试</h4> <div class="cnblogs_code"> <pre>--<span style="color: rgba(0, 0, 0, 1)">重新加载方法 SYSTEM RELOAD FUNCTIONS;</span>--<span style="color: rgba(0, 0, 0, 1)">查看方法是否加载成功 SELECT</span>* FROM system.functions WHERE name =<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">custom_dotProduct</span><span style="color: rgba(128, 0, 0, 1)">'</span>;</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/724a6de8c3d837f08945fd46ee7fb001.jpg" alt="Clickhouse 用户自定义外部函数"></p> <p>&nbsp;执行方法：</p> <div class="cnblogs_code"> <pre>select custom_dotProduct([1,2,3],[4,5,6]);</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5d343ab6a4167c4974c0b030ee9d8dcf.jpg" alt="Clickhouse 用户自定义外部函数"></p> <h3>最后</h3> <p>　　还需特别注意的是Clickhouse版本问题，在示例的python脚本中和官网文档中的示例python脚本取值方法不太一样，</p> <p>官方示例：</p> <div class="cnblogs_code"> <pre>first_arg = int(value[<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">argument_1</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">]) second_arg</span>= int(value[<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">argument_2</span><span style="color: rgba(128, 0, 0, 1)">'</span>])</pre> </div> <p>它是通过自定义配置的name获取值：</p> <div class="cnblogs_code"> <pre>&lt;function&gt;     &lt;type&gt;executable&lt;/type&gt;     &lt;name&gt;test_function_sum_json&lt;/name&gt;     &lt;return_type&gt;UInt64&lt;/return_type&gt;     &lt;return_name&gt;result_name&lt;/return_name&gt;     &lt;argument&gt;         &lt;type&gt;UInt64&lt;/type&gt;<span style="color: rgba(255, 0, 0, 1)"> &lt;name&gt;argument_1&lt;/name&gt;</span>     &lt;/argument&gt;     &lt;argument&gt;         &lt;type&gt;UInt64&lt;/type&gt;<span style="color: rgba(255, 0, 0, 1)">&lt;name&gt;argument_2&lt;/name&gt;</span>     &lt;/argument&gt;     &lt;format&gt;JSONEachRow&lt;/format&gt;     &lt;command&gt;test_function_sum_json.py&lt;/command&gt; &lt;/function&gt;</pre> </div> <p>而我是通过遍历出来的：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">for</span> v<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> dict.values():             ls.insert(</span>1, list(v))</pre> </div> <p>原因是Clickhouse这种取值方式必须要求在<span class="cnblogs_code">22.3</span>&nbsp;版本以上才支持，若低于<span class="cnblogs_code">22.3</span>的版本用官方的取值方式是永远报错的（巨坑之一）。具体可以看我之前提的Issue：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/ClickHouse/ClickHouse/issues/35562"  rel="nofollow">UDFs: JSON Bug ? · Issue #35562 · ClickHouse/ClickHouse (github.com)</a></p> <p>　　另外，从2022年1月后，Clickhouse的Docker镜像将停止<span class="cnblogs_code">yandex/clickhouse-server</span>&nbsp;的迭代，使用新的镜像地址<span class="cnblogs_code">clickhouse/clickhouse-server</span>&nbsp; 。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/aed13724e7ff77af5240c090fb69ba9c.jpg" alt="Clickhouse 用户自定义外部函数"></p> <p>如继续使用<span class="cnblogs_code">yandex/clickhouse-server</span>的镜像，最新的版本号停留在<span class="cnblogs_code">22.1.3.7</span>&nbsp;（巨坑之二）。</p> <p>好了，下班！不不不，等下下班！</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-77975.htm">猫三联一共几针,多少钱,多久打一次好（猫三联大概多少钱一针）</a></p>
+                                        <p>下一个：<a href="/news/article-78670.htm">PowerDotNet平台化软件架构设计与实现系列应用监控平台</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-67378.htm" title="狗粮批发地（狗粮批发哪里便宜又好）">狗粮批发地（狗粮批发哪里便宜又好）</a></li>
+                        <li class="py-2"><a href="/news/article-53363.htm" title="宠物粮食市场调研报告怎么写 宠物粮食市场调研报告怎么写范文">宠物粮食市场调研报告怎么写 宠物粮食市场调研报告怎么写范文</a></li>
+                        <li class="py-2"><a href="/news/article-37296.htm" title="养猫的人容易得15种病怎么预防传染（养猫的人容易得15种病怎么预防传染病）">养猫的人容易得15种病怎么预防传染（养猫的人容易得15种病怎么预防传染病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-1-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新18.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-57805.htm" title="狂犬疫苗多少钱一针?人打几针（狂犬疫苗多少钱一针?需要打多少针）">狂犬疫苗多少钱一针?人打几针（狂犬疫苗多少钱一针?需要打多少针）</a></li>
+                        <li class="py-2"><a href="/news/article-53362.htm" title="动物疾病预防控制中心可以打狂犬疫苗吗（动物防疫监督站可以打狂犬疫苗吗）">动物疾病预防控制中心可以打狂犬疫苗吗（动物防疫监督站可以打狂犬疫苗吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新21.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-44711.htm" title="包含猫咪疫苗一共要打几针多少钱英短的词条">包含猫咪疫苗一共要打几针多少钱英短的词条</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.1M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
