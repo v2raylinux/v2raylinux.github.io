@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-81440.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>golang对接阿里云私有Bucket上传图片、授权访问图片</title>
+        <meta name="description" content="1、为什么要设置私有bucket  公共读写：互联网上任何用户都可以对该 Bucket 内的文件进行访问，并且向该 Bucket 写入数据。这有可能造成您数据的外泄以及费用激增，若被人恶意写入违法信息" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-81440.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="golang对接阿里云私有Bucket上传图片、授权访问图片" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/14993e4cb1281da20b885c5c9fbd9835.webp" />
+        <meta property="og:release_date" content="2025-03-25T08:20:45" />
+    <meta property="og:updated_time" content="2025-03-25T08:20:45" />
+        <meta property="og:description" content="1、为什么要设置私有bucket  公共读写：互联网上任何用户都可以对该 Bucket 内的文件进行访问，并且向该 Bucket 写入数据。这有可能造成您数据的外泄以及费用激增，若被人恶意写入违法信息" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="golang对接阿里云私有Bucket上传图片、授权访问图片">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>golang对接阿里云私有Bucket上传图片、授权访问图片</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				</h1> <h2 id="1为什么要设置私有bucket">1、为什么要设置私有bucket</h2> <ul> <li><strong>公共读写</strong>：互联网上任何用户都可以对该 Bucket 内的文件进行访问，并且向该 Bucket 写入数据。这有可能造成您数据的外泄以及费用激增，若被人恶意写入违法信息还可能会侵害您的合法权益</li> <li><strong>私有</strong>：只有该存储空间的拥有者可以对该存储空间内的文件进行读写操作，其他人无法访问该存储空间内的文件</li> </ul> <p><strong>鉴于以上，公司要求将bucket设置为私有，只有授权的用户才能访问</strong></p> <h2 id="2准备">2、准备</h2> <h3 id="21-创建ram账户">2.1 创建RAM账户</h3> <p>开通OSS后账户，创建RAM账户，使用STS临时访问凭证访问OSS，<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://help.aliyun.com/document_detail/100624.htm?spm=5176.smartservice_service_robot-chat.0.0.1eea3cdaasIBTM"  target="_blank" rel="nofollow">具体参考阿里云文档</a></p> <p><strong>提示：在步骤四创建角色要将RAM角色赋予 AliyunOSSFullAccess 权限</strong> ，<br /> 因为此处没设置oss最高权限，我找了一天问题，大家<strong>谨记</strong>，写这篇博客也是记录一下我的填坑之路<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d883f505b9a0402a78dd0fb52b728d3e.jpg" alt="golang对接阿里云私有Bucket上传图片、授权访问图片"></p> <h3 id="22-设置bucket">2.2 设置Bucket</h3> <ul> <li> <p>在对象存储中，Bucket列表创建私有Bucket<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f9dc478d1ba6cc16de43be8a71aae669.jpg" alt="golang对接阿里云私有Bucket上传图片、授权访问图片"></p> </li> <li> <p>然后在此Bucket授权刚才创建OSS账号id，授权操作为完全控制<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8ed3196f7c0c3a972146072a1f490aad.jpg" alt="golang对接阿里云私有Bucket上传图片、授权访问图片"></p> </li> </ul> <h2 id="3上菜">3、上菜</h2> <h3 id="31-常量及其结构体">3.1 常量及其结构体</h3> <ul> <li>根据自己阿里云信息去配置</li> </ul> <pre><code class="language-go">const ( 	AccessKeyId     = "**"//oss账户AK 	AccessKeySecret = "**"//oss账户ST 	stsEndpoint     = "**"//sts.阿里云对象存储地址 	RoleArn         = "**"//创建角色用到的 	RoleSessionName = "**"//创建角色用到的 	BucketName      = "**" //填写Bucket名称，例如examplebucket 	Endpoint        = "**"//阿里云对象存储地址 	UploadOssUrl    = "**" //返回给前端oss上传地址 ) type StsTokenInfo struct { 	StatusCode      int    `json:"StatusCode"` 	AccessKeyId     string `json:"AccessKeyId"` 	AccessKeySecret string `json:"AccessKeySecret"` 	SecurityToken   string `json:"SecurityToken"` 	Expiration      string `json:"Expiration"` }  type StsErrorInfo struct { 	StatusCode   int    `json:"StatusCode"` 	ErrorCode    string `json:"ErrorCode"` 	ErrorMessage string `json:"ErrorMessage"` }</code></pre> <h3 id="32-获取sts临时用户信息">3.2 获取STS临时用户信息</h3> <pre><code class="language-go">package aliyun  import ( 	"fmt" 	openapi "github.com/alibabacloud-go/darabonba-openapi/client" 	sts "github.com/alibabacloud-go/sts-20150401/client" 	"github.com/alibabacloud-go/tea/tea" 	log "github.com/sirupsen/logrus" ) // //  GetAliyunStsInfo //  @Description: 获取STS临时用户信息 //  @param isReturnAll //  @return *sts.AssumeRoleResponseBody // func GetAliyunStsInfo() *sts.AssumeRoleResponseBody { 	return generateStsInfo() }  /**  * 生成STS临时用户信息  */ func generateStsInfo() *sts.AssumeRoleResponseBody { 	client, _err := createClient(tea.String(AccessKeyId), tea.String(AccessKeySecret)) 	if _err != nil { 		fmt.Print(_err.Error()) 	} 	assumeRoleRequest := &amp;sts.AssumeRoleRequest{ 		RoleArn:         tea.String(RoleArn), 		RoleSessionName: tea.String(RoleSessionName), 	} 	resp, err := client.AssumeRole(assumeRoleRequest) 	if err != nil { 		fmt.Print(err.Error()) 	} 	fmt.Printf("获取STS临时用户信息:%v", resp) 	log.Info("获取STS临时用户信息:", resp) 	return (*resp).Body }  /**  * 使用AK&amp;SK初始化账号Client  * @param accessKeyId  * @param accessKeySecret  * @return Client  * @throws Exception  */ func createClient(accessKeyId *string, accessKeySecret *string) (_result *sts.Client, _err error) { 	config := &amp;openapi.Config{ 		AccessKeyId:     accessKeyId, 		AccessKeySecret: accessKeySecret, 	} 	// 访问的域名 	config.Endpoint = tea.String(stsEndpoint) 	_result = &amp;sts.Client{} 	_result, _err = sts.NewClient(config) 	return _result, _err }</code></pre> <ul> <li>我是使用新版的SDK阿里云demo中，修改了一下，<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://next.api.aliyun.com/api/Sts/2015-04-01/AssumeRole?spm=a2c4g.11186623.0.0.45156dc1It2Bl2&amp;lang=GO&amp;params=%7B%7D&amp;sdkStyle=dara"  target="_blank" rel="nofollow">具体参考文档</a></li> <li>获取STS临时用户信息方法多个地方需要用到，所以我抽取出来供其他接口调用（比如授权访问就需要STS临时用户信息去生成signUrl）</li> </ul> <h3 id="33-接口调用">3.3 接口调用</h3> <h4 id="331不包含签名的sts临时用户信息">3.3.1不包含签名的STS临时用户信息</h4> <ul> <li>我这里用的gin框架，<strong>这个接口是不包含前端需要的签名（policy和Signature）的</strong>，需要前端使用oss插件（全部信息返回的写在另一个接口）</li> </ul> <pre><code class="language-go">/** 接口：获取sts用户 前端需要加载oss插件 不需要则去调用policy文件中AppAliyunPolicy */ func AppAliyunSts(c *gin.Context) { 	response := GetAliyunStsInfo() 	c.JSON(http.StatusOK, gin.H{ 		"code": 1, 		"data": response, 	}) 	return }</code></pre> <ul> <li>API调用，返回的信息<br /><img decoding="async" src="https://img-blog.csdnimg.cn/4ebd06351e164bd2a539b739ec0d793b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5a-85ryU5a2X5q-N,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述" loading="lazy"/></li> </ul> <h4 id="332含签名的sts临时用户信息">3.3.2含签名的STS临时用户信息</h4> <ul> <li>此接口好处就在前端不需要额外加载多余的包</li> </ul> <pre><code class="language-go">package aliyun  import ( 	"crypto/hmac" 	"crypto/sha1" 	"encoding/base64" 	"encoding/json" 	"fmt" 	"github.com/gin-gonic/gin" 	log "github.com/sirupsen/logrus" 	"hash" 	"io" 	"net/http" 	"time" ) /** 签名直传服务 用于小程序上传图片不用加载库 */ // 用户上传文件时指定的前缀。 //var upload_dir string = "user-dir/"  //过期时间3000秒 var expire_time int64 = 3000  type ConfigStruct struct { 	Expiration string     `json:"expiration"` 	Conditions [][]string `json:"conditions"` } type PolicyToken struct { 	StsTokenInfo 	Expire       int64  `json:"expire"` 	Signature    string `json:"signature"` 	Policy       string `json:"policy"` 	Directory    string `json:"dir"` 	UploadOssUrl string `json:"uploadOssUrl"` }  func AppAliyunPolicy(c *gin.Context) { 	uploadDir := c.DefaultQuery("dir", "user-dir/") 	//获取token2中的accessKeyId,accessKeySecret 	resp := GetAliyunStsInfo() 	log.Info(resp)  	now := time.Now().Unix() 	expire_end := now + expire_time 	var tokenExpire = getGmtIso8601(expire_end)  	//create post policy json 	var config ConfigStruct 	config.Expiration = tokenExpire 	var condition []string 	condition = append(condition, "starts-with") 	condition = append(condition, "$key") 	condition = append(condition, uploadDir) 	config.Conditions = append(config.Conditions, condition)  	//calucate signature 	result, err := json.Marshal(config) 	debyte := base64.StdEncoding.EncodeToString(result) 	h := hmac.New(func() hash.Hash { return sha1.New() }, []byte(*resp.Credentials.AccessKeySecret)) 	io.WriteString(h, debyte) 	signedStr := base64.StdEncoding.EncodeToString(h.Sum(nil))  	policyToken := &amp;PolicyToken{} 	policyToken.AccessKeyId = *resp.Credentials.AccessKeyId 	policyToken.AccessKeySecret = *resp.Credentials.AccessKeySecret 	policyToken.SecurityToken = *resp.Credentials.SecurityToken 	policyToken.Expiration = *resp.Credentials.Expiration 	policyToken.Expire = expire_end 	policyToken.Signature = string(signedStr) 	policyToken.Directory = uploadDir 	policyToken.Policy = string(debyte) 	policyToken.UploadOssUrl = UploadOssUrl 	if err != nil { 		fmt.Println("json err:", err) 	} 	c.JSON(http.StatusOK, gin.H{ 		"code": 1, 		"data": policyToken, 	}) 	return }  func getGmtIso8601(expireEnd int64) string { 	var tokenExpire = time.Unix(expireEnd, 0).UTC().Format("2006-01-02T15:04:05Z") 	return tokenExpire }</code></pre> <ul> <li>Get接口携带参数dir，指定放在哪个文件夹</li> <li>接口调用，返回信息<br /><img decoding="async" src="https://img-blog.csdnimg.cn/102a54cd8ecd44b38feffec56b1155eb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5a-85ryU5a2X5q-N,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述" loading="lazy"/></li> </ul> <h3 id="34-授权访问">3.4 授权访问</h3> <h4 id="341接口调用">3.4.1接口调用</h4> <ul> <li>阿里云提供了两种授权方式，<strong>URL授权</strong>和<strong>header头授权</strong>，我这里是图片授权所以选择了URL，图片需要授权携带签名参数才能请求到<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://help.aliyun.com/document_detail/59670.html"  target="_blank" rel="nofollow">具体参考文档</a></li> </ul> <pre><code class="language-go">package aliyun  import ( 	"fmt" 	"github.com/aliyun/aliyun-oss-go-sdk/oss" 	"github.com/gin-gonic/gin" 	"net/http" )  /** 图片授权访问 返回签名后的URL */ func GetSignURL(c *gin.Context) { 	accessKeyId := c.DefaultQuery("accessKeyId", "") 	accessKeySecret := c.DefaultQuery("accessKeySecret", "") 	securityToken := c.DefaultQuery("securityToken", "") 	fullImgPath := c.DefaultQuery("fullImgPath", "") //图片全路径 	//如果为空则去请求sts临时用户信息 	if accessKeyId == "" || accessKeySecret == "" || securityToken == "" { 		stsTokenInfo := GetAliyunStsInfo() 		accessKeyId = *stsTokenInfo.Credentials.AccessKeyId 		accessKeySecret = *stsTokenInfo.Credentials.AccessKeySecret 		securityToken = *stsTokenInfo.Credentials.SecurityToken 	}  	// 获取STS临时凭证后，您可以通过其中的安全令牌（SecurityToken）和临时访问密钥（AccessKeyId和AccessKeySecret）生成OSSClient。 	client, err := oss.New(Endpoint, accessKeyId, accessKeySecret, oss.SecurityToken(securityToken)) 	if err != nil { 		fmt.Print(err.Error()) 	} 	// 填写文件完整路径，例如exampledir/exampleobject.txt。文件完整路径中不能包含Bucket名称。 	objectName := fullImgPath 	// 获取存储空间。 	bucket, err := client.Bucket(BucketName) 	if err != nil { 		fmt.Print(err.Error()) 	}  	// 签名直传。 	signedURL, err := bucket.SignURL(objectName, oss.HTTPGet, 6000) 	if err != nil { 		fmt.Print(err.Error()) 	} 	c.JSON(http.StatusOK, gin.H{ 		"code": 1, 		"data": signedURL, 	}) }</code></pre> <ul> <li>这里有四个参数，前上个参数是请求STS临时用户获取到，前端传递过来的（此场景适用于<strong>上传图片后回显图片</strong>，就需要带签名的图片URL），如果前端没有传这三个参数，我们需要自己再去调用之前GetAliyunStsInfo()去生成，</li> <li>fullImgPath参数就是图片保存的全路径，填写文件完整路径，例如exampledir/exampleobject.txt。文件完整路径中<strong>不能包含Bucket名称</strong>。</li> </ul> <h4 id="342-api调用返回信息">3.4.2 API调用，返回信息</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e64250e5081bee7dad623f0a36f7f6b2.jpg" alt="golang对接阿里云私有Bucket上传图片、授权访问图片"></p> <ul> <li>如果没有授权，则会提示<br /><img decoding="async" src="https://img-blog.csdnimg.cn/a0ffc14b19c94d47a5d42f9f586bbc89.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5a-85ryU5a2X5q-N,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述" loading="lazy"/></li> </ul> <p>我碰到这个问题是因为没有给RAM角色设置OSS最高权限，<strong>谨记</strong></p> <ul> <li>如果过了有效期，则会提示</li> </ul> <pre><code class="language-xml">&lt;Error&gt; &lt;Code&gt;AccessDenied&lt;/Code&gt; &lt;Message&gt;Request has expired.&lt;/Message&gt; &lt;RequestId&gt;***&lt;/RequestId&gt; &lt;HostId&gt;****&lt;/HostId&gt; &lt;Expires&gt;2022-04-02T08:42:47.000Z&lt;/Expires&gt; &lt;ServerTime&gt;2022-04-03T03:56:52.000Z&lt;/ServerTime&gt; &lt;/Error&gt;</code></pre> <p>好了，以上接口经本人测试调通，耗时一天半，代码没什么，问题全出在配置权限上了，用来记录我的填坑之路</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-80744.htm">南京宠物领养中心在哪里 南京宠物领养中心在哪里啊</a></p>
+                                        <p>下一个：<a href="/news/article-81441.htm">动物打过疫苗被咬还有事啊怎么办呢（打了疫苗的动物咬伤有风险）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-47663.htm" title="宠物领养合同违约金1500合法吗（宠物领养合同违约金1500合法吗怎么赔偿）">宠物领养合同违约金1500合法吗（宠物领养合同违约金1500合法吗怎么赔偿）</a></li>
+                        <li class="py-2"><a href="/news/article-48152.htm" title="中国十大宠物粮厂家排名前十（宠物粮公司排名）">中国十大宠物粮厂家排名前十（宠物粮公司排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-6-node-share.htm" title="V2ray Linux节点订阅每天更新20.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-63047.htm" title="IDEA工程-数据库连接-mysql连接">IDEA工程-数据库连接-mysql连接</a></li>
+                        <li class="py-2"><a href="/news/article-80054.htm" title="天津宠物博览会（天津宠物博览会2023）">天津宠物博览会（天津宠物博览会2023）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-51242.htm" title="宠物用品批发网站大全最便宜卖（宠物用品十大批发市场）">宠物用品批发网站大全最便宜卖（宠物用品十大批发市场）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-26-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-50717.htm" title="开宠物店的进货渠道（开宠物店进货渠道怎么找）">开宠物店的进货渠道（开宠物店进货渠道怎么找）</a></li>
+                        <li class="py-2"><a href="/news/article-40743.htm" title="CentOS离线安装docker容器">CentOS离线安装docker容器</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">81</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
