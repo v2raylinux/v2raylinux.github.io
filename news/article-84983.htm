@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-84983.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue实现文字滚动效果_vue.js</title>
+        <meta name="description" content="本文实例为大家分享了vue实现文字滚动效果的具体代码，供大家参考，具体内容如下 项目需求：系统公告，要从右忘左循环播放的牛皮广告效果。 实现： 方案一：使用定时器和CSS3的过渡属性来实现。  &lt" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-84983.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="vue实现文字滚动效果_vue.js" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/373257619ae2b068e4e252cfbd5103e0.webp" />
+        <meta property="og:release_date" content="2025-03-30T09:36:57" />
+    <meta property="og:updated_time" content="2025-03-30T09:36:57" />
+        <meta property="og:description" content="本文实例为大家分享了vue实现文字滚动效果的具体代码，供大家参考，具体内容如下 项目需求：系统公告，要从右忘左循环播放的牛皮广告效果。 实现： 方案一：使用定时器和CSS3的过渡属性来实现。  &lt" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue实现文字滚动效果_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>vue实现文字滚动效果_vue.js</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<p>本文实例为大家分享了vue实现文字滚动效果的具体代码，供大家参考，具体内容如下</p> <p><strong>项目需求：</strong>系统公告，要从右忘左循环播放的牛皮广告效果。</p> <p><strong>实现：</strong></p> <p>方案一：使用定时器和CSS3的过渡属性来实现。</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div class="notice-card-wrapper"&gt;          &lt;div id="message-wrap" ref="out" class="message"&gt;            &lt;div id="con1" ref="con1" :class="{anim:animate==true}" style="margin-left: 2500px;"&gt;              &lt;span v-html="notice"&gt;&lt;/span&gt;            &lt;/div&gt;          &lt;/div&gt;    &lt;/div&gt;  &lt;/template&gt;</pre> </div> <p>关键标签<code>ref='con1</code>和内部的<code>span</code>，con1上面有一个anim样式，根据animate变量的变化来动态变化。<br />注意，我这里给了一个<code>margin-left:2500px</code>的初始位置</p> <div class="ay1code"> <pre class="brush:js;">data() {      return {        animate: true,        notice: '',        intervalId: null // 定时器标识      }    },</pre> </div> <p>定义需要的属性变量</p> <div class="ay1code"> <pre class="brush:js;">mounted() {      this.scroll() // 动画先执行一次      this.intervalId = setInterval(this.scroll, 16000) // 间隔时间后重复执行    },    updated() {    },    destroyed() {      clearInterval(this.intervalId) // 清除定时器    },      methods: {      // 异步ajax获取公告内容，略过      handleFetchNotice() {        fetchNotice().then(res =&gt; {          this.notice = res.data.notice        }).catch(err =&gt; {          console.log(err)        })      },      // 定义动画      scroll() {        this.animate = true        const con1 = this.$refs.con1        setTimeout(() =&gt; {          con1.style.marginLeft = '-500PX'        }, 500)        setTimeout(() =&gt; {          con1.style.marginLeft = '2500px'          this.animate = false        }, 15000)      }    }</pre> </div> <p>说明：执行动画函数，500ms后将refs.con1的margin-left值改为-500px,这个时候标签的过渡属性是ture，会动画显示这个变化过程。15000ms后，将margin-left值回到初始状态，过渡属性修改为false，动画切断。</p> <p>最后一步，就算在css中定义过渡样式</p> <div class="ay1code"> <pre class="brush:css;">&lt;style lang="scss"&gt;  .anim{    transition: all 15s linear;  }  &lt;/style&gt;</pre> </div> <p>margin-left有2500px改为-500px的过程，过渡动画线性执行15s。</p> <p>然后，定时器16000毫秒后，重复执行。</p> <p>已修改为css3动画，简洁很多</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div class="notice-card-wrapper"&gt;      &lt;div class="header"&gt;        &lt;div class="title"&gt;          &lt;!-- 系统公告 --&gt;          &lt;div class="message"&gt;            &lt;div class="inner-container"&gt;              &lt;span v-html="notice"&gt;&lt;/span&gt;            &lt;/div&gt;          &lt;/div&gt;        &lt;/div&gt;      &lt;/div&gt;    &lt;/div&gt;  &lt;/template&gt;    &lt;script&gt;  export default {    name: 'SystemNotice',    components: {    },    data() {      return {        notice: '我是广播文字内容，哈哈哈哈，你习惯不行啊，我页不知道啊啊啊啊啊'      }    },    computed: {    },    created() {    },    methods: {    }  }  &lt;/script&gt;    &lt;style lang="scss" scoped&gt;  .notice-card-wrapper {    .inner-container {      margin-left: 100%; // 把文字弄出可见区域      width: 200%;      animation: myMove 30s linear infinite; // 重点，定义动画      animation-fill-mode: forwards;    }      /*文字无缝滚动*/    @keyframes myMove {      0% {        transform: translateX(0);      }      100% {        transform: translateX(-2500px);      }    }    }  }  &lt;/style&gt;</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-84257.htm">动物医院科室布局原则 动物医院科室布局原则是什么</a></p>
+                                        <p>下一个：<a href="/news/article-84986.htm">人打动物疫苗多少钱一针啊 人打动物疫苗多少钱一针啊图片</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-node-share-links.htm" title="V2ray Linux节点订阅每天更新22.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-51243.htm" title="成人如何学兽医专业（成人如何学兽医专业的）">成人如何学兽医专业（成人如何学兽医专业的）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-35841.htm" title="快一个月大的小猫身上有跳蚤怎么办（一个月大的小猫咪身上有跳蚤怎么办）">快一个月大的小猫身上有跳蚤怎么办（一个月大的小猫咪身上有跳蚤怎么办）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-node-share.htm" title="V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-66742.htm" title="宠物粮食业务员 宠物粮食业务员好做吗">宠物粮食业务员 宠物粮食业务员好做吗</a></li>
+                        <li class="py-2"><a href="/news/article-75262.htm" title="猫咪三针疫苗中间间隔多久打一次（猫的三针疫苗间隔多少天打）">猫咪三针疫苗中间间隔多久打一次（猫的三针疫苗间隔多少天打）</a></li>
+                        <li class="py-2"><a href="/news/article-77294.htm" title="动物疫苗发展前景怎么样知乎（动物疫苗行业分析）">动物疫苗发展前景怎么样知乎（动物疫苗行业分析）</a></li>
+                        <li class="py-2"><a href="/news/article-38774.htm" title="动物医院申请条件有哪些要求和条件要求呢（动物医院需要几个兽医资格证）">动物医院申请条件有哪些要求和条件要求呢（动物医院需要几个兽医资格证）</a></li>
+                        <li class="py-2"><a href="/news/article-42240.htm" title="适合春天旅游的城市有哪些地方(适合春天旅游的城市有哪些景点)">适合春天旅游的城市有哪些地方(适合春天旅游的城市有哪些景点)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
