@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-93034.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>python 递归函数及递归次数受到限制的解决办法</title>
+        <meta name="description" content="一个函数在内部调用自己，那么这个函数是递归函数。递归会反复使用本身，每递归一次，越接近最终的值。当一个问题可以由许多相似的小问题解决， 可以考虑使用递归函数。随着递归的深入，问题规模相比上次都应所减小" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-93034.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="python 递归函数及递归次数受到限制的解决办法" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/56e0e33419b456bd8145da69e84f1996.webp" />
+        <meta property="og:release_date" content="2025-04-10T08:20:44" />
+    <meta property="og:updated_time" content="2025-04-10T08:20:44" />
+        <meta property="og:description" content="一个函数在内部调用自己，那么这个函数是递归函数。递归会反复使用本身，每递归一次，越接近最终的值。当一个问题可以由许多相似的小问题解决， 可以考虑使用递归函数。随着递归的深入，问题规模相比上次都应所减小" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="python 递归函数及递归次数受到限制的解决办法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>python 递归函数及递归次数受到限制的解决办法</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <p>一个函数在内部调用自己，那么这个函数是递归函数。递归会反复使用本身，每递归一次，越接近最终的值。当一个问题可以由许多相似的小问题解决， 可以考虑使用递归函数。随着递归的深入，问题规模相比上次都应所减小。return函数本身的方法保证了递归的持续进行，但是如果没有明确的结束条件，递归会无限进行下去。所以当已经到了问题解决的程度， 应该告诉函数结束递归，这就需要明确的结束条件。</p> <p>常见的两个递归例子：求和、求阶乘n!<br /> 求和：sum=n+n(n-1)+…+1</p> <pre><code class="prism language-python"><span class="token keyword">def</span> <span class="token function">sum</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">if</span> n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>                       <span class="token keyword">return</span> n<span class="token operator">+</span><span class="token builtin">sum</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>     <span class="token keyword">else</span><span class="token punctuation">:</span>         <span class="token keyword">return</span> <span class="token number">0</span>            new_sum <span class="token operator">=</span> <span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span>new_sum<span class="token punctuation">)</span> <span class="token comment">#output</span> <span class="token number">55</span> </code></pre> <p>求阶乘：n!=1x2x3…xn</p> <pre><code class="prism language-python"><span class="token keyword">def</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>         <span class="token keyword">return</span> <span class="token number">1</span>     <span class="token keyword">else</span><span class="token punctuation">:</span>         <span class="token keyword">return</span> n<span class="token operator">*</span>factorial<span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> new_sum <span class="token operator">=</span> factorial<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span>new_sum<span class="token punctuation">)</span> <span class="token comment">#output</span> <span class="token number">120</span> </code></pre> <p>使用递归函数需要注意递归次数默认限制为1000，如果递归次数较多会导致栈溢出的问题<br /> 比如</p> <pre><code class="prism language-python"><span class="token keyword">def</span> <span class="token function">sum</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">if</span> n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>         <span class="token keyword">return</span> <span class="token number">1</span><span class="token operator">+</span><span class="token builtin">sum</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>       <span class="token keyword">else</span><span class="token punctuation">:</span>         <span class="token keyword">return</span> <span class="token number">0</span>  new_sum <span class="token operator">=</span> <span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span>new_sum<span class="token punctuation">)</span> </code></pre> <p>会报RecursionError: maximum recursion depth exceeded in comparison的错误<br /> 解决问题的办法是修改可递归的次数</p> <pre><code class="prism language-python"><span class="token keyword">import</span> sys sys<span class="token punctuation">.</span>setrecursionlimit<span class="token punctuation">(</span><span class="token number">1500</span><span class="token punctuation">)</span><span class="token comment">#可递归次数修改为1500</span> <span class="token keyword">def</span> <span class="token function">sum</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">if</span> n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>         <span class="token keyword">return</span> <span class="token number">1</span><span class="token operator">+</span><span class="token builtin">sum</span><span class="token punctuation">(</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>       <span class="token keyword">else</span><span class="token punctuation">:</span>         <span class="token keyword">return</span> <span class="token number">0</span>  new_sum <span class="token operator">=</span> <span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span>new_sum<span class="token punctuation">)</span> <span class="token comment">#output</span> <span class="token number">1000</span> </code></pre> <p>修改递归次数时需要注意，修改可递归次数为1500，递归深度到不了1500，在1400左右。默认可递归次数为1000，递归深度也到不了1000，到992左右</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-92318.htm">动物医院管理制度文本怎么写（动物医院管理流程）</a></p>
+                                        <p>下一个：<a href="/news/article-93035.htm">echart整体图形大小调整</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-node-subscribe-links.htm" title="V2ray Linux节点订阅每天更新21.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-87137.htm" title="动物疫苗合格证怎么办理手续（动物疫苗审批流程）">动物疫苗合格证怎么办理手续（动物疫苗审批流程）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-28-node-share.htm" title="V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-82829.htm" title="宠物粮食创业（宠物粮食生意怎么样）">宠物粮食创业（宠物粮食生意怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-68661.htm" title="广州宠物狗领养中心地址电话（广州领养狗狗正规机构在哪里）">广州宠物狗领养中心地址电话（广州领养狗狗正规机构在哪里）</a></li>
+                        <li class="py-2"><a href="/news/article-76618.htm" title="猫咪三针疫苗多久打一次针（猫咪三针疫苗需要多久）">猫咪三针疫苗多久打一次针（猫咪三针疫苗需要多久）</a></li>
+                        <li class="py-2"><a href="/news/article-75262.htm" title="猫咪三针疫苗中间间隔多久打一次（猫的三针疫苗间隔多少天打）">猫咪三针疫苗中间间隔多久打一次（猫的三针疫苗间隔多少天打）</a></li>
+                        <li class="py-2"><a href="/news/article-92316.htm" title="全链路压测(10)：测试要做的准备工作_在线工具">全链路压测(10)：测试要做的准备工作_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-90046.htm" title="想开个宠物店（想开个宠物店怎么申请）">想开个宠物店（想开个宠物店怎么申请）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
