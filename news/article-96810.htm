@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-96810.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>MySQL 自定义序列</title>
+        <meta name="description" content="原来用过Oracle的都清楚，序列的便利性。我们想在MySQL中也能使用序列，而不是字段的自增长。 网上有很多这方面的资料，有些不够全面。 我这里整理 并 优化了一些细节问题，直接上代码。 use a" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-96810.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="MySQL 自定义序列" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/56e0e33419b456bd8145da69e84f1996.webp" />
+        <meta property="og:release_date" content="2025-04-15T06:02:41" />
+    <meta property="og:updated_time" content="2025-04-15T06:02:41" />
+        <meta property="og:description" content="原来用过Oracle的都清楚，序列的便利性。我们想在MySQL中也能使用序列，而不是字段的自增长。 网上有很多这方面的资料，有些不够全面。 我这里整理 并 优化了一些细节问题，直接上代码。 use a" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL 自定义序列">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>MySQL 自定义序列</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>原来用过Oracle的都清楚，序列的便利性。我们想在MySQL中也能使用序列，而不是字段的自增长。</p> <p>网上有很多这方面的资料，有些不够全面。</p> <p>我这里整理 并 优化了一些细节问题，直接上代码。</p> <pre class="has"><code class="language-sql">use aglog;  -- 创建公共的序列表 DROP TABLE IF EXISTS t_common_sequence; CREATE TABLE t_common_sequence (   seq_name VARCHAR(100) NOT NULL COMMENT '序列名称',   current_val INT NOT NULL COMMENT '当前值',   increment_val INT NOT NULL DEFAULT '1' COMMENT '增长值 默认1',   PRIMARY KEY(seq_name) ) ENGINE = InnoDB CHARACTER SET = utf8 COMMENT='公共的序列表';  -- 创建函数，获取指定名称的 当前序列值 DELIMITER // DROP FUNCTION IF EXISTS f_currval; CREATE FUNCTION f_currval(v_seq_name VARCHAR(100)) RETURNS INT BEGIN   DECLARE value INT;   SET value = 0;   SELECT current_val into value    FROM t_common_sequence   WHERE seq_name = v_seq_name;   RETURN value; END; // DELIMITER ;  -- 创建函数，获取指定名称的 下一个序列值 DELIMITER // DROP FUNCTION IF EXISTS f_nextval; CREATE FUNCTION f_nextval(v_seq_name VARCHAR(100)) RETURNS INT BEGIN   UPDATE t_common_sequence   SET current_val = current_val + increment_val   WHERE seq_name = v_seq_name;   RETURN f_currval(v_seq_name); END; // DELIMITER ;  -- 创建函数，修改指定名称的序列值，并返回 DELIMITER // DROP FUNCTION IF EXISTS f_setval; CREATE FUNCTION f_setval(v_seq_name VARCHAR(100), v_new_val INT) RETURNS INT BEGIN   UPDATE t_common_sequence   SET current_val = v_new_val   WHERE seq_name = v_seq_name;   RETURN f_currval(v_seq_name); END; // DELIMITER ;</code></pre> <p>使用的实例：</p> <pre class="has"><code class="language-sql">insert into t_common_sequence(seq_name,current_val,increment_val) values('seq_job',1,1); commit;   -- 获取当前序列 select f_currval('seq_job');  -- 获取下一个序列 select f_nextval('seq_job');  -- 设置序列值，并返回 select f_setval('seq_job',10);  select * from t_common_sequence;</code></pre> <p>END</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-96075.htm">猫三联打几针多少钱一针（猫三联打几针多少钱一针啊）</a></p>
+                                        <p>下一个：<a href="/news/article-96812.htm">Metalama简介3.自定义.NET项目中的代码分析</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-90941.htm" title="附近免费领养宠物狗狗店（附近免费领养小狗）">附近免费领养宠物狗狗店（附近免费领养小狗）</a></li>
+                        <li class="py-2"><a href="/news/article-75925.htm" title="os模块，os.walk()方法解释与使用">os模块，os.walk()方法解释与使用</a></li>
+                        <li class="py-2"><a href="/news/article-87869.htm" title="宠物用品网店好做吗（宠物用品商店前景如何）">宠物用品网店好做吗（宠物用品商店前景如何）</a></li>
+                        <li class="py-2"><a href="/news/article-67991.htm" title="昆明市宠物猫领养（昆明市宠物猫领养中心）">昆明市宠物猫领养（昆明市宠物猫领养中心）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-71253.htm" title="动物疫苗接种技术实训报告（动物疫苗接种技术实训报告总结）">动物疫苗接种技术实训报告（动物疫苗接种技术实训报告总结）</a></li>
+                        <li class="py-2"><a href="/news/article-79356.htm" title="2021国考公务员职位一览表（2021公务员考试国考职位表）">2021国考公务员职位一览表（2021公务员考试国考职位表）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-7-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新19M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-92316.htm" title="全链路压测(10)：测试要做的准备工作_在线工具">全链路压测(10)：测试要做的准备工作_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-77974.htm" title="全国动物疫苗生产厂家名单查询 全国动物疫苗生产厂家名单查询官网">全国动物疫苗生产厂家名单查询 全国动物疫苗生产厂家名单查询官网</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
