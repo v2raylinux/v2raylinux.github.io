@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raylinux.github.io/news/article-111003.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>使用缓存(Cache)的几种方式，回顾一下~~~</title>
+        <meta name="description" content="前言 如今缓存成为了优化网站性能的首要利器，缓存使用的好，不仅能让网站性能提升，让用户体验变好，而且还能节约成本(增加一台缓存服务器可能就节约好几台机器)；那平时小伙伴们都使用哪些缓存方式呢？这里就来" />
+        <link rel="icon" href="/assets/website/img/v2raylinux/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Linux免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raylinux.github.io/news/article-111003.htm" />
+    <meta property="og:site_name" content="V2ray Linux免费机场订阅节点官网" />
+    <meta property="og:title" content="使用缓存(Cache)的几种方式，回顾一下~~~" />
+    <meta property="og:image" content="https://v2raylinux.github.io/uploads/20241109-1/f8ff587b6aa56824481f2bb96b560b2d.webp" />
+        <meta property="og:release_date" content="2025-05-03T10:30:42" />
+    <meta property="og:updated_time" content="2025-05-03T10:30:42" />
+        <meta property="og:description" content="前言 如今缓存成为了优化网站性能的首要利器，缓存使用的好，不仅能让网站性能提升，让用户体验变好，而且还能节约成本(增加一台缓存服务器可能就节约好几台机器)；那平时小伙伴们都使用哪些缓存方式呢？这里就来" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="使用缓存(Cache)的几种方式，回顾一下~~~">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/" rel="preconnect">
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+    <link href="/assets/website/css/v2raylinux/css2-Robotoitalwght010003000400050007000900110013001400150017001900_OpenSansitalwght030004000500060007000800130014001500160017001800_Poppinsitalwght010002000300040005000600070008000900110012001300140015001600170018001900_swap.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/css/v2raylinux/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/aos.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/all.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/css/v2raylinux/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="/assets/website/css/v2raylinux/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WVK9TPX8ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WVK9TPX8ME');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page" data-page="detail">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                                <span class="sitename">V2ray Linux</span>
+                            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background" style="background-image: url(/assets/website/img/v2raylinux/page-title-bg.jpg);">
+            <div class="container position-relative">
+                <h1>使用缓存(Cache)的几种方式，回顾一下~~~</h1>
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="新闻资讯">新闻资讯</a></li>
+                        <li class="current">正文</li>
+                    </ol>
+                </nav>
+            </div>
+        </div><!-- End Page Title -->
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<h3 id="前言">前言</h3> <p>如今<strong>缓存</strong>成为了优化网站性能的首要利器，缓存使用的好，不仅能让网站性能提升，让用户体验变好，而且还能节约成本(增加一台缓存服务器可能就节约好几台机器)；那平时小伙伴们都使用哪些缓存方式呢？这里就来和小伙伴们一起来回顾一下。</p> <h3 id="正文">正文</h3> <p>缓存的作用其实很明确，如下两方面：</p> <ul> <li> <p><strong>提升数据的获取速度</strong></p> <p>通常用在获取数据速度要求比较高的场景，比如一些和设备通信的软件，对时间的要求比较高，如果每次都从数据库读数据会导致消耗多余的时间。</p> </li> <li> <p><strong>减轻后台应用或数据库服务器的负载</strong></p> <p>对于高并发场景的系统，如果每次请求都打到数据库，数据库服务器负载会变大，到达一定瓶颈之后可能让系统体验变差或不可用。</p> </li> </ul> <h4 id="1-浏览器缓存">1. 浏览器缓存</h4> <h5 id="11-简述">1.1 简述</h5> <p>通过控制响应头信息，告诉浏览器让其将对应的数据缓存到本地，在指定时间范围内，可直接从本地缓存中取即可，但浏览器方可以不选择走缓存。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b0bae735adf4a47161389e10e6ece389.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <h5 id="12-案例演示">1.2 案例演示</h5> <p>本文中还是使用WebAPI项目进行演示，只是通过不同的API来区分不同案例。</p> <p>创建好项目中，在默认的WeatherForecastController中添加一个Action方法，如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cafe1ae35d661ce8ee39a760230246da.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>这个时候还没有做缓存处理，所以只要访问都会调用接口获取最新的数据。</p> <p>在接口方法上只需添加<strong>ResponseCache</strong>特性就可以实现浏览器缓存，如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/0dd12c227f341c900c9dc183de409d08.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>这样就可以实现客户端缓存了，可能会有小伙伴<strong>会点击浏览器的刷新和F5</strong>进行测试，这个时候并没有看到缓存效果，其实这个时候浏览器是以新的请求发出的，并不会去缓存里取，但其实请求获取到的数据已经存缓存了。</p> <p>那怎么去测试呢？<strong>每次都 打开多个浏览器标签或用Swagger的形式</strong>，如下：</p> <p>第一次访问：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/963e83c9e3282aadd03b3c6e1c42462c.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>每次都打开新标签，再访问接口：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b73bec6e274dbe18fb7badc6483978f3.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>除了根据数据没变来判定是缓存数据外，还可以通过请求确定是否从本地缓存中取数据，如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/24ea480a190601a75bc23eaf5880b505.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>Swagger演示，关于如何集成Swagger，之前有专门分享过(跟我一起学.NetCore之Swagger让前后端不再烦恼及界面自定义)：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cc1166ba75f37e8009fe38b9ede93309.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p><strong>浏览器缓存的原理其实就是在响应头中增加Cache-Control(ResponseCache的方式是通过Action过滤器的形式设置的响应头)，告诉浏览器进行数据缓存，在指定时间范围内可以从缓存中取</strong>，我们也可以自己手动设置响应头信息来达到同样的效果，如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e6fbdd9cb67ed45dd43261450ad4253c.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>尽管数据已经缓存，浏览器<strong>也可以选择不从缓存取</strong>，如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ce1972c935f7e1e3c8424d89ef3e2cd5.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <h4 id="2-服务器缓存">2. 服务器缓存</h4> <h5 id="21-简述">2.1 简述</h5> <p>浏览器缓存只是将数据保存在单台电脑的不同位置，如果打开不同的浏览器或不同的电脑访问时，还是起不到缓存的效果，所以搞个服务器缓存肯定是个不错的选择。</p> <p>即<strong>将数据缓存到站点服务器中，当请求过来时，如果命中缓存，直接获取返回即可，不调用对应的后台API</strong>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/10e0eeb291ebc8e0ae9d76870bad048f.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <h5 id="22-案例">2.2 案例</h5> <p>其实这只是在原来浏览器缓存的基础上增加了一个中间件的处理，如下：</p> <p>代码如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f15f560569077da3e35bbaee33734b1d.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>运行效果：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/6d7e387901e52e218f43a7175b44f6b4.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>由于不同的浏览器保存的数据位置不一样，如果仅仅是本地缓存，那么两个浏览器的数据会返回不一样；另外第一个浏览器访问之后，其他浏览器在时间范围内获得结果是一样的，也不会调用后台接口。</p> <p><strong>这种服务器端的缓存在有些情况是不生效的，如：请求Method不是Get或Head的不缓存，返回状态码不是200的不缓存，请求头包含Authorization的不缓存等</strong>，所以基本很少用这种方式进行缓存操作。</p> <h4 id="3-应用内存缓存">3. 应用内存缓存</h4> <h5 id="31-简述">3.1 简述</h5> <p>对于上面说到的浏览器缓存和服务器缓存，如果是友好的用户访问，没问题，能起到一定的效果；但如果有人要使坏，不设置对应的请求头访问API(禁用缓存)，最终还是会给应用服务器和数据库服务器带来压力。所以需要一种能主动控制的缓存方式，后端程序就是下手的对象，在后端程序中写缓存逻辑，这样缓存策略就由我们自己控制了。</p> <p>虽然每次请求都会进入应用程序，但会先从缓存中进行获取数据，如果命中缓存，就不再进行数据库访问，直接将缓存数据返回。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/4f83d63d83346e02ae00d069b6c59000.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <h5 id="32-案例">3.2 案例</h5> <p>其实框架中针对内存缓存这块已经做好了封装，只需注册相关的服务就可以用了，如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/635da3a45f0ecd42292a553dca8653b6.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>注册完成之后，只需要注入就可以使用了，这里增加一个Action方法进行演示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7d1c432d355c9ea1f05c39639708df35.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>效果就不截图了，在20秒内，单程序部署情况下，不管怎么访问都会是一样的结果。如果想更多了解MemoryCache的使用，可以看看这篇文章《因MemoryCache闹了个笑话》。</p> <h4 id="4-分布式缓存">4. 分布式缓存</h4> <h5 id="41-简述">4.1 简述</h5> <p>内存缓存虽然能解决浏览器和服务器缓存的缺点，但只对单体部署程序比较适用，对于需要分布式部署的程序来说，<strong>程序内存之间的缓存数据不能共享</strong>，缓存的效果肯定就没那么尽人意，所以分布式缓存就出来了，采用对应的中间件，如Memcache、Redis等，而Redis成为了缓存的首选。</p> <p>请求的逻辑和内存缓存差不多一样，只是分布式缓存会采用第三方中间件进行数据存储，保证分布式部署的程序共用一套缓存。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d9c2b1f9a1dc844304472754afe118df.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <h5 id="42-案例">4.2 案例</h5> <p>这里还是用最火的Redis做演示，所以需要提前安装Redis，关于Redis系列的文章，小伙伴们可以看这《给我一起学Redis》。</p> <p>框架也提供了统一操作分布式缓存的接口<strong>IDistributedCache</strong>，用法和上面的内存缓存基本一样。</p> <p>这里用的是Redis，所以需要安装对应的Nuget包<strong>Microsoft.Extensions.Caching.StackExchangeRed</strong>，然后注册相关服务就可以用了，如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f54aabc16fa3792163e44269687137d5.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>注册完成之后，只需要注入就可以使用了，这里也增加一个Action方法进行演示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/619ad75bc8f0d1f9b6963827d84c0eb5.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>访问对应的接口，在设置的时间范围内从Redis中读取到的数据一致，过期之后就会清空，程序又会设置新的值，如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f7b062239cddee6f41e968c4a710a8b0.jpg" alt="使用缓存(Cache)的几种方式，回顾一下~~~"></p> <p>关于缓存的几种用法就先暂时说这么多，也有小伙伴根据业务场景自己实现的。</p> <p>实例的源码：https://gitee.com/CodeZoe/dot-net-core-study-demo/tree/main/CacheDemo</p> <h3 id="总结">总结</h3> <p>缓存之所以现在这么火，其主要目的还是提升数据访问效率，缓解应用和数据库的压力，但同时也会带来一些问题，比如缓存穿透、缓存击穿、缓存雪崩及缓存数据与数据库不一致等问题，后续我们会逐个说说，关注“<strong>Code综艺圈</strong>”，和我一起学习吧。</p> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-111002.htm">Python数据结构-列表</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-90779.htm" title="做宠物粮的机器多少钱一个（宠物粮生产流程）">做宠物粮的机器多少钱一个（宠物粮生产流程）</a></li>
+                        <li class="py-2"><a href="/news/article-88593.htm" title="昆明免费领养猫咪（昆明免费领养猫咪在哪里）">昆明免费领养猫咪（昆明免费领养猫咪在哪里）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-8-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-22-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新22.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-16-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-92316.htm" title="全链路压测(10)：测试要做的准备工作_在线工具">全链路压测(10)：测试要做的准备工作_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-19-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-5-1-node-share-links.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-93035.htm" title="echart整体图形大小调整">echart整体图形大小调整</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-26-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- /Alt Services Section -->
+    </main>
+        <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">V2ray Linux免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you've purchased the pro version. -->
+                <!-- Licensing information:  -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script data-cfasync="false" src="/assets/website/js/frontend/v2raylinux/email-decode.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/jquery-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/validate.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/aos.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/v2raylinux/purecounter_vanilla.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/website/js/frontend/v2raylinux/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
