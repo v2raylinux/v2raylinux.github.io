@@ -332,32 +332,18 @@ A4：通常通过社交平台、论坛或服务商获取。公共节点风险较
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/2025-11-5-free-node-subscribe.htm">V2ray Linux节点订阅每天更新19.1M/S免费节点订阅链接</a></p>
+        <p>下一个：<a href="/free-nodes/2025-11-7-free-node-subscribe.htm">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a></p>
     </div>
 <h4>FAQ</h4>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 全局与规则代理如何合理选择？</h5></div>
+    <div class="panel-body">
+        全局代理适合游戏或全局科学上网，将所有流量通过节点；规则代理仅对指定应用或 IP 走代理，可提高带宽利用率和访问效率，根据使用场景灵活选择模式。<hr />    </div>
+</div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hiddify Next 如何设置不同用户的带宽限制？</h5></div>
     <div class="panel-body">
         管理员可为每个用户设置独立的带宽上限和流量配额。超过配额后可自动阻断或降速，确保服务器资源合理分配，避免单个用户占用过多带宽而影响其他用户体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 可以管理多少个节点？</h5></div>
-    <div class="panel-body">
-        Potatso Lite 可以管理数十个节点，适合轻量用户使用。虽然不支持批量自动更新，但可以手动添加和删除节点，结合策略组实现基本分流和管理功能。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 TLS 配置如何增强抗封锁能力？</h5></div>
-    <div class="panel-body">
-        TLS 配置可将流量伪装成正常 HTTPS 请求，隐藏真实数据特征。结合域名伪装、WebSocket 或 QUIC 等传输方式，可有效绕过封锁，提高节点长期可用性和连接稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 节点延迟检测如何帮助分流？</h5></div>
-    <div class="panel-body">
-        Clash 会定期测试节点延迟，并结合策略组自动选择最优节点处理流量。避免访问高延迟或失效节点，提高网页浏览、视频播放和游戏速度及稳定性，优化整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的 UDP 转发功能如何启用？</h5></div>
-    <div class="panel-body">
-        SSR 支持 UDP 转发，可通过客户端设置开启。启用后，游戏和语音等 UDP 流量可通过节点代理，降低丢包率和延迟，提高实时网络应用体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Netch 如何区分全局代理和规则代理？</h5></div>
@@ -365,9 +351,19 @@ A4：通常通过社交平台、论坛或服务商获取。公共节点风险较
         全局代理会将所有流量通过节点转发，而规则代理仅对指定 IP、端口或应用生效。用户可根据需求选择代理模式，实现流量优化和不同应用的最佳网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的 UDP 转发功能如何启用？</h5></div>
+    <div class="panel-body">
+        SSR 支持 UDP 转发，可通过客户端设置开启。启用后，游戏和语音等 UDP 流量可通过节点代理，降低丢包率和延迟，提高实时网络应用体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>如何用 systemd 管理 V2Ray/ Sing-box 服务？</h5></div>
     <div class="panel-body">
         创建 systemd 单元文件，指定 ExecStart 指令并设置 Restart=on-failure 与合适的 User/Group。启用服务并使用 `systemctl enable` 与 `systemctl start` 管理，便于开机自启与日志集中收集。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 的 TLS 配置如何增强抗封锁能力？</h5></div>
+    <div class="panel-body">
+        TLS 配置可将流量伪装成正常 HTTPS 请求，隐藏真实数据特征。结合域名伪装、WebSocket 或 QUIC 等传输方式，可有效绕过封锁，提高节点长期可用性和连接稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 的 TUN 模式适合哪些应用？</h5></div>
@@ -375,14 +371,19 @@ A4：通常通过社交平台、论坛或服务商获取。公共节点风险较
         TUN 模式拦截系统 IP 层流量，可实现全局代理。适合游戏、视频、浏览器和其他全局应用，实现低延迟和稳定连接，保证所有流量通过代理节点，提高访问速度和稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理区别是什么？</h5></div>
+    <div class="panel-heading"><h5>Potatso Lite 可以管理多少个节点？</h5></div>
     <div class="panel-body">
-        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响特定应用。TUN 更适合全局加速、游戏和视频应用，保证所有流量走节点，提高网络稳定性和速度。<hr />    </div>
+        Potatso Lite 可以管理数十个节点，适合轻量用户使用。虽然不支持批量自动更新，但可以手动添加和删除节点，结合策略组实现基本分流和管理功能。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 全局与规则代理如何合理选择？</h5></div>
+    <div class="panel-heading"><h5>Clash 节点延迟检测如何帮助分流？</h5></div>
     <div class="panel-body">
-        全局代理适合游戏或全局科学上网，将所有流量通过节点；规则代理仅对指定应用或 IP 走代理，可提高带宽利用率和访问效率，根据使用场景灵活选择模式。    </div>
+        Clash 会定期测试节点延迟，并结合策略组自动选择最优节点处理流量。避免访问高延迟或失效节点，提高网页浏览、视频播放和游戏速度及稳定性，优化整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理区别是什么？</h5></div>
+    <div class="panel-body">
+        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响特定应用。TUN 更适合全局加速、游戏和视频应用，保证所有流量走节点，提高网络稳定性和速度。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -411,16 +412,16 @@ A4：通常通过社交平台、论坛或服务商获取。公共节点风险较
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-11-3-free-ssr-node.htm" title="V2ray Linux节点订阅每天更新21.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.6M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-20-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新21.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-12-clash-v2ray-ss-ssr.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-19-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新18.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-6-free-v2ray.htm" title="V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-21-free-ssr-subscribe.htm" title="V2ray Linux节点订阅每天更新22.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.6M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-22-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-25-free-v2ray-subscribe.htm" title="V2ray Linux节点订阅每天更新21.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-27-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-5-node-share-links.htm" title="V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-17-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-18-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-9-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新22.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.6M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-16-free-v2ray-subscribe.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-24-free-clash-subscribe.htm" title="V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-27-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -432,7 +433,7 @@ A4：通常通过社交平台、论坛或服务商获取。公共节点风险较
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
