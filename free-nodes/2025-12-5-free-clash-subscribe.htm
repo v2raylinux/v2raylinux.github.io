@@ -268,6 +268,41 @@ vmess支持更灵活的流量分流和混淆技术，能更有效地抵抗封锁
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的内核能否替换？</h5></div>
+    <div class="panel-body">
+        可以。WinXray 的内核文件独立存在于程序目录中，用户可替换为最新的 v2ray-core 或 xray-core 文件以获取更好的性能与协议支持，但需保持版本兼容。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 的 TAP 模式与 TUN 模式区别是什么？</h5></div>
+    <div class="panel-body">
+        TAP 模式模拟以太网接口，适合游戏流量代理；TUN 模式则模拟 IP 层接口，更适合全局代理。根据用途不同可自由选择，但需管理员权限运行。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 节点健康检测如何提升网络体验？</h5></div>
+    <div class="panel-body">
+        WinXray 会定期检测节点延迟和丢包率，并结合策略组自动切换到最优节点。避免高延迟或失效节点，提高网页浏览、视频播放和游戏连接的稳定性和速度。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Potatso Lite 手动节点切换有哪些优点？</h5></div>
+    <div class="panel-body">
+        手动切换节点可以根据延迟和用途选择最佳节点，适合在节点不稳定或特殊需求下使用。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekoray 节点订阅更新不成功怎么办？</h5></div>
+    <div class="panel-body">
+        检查订阅 URL 是否有效并确保网络通畅。可手动刷新或重新添加订阅链接，保证节点列表最新。结合策略组使用，确保稳定科学上网体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 的策略组可按 IP 段分流吗？</h5></div>
+    <div class="panel-body">
+        支持。可通过 IP 段匹配将流量分流到指定节点。结合策略组，可实现国内直连、国外代理或游戏加速，实现精细化流量管理和优化网络访问。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 能否同步 iCloud 配置？</h5></div>
+    <div class="panel-body">
+        可以。Surfboard 支持 iCloud 同步功能，用户可在不同苹果设备上共享同一配置文件。这样即使更换手机或重装系统，也能自动恢复节点与分流设置。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Shadowrocket 的分流规则如何优化视频播放？</h5></div>
     <div class="panel-body">
         通过分流规则，将流媒体域名匹配到高速节点，而其他流量走备用节点。保证视频播放流畅，同时节约带宽资源，提升整体网络速度和体验。<hr />    </div>
@@ -278,44 +313,9 @@ vmess支持更灵活的流量分流和混淆技术，能更有效地抵抗封锁
         节点测速结果可用于策略组选择和自动切换，程序会根据延迟和丢包率选择最优节点。这样访问海外网站或流媒体时，可以保持高速和稳定的网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 的 TAP 模式与 TUN 模式区别是什么？</h5></div>
-    <div class="panel-body">
-        TAP 模式模拟以太网接口，适合游戏流量代理；TUN 模式则模拟 IP 层接口，更适合全局代理。根据用途不同可自由选择，但需管理员权限运行。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 的策略组可按 IP 段分流吗？</h5></div>
-    <div class="panel-body">
-        支持。可通过 IP 段匹配将流量分流到指定节点。结合策略组，可实现国内直连、国外代理或游戏加速，实现精细化流量管理和优化网络访问。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的内核能否替换？</h5></div>
-    <div class="panel-body">
-        可以。WinXray 的内核文件独立存在于程序目录中，用户可替换为最新的 v2ray-core 或 xray-core 文件以获取更好的性能与协议支持，但需保持版本兼容。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 节点订阅更新不成功怎么办？</h5></div>
-    <div class="panel-body">
-        检查订阅 URL 是否有效并确保网络通畅。可手动刷新或重新添加订阅链接，保证节点列表最新。结合策略组使用，确保稳定科学上网体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 能否同步 iCloud 配置？</h5></div>
-    <div class="panel-body">
-        可以。Surfboard 支持 iCloud 同步功能，用户可在不同苹果设备上共享同一配置文件。这样即使更换手机或重装系统，也能自动恢复节点与分流设置。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 节点健康检测如何提升网络体验？</h5></div>
-    <div class="panel-body">
-        WinXray 会定期检测节点延迟和丢包率，并结合策略组自动切换到最优节点。避免高延迟或失效节点，提高网页浏览、视频播放和游戏连接的稳定性和速度。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 是否支持多节点手动管理？</h5></div>
     <div class="panel-body">
-        支持。用户可以手动输入节点参数或扫描二维码导入节点，并可进行修改或删除。虽然不支持订阅自动更新，但足够满足轻量用户对节点管理和分流的基本需求。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 手动节点切换有哪些优点？</h5></div>
-    <div class="panel-body">
-        手动切换节点可以根据延迟和用途选择最佳节点，适合在节点不稳定或特殊需求下使用。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。    </div>
+        支持。用户可以手动输入节点参数或扫描二维码导入节点，并可进行修改或删除。虽然不支持订阅自动更新，但足够满足轻量用户对节点管理和分流的基本需求。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -344,16 +344,16 @@ vmess支持更灵活的流量分流和混淆技术，能更有效地抵抗封锁
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-11-12-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-17-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-14-node-share.htm" title="V2ray Linux节点订阅每天更新21.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-18-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新18.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-4-clash-windows.htm" title="V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-13-clash-windows.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-28-node-share.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-26-clash-v2ray-ss-ssr.htm" title="V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-5-free-clash-subscribe.htm" title="V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-22-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-5-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新19.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-19-clash-v2ray-ss-ssr.htm" title="V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-23-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-17-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-21-free-ssr-node.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-11-clash-v2ray-ss-ssr.htm" title="V2ray Linux节点订阅每天更新18M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -365,7 +365,7 @@ vmess支持更灵活的流量分流和混淆技术，能更有效地抵抗封锁
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
