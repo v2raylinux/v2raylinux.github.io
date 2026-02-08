@@ -333,9 +333,14 @@ VPN通过建立加密的“隧道”，将用户的网络流量传输到中转�
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash Premium 与普通版本有什么区别？</h5></div>
+    <div class="panel-heading"><h5>Sing-box 如何按域名分流优化浏览器流量？</h5></div>
     <div class="panel-body">
-        Clash Premium 是增强版，支持更多功能如 TUN 模式、本地 DNS 解析、脚本规则和自定义代理链。它能实现更细致的流量控制和兼容更多协议，适合对网络有高级需求的用户使用。<hr />    </div>
+        Sing-box 可通过规则匹配域名，将浏览器流量分配到最优节点。结合策略组，可保证网页访问速度和稳定性，同时优化视频和游戏等其他流量，提高整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 是什么？它主要有什么用途？</h5></div>
+    <div class="panel-body">
+        Clash 是一个跨平台的代理客户端，支持多种代理协议，如 Vmess、Vless、Trojan 和 Shadowsocks 等。它主要用于分流管理、网络代理和科学上网，用户可以通过配置文件灵活控制网络流量，实现不同网站或应用走不同代理。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 的端口复用有什么风险？</h5></div>
@@ -353,29 +358,24 @@ VPN通过建立加密的“隧道”，将用户的网络流量传输到中转�
         Matsuri 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。用户无需手动切换节点，即可保持高速访问，提高网页、视频和游戏体验的稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan 的伪装域名为何重要？</h5></div>
+    <div class="panel-body">
+        伪装域名必须是真实可访问的网站，且证书有效。它用于伪装流量，使 Trojan 的数据在外观上完全像正常 HTTPS 请求，从而有效降低被封锁和 DPI 检测的风险。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash Premium 与普通版本有什么区别？</h5></div>
+    <div class="panel-body">
+        Clash Premium 是增强版，支持更多功能如 TUN 模式、本地 DNS 解析、脚本规则和自定义代理链。它能实现更细致的流量控制和兼容更多协议，适合对网络有高级需求的用户使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Surfboard 是否支持 Clash 配置？</h5></div>
     <div class="panel-body">
         Surfboard 是一款支持多种协议的客户端应用，它能够兼容 Clash 的配置文件格式，用户只需导入 YAML 文件即可。该应用以轻量、高速著称，常用于 iOS 和 macOS 系统。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何按域名分流优化浏览器流量？</h5></div>
-    <div class="panel-body">
-        Sing-box 可通过规则匹配域名，将浏览器流量分配到最优节点。结合策略组，可保证网页访问速度和稳定性，同时优化视频和游戏等其他流量，提高整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 是什么？它主要有什么用途？</h5></div>
-    <div class="panel-body">
-        Clash 是一个跨平台的代理客户端，支持多种代理协议，如 Vmess、Vless、Trojan 和 Shadowsocks 等。它主要用于分流管理、网络代理和科学上网，用户可以通过配置文件灵活控制网络流量，实现不同网站或应用走不同代理。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Nekobox 是否支持多客户端节点管理？</h5></div>
     <div class="panel-body">
         支持。Nekobox 可以独立管理 Shadowsocks、Clash 等客户端节点，互不干扰。结合策略组，可实现多客户端流量分流和网络优化，提高节点管理效率和使用便利性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 的伪装域名为何重要？</h5></div>
-    <div class="panel-body">
-        伪装域名必须是真实可访问的网站，且证书有效。它用于伪装流量，使 Trojan 的数据在外观上完全像正常 HTTPS 请求，从而有效降低被封锁和 DPI 检测的风险。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 是否支持多节点测试？</h5></div>
@@ -409,15 +409,15 @@ VPN通过建立加密的“隧道”，将用户的网络流量传输到中转�
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-1-11-clash-v2ray-ss-ssr.htm" title="V2ray Linux节点订阅每天更新20.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-9-node-share-links.htm" title="V2ray Linux节点订阅每天更新18.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.1M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-21-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新21.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-30-clash-node.htm" title="V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-2-8-node-share.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-31-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新19M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-14-clash-node.htm" title="V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-2-1-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-1-16-free-ssr-node.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-27-free-v2ray-subscribe.htm" title="V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-12-23-node-share.htm" title="V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-21-free-ssr-node.htm" title="V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-20-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-23-free-high-speed-nodes.htm" title="V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-2-5-clash-node-daily-updates.htm" title="V2ray Linux节点订阅每天更新18M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-2-2-free-v2ray-subscribe.htm" title="V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-6-free-ssr-node.htm" title="V2ray Linux节点订阅每天更新22.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.7M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-1-22-clash-windows.htm" title="V2ray Linux节点订阅每天更新18.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.6M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
@@ -430,13 +430,10 @@ VPN通过建立加密的“隧道”，将用户的网络流量传输到中转�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2026-02/" title="2026-02 归档">2026-02</a></h4>
+                <h4><span class="badge" style="float: right;">8</span> <a href="/date/2026-02/" title="2026-02 归档">2026-02</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
             </li>
                     </ul>
     </div>
