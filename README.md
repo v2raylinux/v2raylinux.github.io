@@ -1,4 +1,4 @@
-# V2ray Linux节点订阅每天更新21.2M/S免费节点订阅链接  更新时间 2026-08-22 09:14:53
+# V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接  更新时间 2026-08-29 08:55:56
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://v2raylinux.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### 免费Clash节点订阅链接
 
-- https://v2raylinux.github.io/uploads/2026/08/0-20260822.yaml
-- https://v2raylinux.github.io/uploads/2026/08/1-20260822.yaml
-- https://v2raylinux.github.io/uploads/2026/08/2-20260822.yaml
-- https://v2raylinux.github.io/uploads/2026/08/3-20260822.yaml
-- https://v2raylinux.github.io/uploads/2026/08/4-20260822.yaml
+- https://v2raylinux.github.io/uploads/2026/08/0-20260829.yaml
+- https://v2raylinux.github.io/uploads/2026/08/1-20260829.yaml
+- https://v2raylinux.github.io/uploads/2026/08/2-20260829.yaml
+- https://v2raylinux.github.io/uploads/2026/08/3-20260829.yaml
+- https://v2raylinux.github.io/uploads/2026/08/4-20260829.yaml
 
 ### 免费V2ray节点订阅链接
 
-- https://v2raylinux.github.io/uploads/2026/08/0-20260822.txt
-- https://v2raylinux.github.io/uploads/2026/08/1-20260822.txt
-- https://v2raylinux.github.io/uploads/2026/08/2-20260822.txt
-- https://v2raylinux.github.io/uploads/2026/08/3-20260822.txt
-- https://v2raylinux.github.io/uploads/2026/08/4-20260822.txt
+- https://v2raylinux.github.io/uploads/2026/08/0-20260829.txt
+- https://v2raylinux.github.io/uploads/2026/08/1-20260829.txt
+- https://v2raylinux.github.io/uploads/2026/08/2-20260829.txt
+- https://v2raylinux.github.io/uploads/2026/08/3-20260829.txt
+- https://v2raylinux.github.io/uploads/2026/08/4-20260829.txt
 
 ### 免费Sing-box节点订阅链接
 
-- https://v2raylinux.github.io/uploads/2026/08/20260822.json
+- https://v2raylinux.github.io/uploads/2026/08/20260829.json
 
 ## 更多Clash节点订阅 ：
 
