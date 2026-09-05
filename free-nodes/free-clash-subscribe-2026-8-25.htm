@@ -364,19 +364,14 @@ A4：可能未安装TUN驱动或驱动权限不足。建议重新安装，并以
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 可以在哪些平台使用？</h5></div>
+    <div class="panel-heading"><h5>Clash 的策略组支持哪些节点选择策略？</h5></div>
     <div class="panel-body">
-        Shadowrocket 是一款 iOS 平台专用代理客户端，支持多种协议如 Vmess、Shadowsocks、Trojan 等。用户可通过导入订阅链接快速配置节点，配合规则分流功能实现精准网络代理。由于其强大功能，它是 iPhone 用户常用的科学上网工具。<hr />    </div>
+        支持按延迟选择、随机选择、轮询或手动选择节点。结合规则匹配，用户可实现不同网站或应用使用不同节点，提高访问速度和网络稳定性，同时降低管理复杂度。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 支持多配置文件加载吗？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
     <div class="panel-body">
-        Clash 支持多配置切换，用户可在图形界面中导入多个 YAML 文件，并通过选择不同配置快速切换使用场景。例如家用模式、移动模式或公司网络模式。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mihomo 节点分组如何保证低延迟？</h5></div>
-    <div class="panel-body">
-        将节点按延迟、地区或用途分组，并启用策略组，系统会根据节点延迟和健康状态自动选择最佳节点。保证网页浏览、视频播放和游戏流量的低延迟和稳定连接。<hr />    </div>
+        Matsuri 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。用户无需手动切换节点，即可保持高速访问，提高网页、视频和游戏体验的稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的多节点分流如何设置？</h5></div>
@@ -384,9 +379,9 @@ A4：可能未安装TUN驱动或驱动权限不足。建议重新安装，并以
         可通过策略组定义不同节点用途和优先级，结合规则文件将特定域名、IP 或端口流量分流至相应节点，实现游戏、视频或网页加速，并优化整体网络性能和稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess AEAD 加密能防止哪些风险？</h5></div>
+    <div class="panel-heading"><h5>Clash 支持多配置文件加载吗？</h5></div>
     <div class="panel-body">
-        AEAD 加密可防止数据篡改、重放攻击和流量特征泄露。在高封锁环境下使用，有助于保持节点长期可用，保证数据安全和连接稳定性。<hr />    </div>
+        Clash 支持多配置切换，用户可在图形界面中导入多个 YAML 文件，并通过选择不同配置快速切换使用场景。例如家用模式、移动模式或公司网络模式。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 的 TUN 模式适合哪些应用？</h5></div>
@@ -394,24 +389,29 @@ A4：可能未安装TUN驱动或驱动权限不足。建议重新安装，并以
         TUN 模式拦截系统 IP 层流量，可实现全局代理。适合游戏、视频、浏览器和其他全局应用，实现低延迟和稳定连接，保证所有流量通过代理节点，提高访问速度和稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的策略组如何提升分流效率？</h5></div>
-    <div class="panel-body">
-        策略组可以将多个节点或规则组合在一起，实现按条件自动选择最佳节点。通过策略组，用户无需手动切换节点即可根据延迟、地理位置或流量类型自动分流，提高网络效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的策略组支持哪些节点选择策略？</h5></div>
-    <div class="panel-body">
-        支持按延迟选择、随机选择、轮询或手动选择节点。结合规则匹配，用户可实现不同网站或应用使用不同节点，提高访问速度和网络稳定性，同时降低管理复杂度。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Nekobox 和 Nekoray 有何关系？</h5></div>
     <div class="panel-body">
         Nekobox 是 Nekoray 的移动端衍生版，界面简洁，主要适配 Android 平台。两者使用同样的核心逻辑与配置结构，因此订阅文件和节点信息可以兼容共享。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
+    <div class="panel-heading"><h5>VMess AEAD 加密能防止哪些风险？</h5></div>
     <div class="panel-body">
-        Matsuri 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。用户无需手动切换节点，即可保持高速访问，提高网页、视频和游戏体验的稳定性。    </div>
+        AEAD 加密可防止数据篡改、重放攻击和流量特征泄露。在高封锁环境下使用，有助于保持节点长期可用，保证数据安全和连接稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mihomo 节点分组如何保证低延迟？</h5></div>
+    <div class="panel-body">
+        将节点按延迟、地区或用途分组，并启用策略组，系统会根据节点延迟和健康状态自动选择最佳节点。保证网页浏览、视频播放和游戏流量的低延迟和稳定连接。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 的策略组如何提升分流效率？</h5></div>
+    <div class="panel-body">
+        策略组可以将多个节点或规则组合在一起，实现按条件自动选择最佳节点。通过策略组，用户无需手动切换节点即可根据延迟、地理位置或流量类型自动分流，提高网络效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Shadowrocket 可以在哪些平台使用？</h5></div>
+    <div class="panel-body">
+        Shadowrocket 是一款 iOS 平台专用代理客户端，支持多种协议如 Vmess、Shadowsocks、Trojan 等。用户可通过导入订阅链接快速配置节点，配合规则分流功能实现精准网络代理。由于其强大功能，它是 iPhone 用户常用的科学上网工具。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -459,16 +459,16 @@ A4：可能未安装TUN驱动或驱动权限不足。建议重新安装，并以
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-7-25-free-subscribe-node.htm" title="V2ray Linux节点订阅每天更新21.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.2M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-20-free-ssr-subscribe.htm" title="V2ray Linux节点订阅每天更新20.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.7M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-24-free-clash.htm" title="V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-24-clash-node-daily-updates.htm" title="V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.9M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-21-free-v2ray-subscribe.htm" title="V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.2M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-30-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新19.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.2M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-2-free-clash.htm" title="V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新19.8M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-4-clash-v2ray-ss-ssr.htm" title="V2ray Linux节点订阅每天更新21M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-7.htm" title="V2ray Linux节点订阅每天更新21.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.5M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-22-free-clash.htm" title="V2ray Linux节点订阅每天更新23M/S免费节点订阅链接">V2ray Linux节点订阅每天更新23M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-31.htm" title="V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-27.htm" title="V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.2M/S免费节点订阅链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-16-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-12-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.7M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-2-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.8M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-3.htm" title="V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.7M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-5.htm" title="V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.1M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-18-clash-v2ray-ss-ssr.htm" title="V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-9-1.htm" title="V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.8M/S免费节点订阅链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -480,10 +480,10 @@ A4：可能未安装TUN驱动或驱动权限不足。建议重新安装，并以
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
