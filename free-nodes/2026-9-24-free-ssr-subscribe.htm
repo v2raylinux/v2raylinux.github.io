@@ -351,34 +351,9 @@ A：部分平台如Google、Twitter等对异常IP敏感，短时间频繁切换�
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
-    <div class="panel-body">
-        Matsuri 会定期测速节点延迟，并根据结果排序。用户可选择延迟最低的节点进行访问，结合策略组实现自动切换，提高网络速度和连接稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS 是否比 Trojan 更稳定？</h5></div>
-    <div class="panel-body">
-        两者都非常稳定，但 VLESS 在多平台兼容性上略优，而 Trojan 在 HTTPS 伪装和 TLS 安全性上更强。选择取决于服务器环境与具体需求，两者皆为高性能协议。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 如何通过策略组实现多节点负载均衡？</h5></div>
     <div class="panel-body">
         Clash 支持策略组功能，可以根据节点延迟、地区或用途自动选择最佳节点处理流量，实现多节点负载均衡。有效提高访问速度和稳定性，保证网页浏览、视频播放和游戏流畅。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 支持哪些传输方式？</h5></div>
-    <div class="panel-body">
-        Matsuri 支持 TCP、gRPC、QUIC、WebSocket 等多种传输协议。用户可在配置文件中自由切换，根据服务器支持情况选择最优连接方式，以获得更低延迟与更强稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何安全地共享订阅链接而不泄露个人信息？</h5></div>
-    <div class="panel-body">
-        避免将私人订阅直接在公开场合分享，若需要共享可在服务端生成只读或限速专用订阅，并定期更换 token。对外公开时移除或隐藏用户识别字段，确保他人无法通过订阅追溯出个人账户信息。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess AEAD 加密在高封锁网络中有何优势？</h5></div>
-    <div class="panel-body">
-        AEAD 加密能防止流量被篡改或重放，并隐藏流量特征。在高封锁网络中，使用 AEAD 可以提高节点稳定性和长期可用性，同时确保数据安全和隐蔽性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Vmess 的安全加密方式推荐使用哪种？</h5></div>
@@ -386,9 +361,24 @@ A：部分平台如Google、Twitter等对异常IP敏感，短时间频繁切换�
         目前推荐使用 auto 或 none（结合 TLS 加密）以提升性能。旧版 AEAD 加密已被废弃，使用 TLS/XTLS 层提供的加密即可确保安全。过度加密反而增加 CPU 占用与延迟。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的节点延迟过高怎么办？</h5></div>
+    <div class="panel-heading"><h5>Vmess 节点配置时常见错误有哪些？</h5></div>
     <div class="panel-body">
-        可通过策略组切换低延迟节点，或调整传输协议和端口。检查服务器网络和防火墙设置，确保网络通畅。必要时可启用 MUX 功能减少短连接延迟，提高整体网络体验。<hr />    </div>
+        常见错误包括端口号不匹配、UUID 错误、TLS 设置不正确或传输类型配置错误。这些都会导致连接失败。检查服务器配置与客户端参数一致性是解决问题的关键。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess AEAD 加密在高封锁网络中有何优势？</h5></div>
+    <div class="panel-body">
+        AEAD 加密能防止流量被篡改或重放，并隐藏流量特征。在高封锁网络中，使用 AEAD 可以提高节点稳定性和长期可用性，同时确保数据安全和隐蔽性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 支持哪些传输方式？</h5></div>
+    <div class="panel-body">
+        Matsuri 支持 TCP、gRPC、QUIC、WebSocket 等多种传输协议。用户可在配置文件中自由切换，根据服务器支持情况选择最优连接方式，以获得更低延迟与更强稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
+    <div class="panel-body">
+        Matsuri 会定期测速节点延迟，并根据结果排序。用户可选择延迟最低的节点进行访问，结合策略组实现自动切换，提高网络速度和连接稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何配置 Clash 的 GEOIP 分流？</h5></div>
@@ -396,9 +386,19 @@ A：部分平台如Google、Twitter等对异常IP敏感，短时间频繁切换�
         Clash 支持使用 GEOIP 数据库进行区域分流。用户在规则文件中添加 `GEOIP,CN,DIRECT` 可使国内流量直连，而国外流量走代理，从而提升整体网络性能。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Vmess 节点配置时常见错误有哪些？</h5></div>
+    <div class="panel-heading"><h5>WinXray 的节点延迟过高怎么办？</h5></div>
     <div class="panel-body">
-        常见错误包括端口号不匹配、UUID 错误、TLS 设置不正确或传输类型配置错误。这些都会导致连接失败。检查服务器配置与客户端参数一致性是解决问题的关键。    </div>
+        可通过策略组切换低延迟节点，或调整传输协议和端口。检查服务器网络和防火墙设置，确保网络通畅。必要时可启用 MUX 功能减少短连接延迟，提高整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS 是否比 Trojan 更稳定？</h5></div>
+    <div class="panel-body">
+        两者都非常稳定，但 VLESS 在多平台兼容性上略优，而 Trojan 在 HTTPS 伪装和 TLS 安全性上更强。选择取决于服务器环境与具体需求，两者皆为高性能协议。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何安全地共享订阅链接而不泄露个人信息？</h5></div>
+    <div class="panel-body">
+        避免将私人订阅直接在公开场合分享，若需要共享可在服务端生成只读或限速专用订阅，并定期更换 token。对外公开时移除或隐藏用户识别字段，确保他人无法通过订阅追溯出个人账户信息。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -447,15 +447,15 @@ A：部分平台如Google、Twitter等对异常IP敏感，短时间频繁切换�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2"><a href="/free-nodes/2026-9-24-free-ssr-subscribe.htm" title="V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-9-9.htm" title="V2ray Linux节点订阅每天更新21.2M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.2M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-16-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.8M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-10-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新18.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新18.5M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-13.htm" title="V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.5M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-12-clash-v2ray-ss-ssr.htm" title="V2ray Linux节点订阅每天更新20.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.3M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-28-clash-node.htm" title="V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-9.htm" title="V2ray Linux节点订阅每天更新22.7M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.7M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-5.htm" title="V2ray Linux节点订阅每天更新21.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.5M/S免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-8-19.htm" title="V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.4M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-21.htm" title="V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.9M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-8-free-node-subscribe.htm" title="V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.5M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-9-27.htm" title="V2ray Linux节点订阅每天更新20.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.6M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-28-clash-node-daily-updates.htm" title="V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.3M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-26-clash-node.htm" title="V2ray Linux节点订阅每天更新21.3M/S免费节点订阅链接">V2ray Linux节点订阅每天更新21.3M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-22-free-ssr-subscribe.htm" title="V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.1M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-30-free-shadowrocket-node.htm" title="V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22.4M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-18-node-share.htm" title="V2ray Linux节点订阅每天更新20.6M/S免费节点订阅链接">V2ray Linux节点订阅每天更新20.6M/S免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-9-7.htm" title="V2ray Linux节点订阅每天更新22M/S免费节点订阅链接">V2ray Linux节点订阅每天更新22M/S免费节点订阅链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -467,10 +467,10 @@ A：部分平台如Google、Twitter等对异常IP敏感，短时间频繁切换�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                     </ul>
     </div>
